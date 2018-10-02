@@ -1,12 +1,11 @@
 {
   "name": "mongoprojekt",
   "version": "1.0.0",
-  "description": "MERN-stack",
+  "description": "MERN-stack project",
   "main": "server.js",
-  "dependencies": {},
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/JohanssonJonathan/mongoprojekt/issues"
   },
-  "homepage": "https://github.com/JohanssonJonathan/mongoprojekt#readme"
+  "homepage": "https://github.com/JohanssonJonathan/mongoprojekt#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
 }
