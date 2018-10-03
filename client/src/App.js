@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ShowPlaylists from './showPlayLists.js';
+
 import './App.css';
 import Popup from "./Popup.js";
 
@@ -21,12 +22,14 @@ class App extends Component {
     return (
       <div className="App">
 
+
       <Popup/>
 
         {this.props.post}
 
         <button onClick={this.handleClick}>Click</button>
         <button onClick={this.deleteClick}>Delete</button>
+
 
       </div>
     );

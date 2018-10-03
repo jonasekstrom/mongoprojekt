@@ -1,0 +1,40 @@
+.showPlayListsDiv {
+    background-color: gray;
+    position: fixed; bottom: 0;
+    height: 400px;
+    width: 100vw;
+    color: white;
+    border-top: 4px solid white;
+    overflow-y: auto;
+    
+}
+
+.playListDiv {
+    background-color:black;
+    color: white;
+    height: 130px;
+    width: 540px;
+    margin: 30px;
+    cursor: pointer;
+    display: inline-block;
+    list-style-type: none;
+}
+
+
+ul {
+    display: inline-block;
+}
+
+h3 {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+.playListDiv:hover {background-color: darkred};
+
+.playListUL {
+    overflow: auto;
+}
