@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-// import './showPlayLists.css';
+import { connect } from "react-redux"
+import './showPlayLists.css';
 
 class ShowPlayLists extends Component {
 

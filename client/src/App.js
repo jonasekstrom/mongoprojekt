@@ -21,15 +21,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-<<<<<<< HEAD
-<<<<<<< HEAD
+      <ShowPlaylists/>
       
-        <ShowPlaylists/>
-      
-=======
-=======
 
->>>>>>> 54d328f95d9055792066ae0f7222ceda5d87ee68
 
       <Popup/>
 
@@ -38,11 +32,8 @@ class App extends Component {
         <button onClick={this.handleClick}>Click</button>
         <button onClick={this.deleteClick}>Delete</button>
 
-<<<<<<< HEAD
->>>>>>> 9d270b65aae5ae320e00acdceb55a243e6f6214a
-=======
 
->>>>>>> 54d328f95d9055792066ae0f7222ceda5d87ee68
+
       </div>
     );
   }
