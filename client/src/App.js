@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Popup from "./Popup.js";
+
 import { connect } from "react-redux"
 import action from "./actions.js"
+
 
 class App extends Component {
 
@@ -17,6 +20,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
+      <Popup/>
+
         {this.props.post}
 
         <button onClick={this.handleClick}>Click</button>
