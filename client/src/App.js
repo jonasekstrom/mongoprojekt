@@ -21,6 +21,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <ShowPlaylists/>
+      
 
 
       <Popup/>
@@ -29,6 +31,7 @@ class App extends Component {
 
         <button onClick={this.handleClick}>Click</button>
         <button onClick={this.deleteClick}>Delete</button>
+
 
 
       </div>
