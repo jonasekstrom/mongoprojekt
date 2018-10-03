@@ -1,0 +1,82 @@
+.popup {
+    position: fixed;
+    width: 60%;
+    height: 80%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+.popup_inner {
+    position: absolute;
+    left: 2%;
+    right: 2%;
+    top: 15%;
+    bottom: 15%;
+    margin: auto;
+    color: white;
+}
+
+.playListInformation {
+    letter-spacing: 3px;
+    margin-bottom: -5px;
+}
+
+ul {
+    margin-top: -5px;
+}
+
+ul>li {
+    list-style-type: square;
+}
+
+.closeBtn {
+    position: absolute;
+    left: 50%;
+    top: 95%;
+    transform: translate(-50%, -95%);
+}
+
+.playListTitle {
+    position: relative;
+    margin-top: -50px;
+    text-align: center;
+}
+
+.spotifyLink {
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, -100%);
+
+    background-color:#0266b8;
+    box-shadow: 0 5px 0 #014f8f;
+    color: white;
+    padding: 0.5em 1em;
+    position: absolute;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.spotifyLink:hover {
+    background-color:#1c8ce7;
+}
+
+.spotifyLink:active {
+    box-shadow: none;
+    top: 5px;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, -100%);
+}
+
+.editInformation{
+
+}
+
+textarea {
+    resize: none;
+  }
