@@ -3,7 +3,7 @@ const initState ={
   post:"javascript",
   popup:{
     ownerOfPlayList: false,
-    showPopup: true,
+    showPopup: false,
     playListName: "Working out like Hackerman",
     userName: "Hackerman",
     genres: ["Electro", "Jazz", "Blues"],
