@@ -55,8 +55,24 @@ function getUserPlaylist(){
   });
 }
 
+//create a new playlist
+function createPlaylist(playlist){
+  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
+      const collectionName = "playlist";
+      console.log(playlist)
+
+      db.collection(collectionName).insertOne(playlist)
+
+      console.log("connected to database!!!!")
+       client.close();  // remember to close connections when done
+  });
+}
 
 
 
 
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist };
+
+
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist };

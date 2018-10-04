@@ -1,4 +1,4 @@
-let {createUser, loginUser, getAllPlaylists, getUserPlaylist} = require("./database.js")
+let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist} = require("./database.js")
 const express = require("express");
 const app = express();
 const port = 5000;
@@ -19,7 +19,7 @@ app.post("/login", (req,res) => {
     res.send("Login");
 });
 
-app.post("/create", (req,res) => {
+app.post("/createUser", (req,res) => {
     console.log("requsted URL: " + req.url);
     // REQ = username, email, pw
     let user = ""
@@ -35,6 +35,20 @@ app.post("/create", (req,res) => {
     //check if user allready exists if not create new user.
     res.send("Post user to DB");
 });
+
+app.post("/createPlaylist", (req,res)=>{
+
+  let playlist = ""
+  req.on("data", (data)=>{
+    playlist += data;
+  })
+
+  req.on("end", function(){
+    let obj = JSON.parse(playlist);
+    createPlaylist(obj)
+  })
+
+})
 
 app.get("/playlist", (req,res) => {
   //when user is logged in all the playlist should show up on the homepage
