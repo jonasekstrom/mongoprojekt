@@ -1,16 +1,21 @@
+let {ConnectToDB} = require("./database.js")
 const express = require("express");
 const app = express();
 const port = 5000;
 
 
+
 app.get("/", (req,res) => {
     console.log("requsted URL: " + req.url);
+    console.log(ConnectToDB)
+    ConnectToDB()
     res.send("Default");
 });
 
 app.post("/login", (req,res) => {
     console.log("requsted URL: " + req.url);
     // REQ = username, email, pw
+
     res.send("Login");
 });
 
