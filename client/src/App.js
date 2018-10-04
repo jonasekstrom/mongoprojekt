@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import ShowPlaylists from './showPlayLists.js';
-
-import './App.css';
 import Popup from "./Popup.js";
 
-import { connect } from "react-redux"
-import action from "./actions.js"
+import './App.css';
+import { connect } from "react-redux";
+import action from "./actions.js";
 
 
 class App extends Component {
@@ -22,17 +21,12 @@ class App extends Component {
     return (
       <div className="App">
       <ShowPlaylists/>
-      
-
-
       <Popup/>
 
         {this.props.post}
 
         <button onClick={this.handleClick}>Click</button>
         <button onClick={this.deleteClick}>Delete</button>
-
-
 
       </div>
     );
@@ -51,8 +45,6 @@ const mapDispatchToProps = (dispatch) =>{
     add: ()=> {  dispatch(action.addPost())},
     deleteCode: ()=> {dispatch(action.deletePost())}
   }
-
-
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
