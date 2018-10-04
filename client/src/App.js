@@ -11,11 +11,10 @@ import action from "./actions.js"
 class App extends Component {
 
   handleClick = () => {
-    this.props.add()
+    this.props.dispatch(action.addPost())
   }
 
   deleteClick = ()=>{
-    this.props.deleteCode()
 
   }
   render() {
@@ -29,8 +28,8 @@ class App extends Component {
 
         {this.props.post}
 
-        <button onClick={this.handleClick}>Click</button>
-        <button onClick={this.deleteClick}>Delete</button>
+        <button onClick={e => this.props.dispatch(action.addPost())}>Click</button>
+        <button onClick={ e=> this.props.dispatch(action.deletePost())}>Delete</button>
 
 
 
@@ -44,15 +43,15 @@ const mapStateToProps = (state)=>{
     post : state.post
   }
 }
+//
+// const mapDispatchToProps = (dispatch) =>{
+//
+//   return {
+//     add: ()=> {  dispatch(action.addPost())},
+//     deleteCode: ()=> {dispatch(action.deletePost())}
+//   }
+//
+//
+// }
 
-const mapDispatchToProps = (dispatch) =>{
-
-  return {
-    add: ()=> {  dispatch(action.addPost())},
-    deleteCode: ()=> {dispatch(action.deletePost())}
-  }
-
-
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
