@@ -21,7 +21,8 @@
   "homepage": "https://github.com/JohanssonJonathan/mongoprojekt#readme",
   "dependencies": {
     "concurrently": "^4.0.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongodb": "^3.1.6"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
