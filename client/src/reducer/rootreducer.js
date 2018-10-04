@@ -1,6 +1,6 @@
 
 const initState ={
-
+  post:"javascript",
   popup:{
     ownerOfPlayList: false,
     showPopup: true,
