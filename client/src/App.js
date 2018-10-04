@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ShowPlaylists from './showPlayLists.js';
+
 import './App.css';
 import Popup from "./Popup.js";
 
@@ -19,6 +20,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <ShowPlaylists/>
+      
+
 
       <Popup/>
 
@@ -26,6 +30,8 @@ class App extends Component {
 
         <button onClick={e => this.props.dispatch(action.addPost())}>Click</button>
         <button onClick={ e=> this.props.dispatch(action.deletePost())}>Delete</button>
+
+
 
       </div>
     );
