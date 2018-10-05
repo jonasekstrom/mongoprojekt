@@ -1,10 +1,15 @@
 
 
+let showPopup = (payload) =>{
+  return {type:"SHOW_POPUP", payload}
+}
+
+let closePopup = ()=>{
+  return {type:"CLOSE_POPUP"}
+}
 
 let addPost = ()=>{
-
   return {type:"ADD", data:"Python"}
-
 }
 
 let deletePost = () =>{
@@ -14,7 +19,8 @@ let deletePost = () =>{
 
 
 export default {
-
+  showPopup,
+  closePopup,
   addPost,
   deletePost
 }

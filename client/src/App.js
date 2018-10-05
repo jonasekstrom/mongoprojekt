@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ShowPlaylists from './showPlayLists.js';
-import Popup from "./Popup.js";
 
 import './App.css';
 import { connect } from "react-redux";
@@ -20,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
       <ShowPlaylists/>
-      <Popup/>
+      
 
         {this.props.post}
 

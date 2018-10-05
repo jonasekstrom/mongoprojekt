@@ -14,7 +14,10 @@ class Popup extends Component {
   render() {
     let allowedToEdit = this.props.popup.ownerOfPlayList;
     let listGenres = this.props.popup.genres;
-    let showPopup = this.props.popup.showPopup;
+    // let showPopup = this.props.popup.showPopup;
+    let showPopup = this.props.showPopup;
+
+    
 
     if(showPopup !== true){
       return (
@@ -73,7 +76,7 @@ class Popup extends Component {
               </div>
               <br />
             </div>
-            <button className="closeBtn">Close</button>
+            <button className="closeBtn" onClick={e => this.props.dispatch(action.closePopup())}>Close</button>
           </div>
         );
       }
@@ -82,7 +85,9 @@ class Popup extends Component {
 
 const mapStateToProps = (state)=>{
   return{
-    popup : state.popup
+    popup : state.popup,
+    showPopup: state.showPopup
+
   }
 }
 

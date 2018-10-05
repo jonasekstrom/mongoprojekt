@@ -25,12 +25,14 @@ ul {
     display: inline-block;
 }
 
-h3 {
+h4 {
     text-align: center;
 }
 
-h4 {
-    text-align: center;
+.clickForPopup:hover{
+    cursor: pointer;
+
+
 }
 
 .playListDiv:hover {background-color: darkred};

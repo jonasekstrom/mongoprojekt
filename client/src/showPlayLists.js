@@ -1,105 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import './showPlayLists.css';
+import action from "./actions.js"
+import Popup from "./Popup.js"
 
 class ShowPlayLists extends Component {
-
-    constructor(props) {
-
-        super(props);
-
-        this.state = {
-
-            playListArray: [{
-
-                name: "Min lista",
-
-                genres: ["Blues", "Rock", "Classical"]
-
-            },
-
-            {
-
-                name: "Min lista 2",
-
-                genres: ["Rock", "Classical"]
-
-            },
-
-            {
-
-                name: "Min lista 3",
-
-                genres: ["Classical"]
-
-            },
-
-        ]
-
-            
-
-    }
-
-}
-
-    clickThePlayList = (e) => {
-
-        console.log("testclick")
-
-        window.open("https://www.spotify.com/se/")
-
-    }
-
-render(){
-
     
+    render() {
+        const listOfPlayList = this.props.playListArray
+        const popup = <Popup/>
 
-    const listOfPlayList = this.state.playListArray 
+        let render = (
+            listOfPlayList.map((list) =>
 
-    
-
-
-
-    let render = (
-
-    listOfPlayList.map((list, index) =>
-
-    <div key={`Key${index}`}>
-
-      <h3>{list.name}</h3>
-
-      <ul>
-
-        {list.genres.map((option, i) => 
-
-          <li key={`Key${i}`}>{option}</li>
-
-        )}
-
-      </ul>
-
-    </div>
-
-  )
-
-  )
-
-
-
-    return(
-
-        <div>{render}</div>
-
-    )
-
-  }
-
-  
-
+                <div key={`Key${list.id}`}>
+                    <h3 className="clickForPopup" onClick={e => this.props.dispatch(action.showPopup(list))}>{list.playListName}</h3>
+                    <ul>
+                        {list.genres.map((option, i) =>
+                            <li key={`Key${i}`}>{option}</li>
+                        )}
+                    </ul>
+                    {popup}
+                </div>
+            )
+        )
+        return (
+            <div>
+            {render}
+            <Popup />
+            </div>
+        )
+    }
 };
 
-    
 
-  
+const mapStateToProps = (state)=>{
+    return{
+        playListArray : state.playListArray,
+        showPopup: state.showPopup
+    }
+  }
 
-  export default ShowPlayLists;
+export default connect(mapStateToProps)(ShowPlayLists);
