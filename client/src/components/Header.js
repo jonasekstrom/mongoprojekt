@@ -16,18 +16,19 @@ class Header extends Component {
   }
 
   componentDidUpdate(){
-    console.log(this.props.searchInfo.rock)
   }
 
   render() {
-    let rock = this.props.searchInfo.rock;
-    let metal = this.props.searchInfo.metal;
-    let classical = this.props.searchInfo.classical;
-    let country = this.props.searchInfo.country;
-    let popMusic = this.props.searchInfo.popMusic;
-    let blues = this.props.searchInfo.blues;
-    let jazz = this.props.searchInfo.jazz;
-    console.log(rock)
+    let rock = this.props.searchInfo.ROCK;
+    let metal = this.props.searchInfo.METAL;
+    let classical = this.props.searchInfo.CLASSICAL;
+    let country = this.props.searchInfo.COUNTRY;
+    let hiphop = this.props.searchInfo.HIPHOP;
+    let electro = this.props.searchInfo.ELECTRO;
+    let popMusic = this.props.searchInfo.POPMUSIC;
+    let blues = this.props.searchInfo.BLUES;
+    let jazz = this.props.searchInfo.JAZZ;
+
     return (
       <div className="App">
 
@@ -38,7 +39,7 @@ class Header extends Component {
             <div className="genres">
 
               {rock ?
-                <span id="rockClicked" onClick={e=> this.props.dispatch(action.rockUnclick(this.props.searchInfo))}>
+                <span id="rockClicked" onClick={e=> this.props.dispatch(action.rockUnclicked(this.props.searchInfo))}>
                   Rock
                 </span>
                 :
@@ -47,30 +48,83 @@ class Header extends Component {
                 </span>
               }
 
-              <span id="country">
-                Country
-              </span>
-              <span id="metal">
-                Metal
-              </span>
-              <span id="classical">
-                Classical
-              </span>
-              <span id="pop">
-                Pop
-              </span>
-              <span id="jazz">
+              {country ?
+                <span id="countryClicked" onClick={e=> this.props.dispatch(action.countryUnclicked(this.props.searchInfo))} >
+                  Country
+                </span>
+                :
+                <span id="country"  onClick={e=> this.props.dispatch(action.countryClicked(this.props.searchInfo))}>
+                  Country
+                </span>
+
+               }
+
+              {metal ?
+                <span id="metalClicked" onClick={e=> this.props.dispatch(action.metalUnclicked(this.props.searchInfo))}>
+                  Metal
+                </span>
+                :
+                <span id="metal" onClick={e=> this.props.dispatch(action.metalClicked(this.props.searchInfo))}>
+                  Metal
+                </span>
+              }
+
+              {classical ?
+                <span id="classicalClicked" onClick={e=> this.props.dispatch(action.classicalUnclicked(this.props.searchInfo))}>
+                  Classical
+                </span>
+                :
+                <span id="classical" onClick={e=> this.props.dispatch(action.classicalClicked(this.props.searchInfo))}>
+                  Classical
+                </span>
+              }
+              {popMusic ?
+                <span id="popClicked" onClick={e=> this.props.dispatch(action.popUnclicked(this.props.searchInfo))}>
+                  Pop
+                </span>
+                :
+                <span id="pop" onClick={e=> this.props.dispatch(action.popClicked(this.props.searchInfo))}>
+                  Pop
+                </span>
+              }
+
+              {jazz ?
+                <span id="jazzClicked" onClick={e=> this.props.dispatch(action.jazzUnclicked(this.props.searchInfo))}>
                 Jazz
-              </span>
-              <span id="blues">
+                </span>
+                :
+                <span id="jazz" onClick={e=> this.props.dispatch(action.jazzClicked(this.props.searchInfo))}>
+                Jazz
+                </span>
+              }
+
+              {blues ?
+                <span id="bluesClicked" onClick={e=> this.props.dispatch(action.bluesUnclicked(this.props.searchInfo))}>
                 Blues
-              </span>
-              <span id="hiphop">
+                </span>
+                :
+                <span id="blues" onClick={e=> this.props.dispatch(action.bluesClicked(this.props.searchInfo))}>
+                Blues
+                </span>
+              }
+              {hiphop ?
+                <span id="hiphopClicked" onClick={e=> this.props.dispatch(action.hiphopUnclicked(this.props.searchInfo))}>
                 HipHop
-              </span>
-              <span id="electro">
+                </span>
+                :
+                <span id="hiphop" onClick={e=> this.props.dispatch(action.hiphopClicked(this.props.searchInfo))}>
+                HipHop
+                </span>
+              }
+              {electro ?
+                <span id="electroClicked" onClick={e=> this.props.dispatch(action.electroUnclicked(this.props.searchInfo))}>
                 Electro
-              </span>
+                </span>
+                :
+                <span id="electro" onClick={e=> this.props.dispatch(action.electroClicked(this.props.searchInfo))}>
+                Electro
+                </span>
+              }
             </div>
             <div className="inputfield">
               <div className="clip">

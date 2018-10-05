@@ -1,12 +1,16 @@
+import functions from "../functions.js"
+
 const initState = {
   searchInfo: {
-    rock: false,
-    metal: false,
-    classical: false,
-    country: false,
-    popMusic: false,
-    blues: false,
-    jazz: false,
+    ROCK: false,
+    METAL: false,
+    CLASSICAL: false,
+    COUNTRY: false,
+    POPMUSIC: false,
+    BLUES: false,
+    JAZZ: false,
+    ELECTRO:false,
+    HIPHOP:false
   },
   showPopup: false,
   popup: {
@@ -57,12 +61,23 @@ const initState = {
   ]
 }
 
+
+// function getGenreState(action){
+//   return {
+//     ROCK: action.data.ROCK,
+//     METAL: action.data.METAL,
+//     CLASSICAL: action.data.CLASSICAL,
+//     COUNTRY: action.data.COUNTRY,
+//     POPMUSIC: action.data.POPMUSIC,
+//     BLUES: action.data.BLUES,
+//     JAZZ: action.data.JAZZ,
+//   }
+// }
+
 const rootReducer = (state = initState, action) => {
 
-  console.log(state)
   switch (action.type) {
     case "SHOW_POPUP":
-      console.log(action.payload)
       return {
         ...state.showPopup = true,
         ...state.popup = {
@@ -80,34 +95,125 @@ const rootReducer = (state = initState, action) => {
         ...state.showPopup = false,
         ...state,
       }
+    case "GENRELIMIT":
+      return{
+        ...state,
+        searchInfo: functions.getGenreState(action)
+
+      }
+      break;
     case "ROCK_CLICKED":
-      console.log(action.data)
       return {
         ...state,
-        searchInfo: {
-          rock: action.data.rock,
-          metal: action.data.metal,
-          classical: action.data.classical,
-          country: action.data.country,
-          popMusic: action.data.popMusic,
-          blues: action.data.blues,
-          jazz: action.data.jazz,
-        }
+        searchInfo: functions.getGenreState(action)
       }
     case "ROCK_UNCLICKED":
       return {
         ...state,
-        searchInfo: {
-          rock: action.data.rock,
-          metal: action.data.metal,
-          classical: action.data.classical,
-          country: action.data.country,
-          popMusic: action.data.popMusic,
-          blues: action.data.blues,
-          jazz: action.data.jazz,
-        }
+        searchInfo: functions.getGenreState(action)
+
 
       }
+
+    case "COUNTRY_CLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+
+      }
+
+    case "COUNTRY_UNCLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+
+      }
+
+    case "METAL_CLICKED":
+      return {
+          ...state,
+          searchInfo: functions.getGenreState(action)
+
+      }
+    case "METAL_UNCLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+    case "CLASSICAL_CLICKED":
+      return {
+          ...state,
+          searchInfo: functions.getGenreState(action)
+
+      }
+    case "CLASSICAL_UNCLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+
+    case "POPMUSIC_CLICKED":
+      console.log(action.type)
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+
+    case "POPMUSIC_UNCLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+
+    case "JAZZ_CLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+
+    case "JAZZ_UNCLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+    case "BLUES_CLICKED":
+
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+
+    case "BLUES_UNCLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+
+    case "HIPHOP_CLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+
+    case "HIPHOP_UNCLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+    case "ELECTRO_CLICKED":
+    console.log(action.type)
+    console.log(action.data)
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+
+    case "ELECTRO_UNCLICKED":
+      return {
+        ...state,
+        searchInfo: functions.getGenreState(action)
+      }
+
     default:
       return state
   }
