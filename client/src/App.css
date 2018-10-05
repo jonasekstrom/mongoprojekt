@@ -1,5 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css?family=Electrolize|Metal+Mania|Monoton|Play|Exo+2|Italianno|Nixie+One|New+Rocker|Lobster|Wendy+One');
+
+
 body {
 
+  box-sizing: border-box;
 
 }
 
@@ -40,4 +45,203 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+
+.header{
+  width:100%;
+  background: url("https://files.slack.com/files-pri/T6RE0MQD7-FD54LAH28/login_without_mic.jpg");
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position:60% 30%;
+  height: 500px;
+  position: relative;
+}
+
+.header > .inputfield{
+  position: absolute;
+  width: 40%;
+  bottom:10px;
+  right:30px;
+}
+
+.genres{
+  position: absolute;
+  right:0;
+  width: 50%;
+  height: 450px;
+}
+
+.header span {
+  position: absolute;
+  cursor: pointer;
+  transition: text-shadow 0.2s ease-out, color;
+
+}
+
+
+
+#electro {
+  top:80px;
+  left:40px;
+  font-size: 3em;
+  transform:rotate(15deg);
+  font-family: 'Electrolize', sans-serif;
+}
+
+#electro:hover{
+  text-shadow: 0 0 10px rgb(105, 41, 87),0 0 20px rgb(105, 41, 87),0 0 20px rgb(105, 41, 87);
+  color:rgba(255,255,255,0.5)
+}
+
+#pop {
+  top:170px;
+  left:0px;
+  font-size: 2em;
+  transform:rotate(-15deg);
+  font-family: 'Nixie One', cursive;
+
+}
+
+#pop:hover{
+  text-shadow: 0 0 10px rgb(102, 173, 81),0 0 20px rgb(102, 173, 81),0 0 20px rgb(102, 173, 81),0 0 20px rgb(102, 173, 81);
+  color:rgba(255,255,255,0.8)
+}
+
+#jazz {
+  top:200px;
+  left:190px;
+  font-size: 1.8em;
+
+  transform:rotate(-15deg);
+  font-family: 'Exo 2', sans-serif;
+
+}
+
+
+
+#jazz:hover{
+  text-shadow:0 0 10px rgb(164, 93, 93), 0 0 10px rgb(164, 93, 93),0 0 20px rgb(164, 93, 93),0 0 20px rgb(164, 93, 93);
+  color:rgba(255,255,255,0.8)
+}
+
+#blues{
+  top:280px;
+  left:90px;
+  font-size: 2em;
+
+  transform:rotate(10deg);
+  font-family: 'Wendy One', sans-serif;
+}
+
+#blues:hover{
+  text-shadow: 0 0 10px rgb(70, 68, 161),0 0 20px rgb(70, 68, 161),0 0 20px rgb(70, 68, 161);
+  color:rgba(255,255,255,0.8)
+}
+
+
+#hiphop{
+  top:330px;
+  left:240px;
+  font-size: 1.6em;
+  transform:rotate(-10deg);
+  font-family: 'Lobster', cursive;
+}
+
+
+#hiphop:hover{
+  text-shadow: 0 0 10px rgb(70, 139, 255),0 0 20px rgb(70, 139, 255),0 0 20px rgb(70, 139, 255);
+  color:rgba(255,255,255,0.8)
+}
+
+#classical{
+  top:50px;
+  left:250px;
+  font-size: 1.7em;
+  transform:rotate(-20deg);
+}
+#classical:hover{
+  text-shadow: 0 0 10px rgb(205, 124, 99),0 0 20px rgb(205, 124, 99),0 0 20px rgb(205, 124, 99);
+  color:rgba(255,255,255,0.8)
+}
+
+
+#country{
+  top:140px;
+  left:320px;
+  font-size: 2.3em;
+  transform:rotate(15deg);
+  font-family: 'Italianno', cursive;
+}
+
+#country:hover{
+  text-shadow: 0 0 10px rgb(198, 60, 60),0 0 20px rgb(198, 60, 60),0 0 20px rgb(133, 96, 70),0 0 20px rgb(133, 96, 70),0 0 20px rgb(133, 96, 70),0 0 20px rgb(133, 96, 70);
+  color:rgba(255,255,255,0.9)
+}
+
+#metal{
+  left:400px;
+  top: 250px;
+  font-size: 2em;
+  transform:rotate(-15deg);
+  font-family: 'Metal Mania', cursive;
+
+}
+
+#metal:hover{
+  text-shadow: 0 0 10px rgb(198, 60, 60),0 0 20px rgb(198, 60, 60),0 0 20px rgb(198, 60, 60);
+  color:rgba(255,255,255,0.8)
+}
+
+#rock{
+  left:420px;
+  top: 80px;
+  font-size: 1.6em;
+  transform:rotate(15deg);
+  font-family: 'New Rocker', cursive;
+}
+
+
+#rock:hover{
+  text-shadow: 0 0 10px rgb(27, 23, 23),0 0 20px rgb(27, 23, 23),0 0 20px rgb(27, 23, 23);
+  color:rgba(255,255,255,0.8)
+}
+
+#rockClicked {
+  left:420px;
+  top: 80px;
+  font-size: 1.6em;
+  transform:rotate(15deg);
+  font-family: 'New Rocker', cursive;
+  text-shadow: 0 0 10px rgb(27, 23, 23),0 0 20px rgb(27, 23, 23),0 0 20px rgb(27, 23, 23);
+  color:rgba(255,255,255,0.8)
+}
+
+
+.clip{
+  width: 100px;
+  height: 100px;
+  -webkit-clip-path: polygon(0 35%, 50% 100%, 100% 100%);
+clip-path: polygon(0 35%, 50% 100%, 100% 100%);
+background: white;
+  position: absolute;
+  bottom:60px;
+  left:-50px;
+}
+
+
+.header > div input {
+  padding: 0;
+  width:100%;
+  height: 60px;
+  text-align: center;
+  font-size: 1.2em;
+
+}
+
+
+
+input:focus{
+  outline: none;
+  border:none;
 }
