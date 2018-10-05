@@ -1,5 +1,13 @@
 const initState = {
-  post: "javascript",
+  searchInfo: {
+    rock: false,
+    metal: false,
+    classical: false,
+    country: false,
+    popMusic: false,
+    blues: false,
+    jazz: false,
+  },
   showPopup: false,
   popup: {
     //måste fixa så owner kan editera
@@ -54,7 +62,7 @@ const rootReducer = (state = initState, action) => {
   console.log(state)
   switch (action.type) {
     case "SHOW_POPUP":
-    console.log(action.payload)
+      console.log(action.payload)
       return {
         ...state.showPopup = true,
         ...state.popup = {
@@ -66,28 +74,43 @@ const rootReducer = (state = initState, action) => {
           spotify: action.payload.spotify
         },
         ...state,
-        
       }
     case "CLOSE_POPUP":
       return {
         ...state.showPopup = false,
         ...state,
       }
-    case "ADD":
+    case "ROCK_CLICKED":
+      console.log(action.data)
       return {
         ...state,
-        post: action.data
+        searchInfo: {
+          rock: action.data.rock,
+          metal: action.data.metal,
+          classical: action.data.classical,
+          country: action.data.country,
+          popMusic: action.data.popMusic,
+          blues: action.data.blues,
+          jazz: action.data.jazz,
+        }
       }
-    case "DELETE":
+    case "ROCK_UNCLICKED":
       return {
         ...state,
-        post: action.data
-      }
+        searchInfo: {
+          rock: action.data.rock,
+          metal: action.data.metal,
+          classical: action.data.classical,
+          country: action.data.country,
+          popMusic: action.data.popMusic,
+          blues: action.data.blues,
+          jazz: action.data.jazz,
+        }
 
+      }
     default:
       return state
   }
-
 }
 
 
