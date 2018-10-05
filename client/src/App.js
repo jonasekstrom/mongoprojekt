@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ShowPlaylists from './showPlayLists.js';
 import Popup from "./Popup.js";
-
+import Header from "./components/Header.js"
 import './App.css';
 import { connect } from "react-redux";
 import action from "./actions.js";
@@ -19,22 +19,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="sidebar">
-          <button>Login</button>
-          <button>Create user</button>
-        </div>
-        <div className="backgroundImage">
 
-
-
-        </div>
-        <div className="sidebar">
-        </div>
-
+        <Header/>
       </div>
     );
   }
 }
+
+
+// <div className="sidebar">
+//   <button>Login</button>
+//   <button>Create user</button>
+// </div>
+// <div className="backgroundImage">
+//
+//
+//
+// </div>
+// <div className="sidebar">
+// </div>
 
 // <ShowPlaylists/>
 // <Popup/>
