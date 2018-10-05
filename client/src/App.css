@@ -1,9 +1,43 @@
 body {
+
+
+}
+
+
+.App{
+  height: 100vh;
+  width: 100%;
+}
+
+.backgroundImage {
   background: url("https://files.slack.com/files-pri/T6RE0MQD7-FD6BF2831/login.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: 0% 5%;
-  width: 100%
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+
+}
+
+.sidebar button {
+  width: 200px;
+  background: none;
+  border:none;
 
 
+  font-size: 1.1em;
+  cursor: pointer;
+  color:rgba(255,255,255,0.6)
+}
+
+
+.sidebar {
+  background: rgba(0,0,0,0.7);
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

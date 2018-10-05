@@ -19,18 +19,30 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <ShowPlaylists/>
-      <Popup/>
+        <div className="sidebar">
+          <button>Login</button>
+          <button>Create user</button>
+        </div>
+        <div className="backgroundImage">
 
-        {this.props.post}
 
-        <button onClick={e => this.props.dispatch(action.addPost())}>Click</button>
-        <button onClick={ e=> this.props.dispatch(action.deletePost())}>Delete</button>
+
+        </div>
+        <div className="sidebar">
+        </div>
 
       </div>
     );
   }
 }
+
+// <ShowPlaylists/>
+// <Popup/>
+//
+//   {this.props.post}
+//
+//   <button onClick={e => this.props.dispatch(action.addPost())}>Click</button>
+//   <button onClick={ e=> this.props.dispatch(action.deletePost())}>Delete</button>
 
 const mapStateToProps = (state)=>{
   return{
@@ -39,4 +51,3 @@ const mapStateToProps = (state)=>{
 }
 
 export default connect(mapStateToProps)(App);
-
