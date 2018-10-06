@@ -3,133 +3,40 @@ import React, { Component } from 'react';
 import '../App.css';
 import { connect } from "react-redux";
 import action from "../actions.js";
-
+import Genres from "./Genres.js"
 
 class Header extends Component {
 
-  handleClick = () => {
-    this.props.dispatch(action.addPost())
+
+  changeInp(e){
+    this.props.dispatch(action.searchField(e.target.value))
   }
 
-  deleteClick = ()=>{
+  handleKeyPress(e){
+    if(e.key === "Enter"){
+      let genreObj = this.props.searchInfo;
+      let searchField = this.props.searchField;
 
+      //Skickas en fetch med get till servern med en querystring med ovantstående värden.
+      
+    }
   }
-
-  componentDidUpdate(){
-  }
-
   render() {
-    let rock = this.props.searchInfo.ROCK;
-    let metal = this.props.searchInfo.METAL;
-    let classical = this.props.searchInfo.CLASSICAL;
-    let country = this.props.searchInfo.COUNTRY;
-    let hiphop = this.props.searchInfo.HIPHOP;
-    let electro = this.props.searchInfo.ELECTRO;
-    let popMusic = this.props.searchInfo.POPMUSIC;
-    let blues = this.props.searchInfo.BLUES;
-    let jazz = this.props.searchInfo.JAZZ;
+
 
     return (
       <div className="App">
 
-          <div className="sidebar">
+          <div className="sidebarHeader">
+            <span id="username">{this.props.userName}</span>
           </div>
           <div className="header">
 
-            <div className="genres">
-
-              {rock ?
-                <span id="rockClicked" onClick={e=> this.props.dispatch(action.rockUnclicked(this.props.searchInfo))}>
-                  Rock
-                </span>
-                :
-                <span id="rock" onClick={e=> this.props.dispatch(action.rockClicked(this.props.searchInfo))}>
-                  Rock
-                </span>
-              }
-
-              {country ?
-                <span id="countryClicked" onClick={e=> this.props.dispatch(action.countryUnclicked(this.props.searchInfo))} >
-                  Country
-                </span>
-                :
-                <span id="country"  onClick={e=> this.props.dispatch(action.countryClicked(this.props.searchInfo))}>
-                  Country
-                </span>
-
-               }
-
-              {metal ?
-                <span id="metalClicked" onClick={e=> this.props.dispatch(action.metalUnclicked(this.props.searchInfo))}>
-                  Metal
-                </span>
-                :
-                <span id="metal" onClick={e=> this.props.dispatch(action.metalClicked(this.props.searchInfo))}>
-                  Metal
-                </span>
-              }
-
-              {classical ?
-                <span id="classicalClicked" onClick={e=> this.props.dispatch(action.classicalUnclicked(this.props.searchInfo))}>
-                  Classical
-                </span>
-                :
-                <span id="classical" onClick={e=> this.props.dispatch(action.classicalClicked(this.props.searchInfo))}>
-                  Classical
-                </span>
-              }
-              {popMusic ?
-                <span id="popClicked" onClick={e=> this.props.dispatch(action.popUnclicked(this.props.searchInfo))}>
-                  Pop
-                </span>
-                :
-                <span id="pop" onClick={e=> this.props.dispatch(action.popClicked(this.props.searchInfo))}>
-                  Pop
-                </span>
-              }
-
-              {jazz ?
-                <span id="jazzClicked" onClick={e=> this.props.dispatch(action.jazzUnclicked(this.props.searchInfo))}>
-                Jazz
-                </span>
-                :
-                <span id="jazz" onClick={e=> this.props.dispatch(action.jazzClicked(this.props.searchInfo))}>
-                Jazz
-                </span>
-              }
-
-              {blues ?
-                <span id="bluesClicked" onClick={e=> this.props.dispatch(action.bluesUnclicked(this.props.searchInfo))}>
-                Blues
-                </span>
-                :
-                <span id="blues" onClick={e=> this.props.dispatch(action.bluesClicked(this.props.searchInfo))}>
-                Blues
-                </span>
-              }
-              {hiphop ?
-                <span id="hiphopClicked" onClick={e=> this.props.dispatch(action.hiphopUnclicked(this.props.searchInfo))}>
-                HipHop
-                </span>
-                :
-                <span id="hiphop" onClick={e=> this.props.dispatch(action.hiphopClicked(this.props.searchInfo))}>
-                HipHop
-                </span>
-              }
-              {electro ?
-                <span id="electroClicked" onClick={e=> this.props.dispatch(action.electroUnclicked(this.props.searchInfo))}>
-                Electro
-                </span>
-                :
-                <span id="electro" onClick={e=> this.props.dispatch(action.electroClicked(this.props.searchInfo))}>
-                Electro
-                </span>
-              }
-            </div>
+            <Genres/>
             <div className="inputfield">
               <div className="clip">
               </div>
-              <input type="text" />
+              <input type="text" value={this.props.searchField} onChange={e=> this.changeInp(e)} onKeyPress={e => this.handleKeyPress(e)}/>
             </div>
 
 
@@ -141,17 +48,11 @@ class Header extends Component {
   }
 }
 
-// <ShowPlaylists/>
-// <Popup/>
-//
-//   {this.props.post}
-//
-//   <button onClick={e => this.props.dispatch(action.addPost())}>Click</button>
-//   <button onClick={ e=> this.props.dispatch(action.deletePost())}>Delete</button>
-
 const mapStateToProps = (state)=>{
   return{
-    searchInfo : state.searchInfo
+    userName: state.userName,
+    searchField: state.searchField,
+    searchInfo: state.searchInfo
   }
 }
 

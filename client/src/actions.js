@@ -86,6 +86,13 @@ let electroUnclicked = (searchInfo) => {
   return functions.offClickedGenre(searchInfo, "ELECTRO")
 }
 
+let searchField = (value)=>{
+  return {
+    type:"UDATE_SEARCHFIELD",
+    data:value
+  }
+}
+
 export default {
   showPopup,
   closePopup,
@@ -106,5 +113,6 @@ export default {
   hiphopClicked,
   hiphopUnclicked,
   electroClicked,
-  electroUnclicked
+  electroUnclicked,
+  searchField
 }
