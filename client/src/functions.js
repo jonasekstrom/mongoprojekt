@@ -29,6 +29,7 @@ function onClickedGenre(searchInfo, genre){
   }
 
   if(howManyTrue > 2){
+    
     return {
       type: "GENRELIMIT",
       data: searchInfo,

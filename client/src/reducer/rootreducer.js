@@ -1,6 +1,10 @@
 import functions from "../functions.js"
 
 const initState = {
+
+  userName: "DUMMY DATA USERNAME",
+  userImg: "",
+  searchField:"",
   searchInfo: {
     ROCK: false,
     METAL: false,
@@ -212,6 +216,12 @@ const rootReducer = (state = initState, action) => {
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
+      }
+
+    case "UDATE_SEARCHFIELD":
+      return {
+        ...state,
+        searchField:action.data
       }
 
     default:
