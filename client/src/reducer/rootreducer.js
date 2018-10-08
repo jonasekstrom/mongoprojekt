@@ -3,7 +3,7 @@ import functions from "../functions.js"
 const initState = {
 
   userName: "DUMMY DATA USERNAME",
-  userImg: "",
+  userImg: "http://tricitycontracting.com/wp-content/uploads/2018/04/blank-profile-picture-973460_640-300x300.png",
   searchField:"",
   searchInfo: {
     ROCK: false,
@@ -28,7 +28,7 @@ const initState = {
   },
   playListArray: [{
       id: 1,
-      playListName: "Pedro's classical music",
+      playListName: "Pedro's classical",
       userName: "Pedro",
       creator: "pedro123",
       genres: ["Classical"],
@@ -37,7 +37,7 @@ const initState = {
     },
     {
       id: 2,
-      playListName: "Working out like Hackerman 1337",
+      playListName: "Hackerman 1337",
       userName: "Hackerman",
       creator: "hackerman123",
       genres: ["Electro", "Hiphop"],
@@ -46,7 +46,7 @@ const initState = {
     },
     {
       id: 13,
-      playListName: "Rasmus, enough talk, LET'S DO THIS",
+      playListName: "Rasmus, gymshark",
       userName: "Rasmus",
       creator: "rasmus123",
       genres: ["Rock", "Metal", "Country"],
@@ -59,6 +59,51 @@ const initState = {
       userName: "thatzita",
       creator: "thatzita123",
       genres: ["Pop"],
+      description: "SKJUT MIG",
+      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    },
+    {
+      id: 43,
+      playListName: "JAVASCRIPT MUSIC",
+      userName: "thatzita",
+      creator: "thatzita123",
+      genres: ["Pop"],
+      description: "SKJUT MIG",
+      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    },
+    {
+      id: 50,
+      playListName: "OHhh MUSIC",
+      userName: "thatzita",
+      creator: "thatzita123",
+      genres: ["Metal"],
+      description: "SKJUT MIG",
+      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    },
+    {
+      id: 21,
+      playListName: "pooo",
+      userName: "thatzita",
+      creator: "thatzita123",
+      genres: ["Country"],
+      description: "SKJUT MIG",
+      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    },
+    {
+      id: 22,
+      playListName: "Python",
+      userName: "thatzita",
+      creator: "thatzita123",
+      genres: ["Blues"],
+      description: "SKJUT MIG",
+      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    },
+    {
+      id: 23,
+      playListName: "MOTHAFUCKAAA",
+      userName: "thatzita",
+      creator: "thatzita123",
+      genres: ["Hiphop"],
       description: "SKJUT MIG",
       spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
     }

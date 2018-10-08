@@ -1,10 +1,11 @@
 
-@import url('https://fonts.googleapis.com/css?family=Electrolize|Metal+Mania|Monoton|Play|Exo+2|Italianno|Nixie+One|New+Rocker|Lobster|Wendy+One');
+@import url('https://fonts.googleapis.com/css?family=Electrolize|Metal+Mania|Monoton|Play|Exo+2|Italianno|Nixie+One|New+Rocker|Lobster|Wendy+One|Montserrat');
 
 
 body {
 
   box-sizing: border-box;
+  background: rgba(0,0,0,0.8);
 
 }
 
@@ -12,6 +13,7 @@ body {
 .App{
   height: 100vh;
   width: 100%;
+
 }
 
 .backgroundImage {
@@ -40,7 +42,6 @@ body {
 
 
 .sidebar {
-  background: rgba(0,0,0,0.7);
   height: 5vh;
   width: 100%;
   display: flex;
@@ -255,7 +256,6 @@ body {
   font-size: 2em;
   transform:rotate(-15deg);
   font-family: 'Metal Mania', cursive;
-
 }
 
 #metal:hover{
@@ -297,6 +297,13 @@ body {
   color:rgba(255,255,255,0.8)
 }
 
+.userImg{
+  position: absolute;
+  right:20px;
+  border-radius: 100%;
+  width: 70px;
+  top:20px;
+}
 
 .clip{
   width: 100px;
@@ -327,7 +334,6 @@ input:focus{
 }
 
 .sidebarHeader{
-  background: rgba(0,0,0,0.7);
   height: 5vh;
   width: 100%;
   display: flex;
@@ -339,4 +345,210 @@ input:focus{
   margin-right: 30px;
   margin-top: 5px;
   font-size:0.8em;
+}
+
+
+#createList {
+  color:rgba(255,255,255,0.7);
+  position: absolute;
+  left:40px;
+  top:5px;
+  cursor: pointer;
+
+}
+
+
+
+.styleTransition{
+  position: absolute;
+  top:30px;
+  padding-top:30px;
+  width: 100%;
+  z-index: 1;
+  transition: height 0.5s linear, opacity 0.5s linear;
+  background: #BBBAC2;
+  display: flex;
+  justify-content: center;
+}
+
+
+.saveDiv {
+  position: relative;
+  top:70px;
+  cursor: pointer;
+}
+
+.inputDivs {
+  position: relative;
+}
+
+.inputDivs span {
+  position: absolute;
+  right:30px;
+  top:0;
+  color:red;
+}
+
+#added{
+  color:rgb(41, 191, 47)
+}
+
+.inputDivs span::after{
+  position: relative;
+  left:20px;
+  content: "To many letters"
+}
+
+.saveDiv span{
+  margin:0;
+  font-size: 1em;
+  color:rgba(0,0,0,0.7);
+  left:0;
+  right: 0;
+  position: absolute;
+  bottom:-20px;
+}
+.saveDiv img{
+}
+
+.styleTransition div{
+  text-align: center;
+
+
+}
+
+
+.styleTransition ul{
+  display: block;
+  padding:0;
+  margin:0;
+}
+
+.styleTransition li{
+  list-style: none;
+
+  float:right;
+  cursor: pointer;
+  margin:20px;
+}
+.styleTransition input{
+  height: 30px;
+  background: rgba(255,255,255,0.6);
+  border:0;
+  margin:auto;
+  text-align: center;
+  font-size: 1em;
+  width:500px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+
+.styleTransition input:focus{
+  font-size: 0.8em;
+}
+#rockUnderline{
+  border-bottom: 4px solid rgba(0,0,0,.4)
+}
+
+#metalUnderline{
+  border-bottom: 4px solid rgba(198, 60, 60,0.5)
+}
+#countryUnderline{
+  border-bottom: 4px solid rgba(198, 60, 60,0.5)
+}
+
+#jazzUnderline{
+  border-bottom: 4px solid rgba(164, 93, 93,0.5)
+}
+
+#bluesUnderline{
+  border-bottom: 4px solid rgba(70, 68, 161,0.5)
+}
+
+#classicalUnderline{
+  border-bottom: 4px solid rgba(205, 124, 99,0.5)
+}
+
+#electroUnderline{
+  border-bottom: 4px solid rgba(105, 41, 870,0.5)
+}
+
+#hiphopUnderline{
+  border-bottom: 4px solid rgba(70, 139, 255,0.5)
+}
+
+#popUnderline{
+  border-bottom: 4px solid rgba(102, 173, 81,0.5)
+}
+
+
+.onClick{
+  color: rgba(255,255,255,0.9);
+}
+
+
+/*
+************************
+ShowPlaylists
+************************/
+
+.listBackground{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  flex-wrap: wrap;
+}
+
+.listDiv{
+  position: relative;
+  width: 200px;
+  margin: 20px;
+  height: 40px;
+  color:rgba(255,255,255,0.7);
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.listDiv > div{
+  position: absolute;
+  left:0;
+  right: 0;
+  height:7px;
+  top:18px;
+
+}
+
+.listDiv > h3{
+  z-index: 1;
+  margin: 0;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  transition: transform 0.2s ease-out;
+}
+
+.listDiv > h3:hover {
+  transform: scale(1.1)
+}
+
+.listDiv ul{
+
+  margin-top:5px;
+  padding:0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.listDiv li{
+  font-size: 0.7em;
+  list-style: none;
+
+}
+
+.listDiv li:nth-child(even), .listDiv li:nth-child(3){
+  margin-left: 5px;
 }
