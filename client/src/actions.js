@@ -13,6 +13,16 @@ let closePopup = () => {
   }
 }
 
+let updatePopup = (payload, oldData) => {
+  console.log(payload)
+  // console.log(oldData)
+  return {
+    type: "UPDATE_POPUP",
+    payload,
+    oldData
+  }
+}
+
 
 let rockClicked = (searchInfo) => {
   return functions.onClickedGenre(searchInfo, "ROCK")
@@ -96,6 +106,7 @@ let searchField = (value)=>{
 export default {
   showPopup,
   closePopup,
+  updatePopup,
   rockClicked,
   rockUnclicked,
   countryClicked,

@@ -61,7 +61,9 @@ fontCallback(genre){
 
     render() {
         const listOfPlayList = this.props.playListArray
+        // console.log(listOfPlayList)
         const popup = <Popup/>
+
         let listan = ""
         console.log(listan)
 
@@ -99,7 +101,8 @@ fontCallback(genre){
 const mapStateToProps = (state)=>{
     return{
         playListArray : state.playListArray,
-        showPopup: state.showPopup
+        showPopup: state.showPopup,
+        userId: state.id
     }
   }
 

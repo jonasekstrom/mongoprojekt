@@ -1,8 +1,8 @@
 import functions from "../functions.js"
 
 const initState = {
-
-  userName: "DUMMY DATA USERNAME",
+  userName: "thatzita",
+  id: "thatzita123",
   userImg: "http://tricitycontracting.com/wp-content/uploads/2018/04/blank-profile-picture-973460_640-300x300.png",
   searchField:"",
   searchInfo: {
@@ -16,15 +16,20 @@ const initState = {
     ELECTRO:false,
     HIPHOP:false
   },
+  editedList: {
+    playListName: "",
+    genres: [],
+    description: "",
+    spotify: "",
+  },
   showPopup: false,
   popup: {
-    //måste fixa så owner kan editera
-    ownerOfPlayList: false,
     playListName: "",
     userName: "",
     genres: [],
     description: "",
     spotify: "",
+    id: ""
   },
   playListArray: [{
       id: 1,
@@ -63,6 +68,14 @@ const initState = {
       spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
     },
     {
+      id: 919,
+      playListName: "THATZITA IGEN",
+      userName: "thatzita",
+      creator: "thatzita123", //id från mongodb
+      genres: ["Classical","Country"],
+      description: "SKJUT MIG IGEN",
+    },
+    { 
       id: 43,
       playListName: "JAVASCRIPT MUSIC",
       userName: "thatzita",
@@ -126,18 +139,29 @@ const initState = {
 const rootReducer = (state = initState, action) => {
 
   switch (action.type) {
+    
     case "SHOW_POPUP":
       return {
         ...state.showPopup = true,
         ...state.popup = {
-          ownerOfPlayList: false,
           playListName: action.payload.playListName,
           userName: action.payload.userName,
+          creator: action.payload.creator,
           genres: [...action.payload.genres],
           description: action.payload.description,
-          spotify: action.payload.spotify
+          spotify: action.payload.spotify,
+          listId: action.payload.id
         },
         ...state,
+      }
+      case "UPDATE_POPUP":
+      let updatedPlaylist = functions.updateList(action.payload, [...state.playListArray], action.oldData);
+      // console.log(action.payload)
+      // console.log(action.oldData)
+      return {
+        ...state,
+        playListArray: [...state.playListArray.filter(obj => 
+          obj.id !== updatedPlaylist.id), updatedPlaylist],
       }
     case "CLOSE_POPUP":
       return {

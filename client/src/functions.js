@@ -3,7 +3,6 @@ function getGenreState(action){
 
   console.log(action.data)
 
-
   return {
     ROCK: action.data.ROCK,
     METAL: action.data.METAL,
@@ -156,10 +155,74 @@ function offClickedGenre(searchInfo,genre){
     }
 }
 
+function updateList(data, allPlayLists, oldData){
+  // console.log(data)
+  // console.log(allPlayLists)
+  // console.log(oldData)
+  let updatedList = {}
+  let listName;
+  let genres;
+  let desc;
+  let spotify;
 
+  for(let i = 0; i < allPlayLists.length; i++){
+    if(allPlayLists[i].id == data.listId){
+      console.log("matching playlist ID");
+      console.log(data)
+      if(data.playListName == ""){
+        listName = oldData.playListName;
+        // console.log("old playlistname " +listName);
+      }else{
+        listName = data.playListName;
+        // console.log("new playlistname " +listName);
+      }
+
+      if(data.description == ""){
+        desc = oldData.description;
+        // console.log("old description " +desc);
+      }else{
+        desc = data.description;
+        // console.log("new description " +desc);
+      }
+
+      if(data.spotify == ""){
+        spotify = oldData.spotify;
+      }else{
+        spotify = data.spotify;
+      }
+
+      if(data.genres.length == 0){
+        // console.log("new genres ", data.genres);
+        // console.log("old genres ", oldData.genres);
+        genres = oldData.genres;
+      }else{
+        // console.log("new genres ", data.genres);
+        // console.log("old genres ", oldData.genres);
+        genres = data.genres;
+      }
+      
+
+      updatedList = {
+      id: data.listId,
+      playListName: listName,
+      userName: data.userName,
+      creator: data.userId,
+      genres: genres,
+      description: desc,
+      spotify: spotify
+      }
+      return updatedList
+    }
+    
+  }
+  
+  
+
+}
 
 export default {
   onClickedGenre,
   offClickedGenre,
-  getGenreState
+  getGenreState,
+  updateList,
 }
