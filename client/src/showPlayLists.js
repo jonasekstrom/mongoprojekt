@@ -58,6 +58,29 @@ fontCallback(genre){
 
   }}
 
+componentDidMount(){
+
+
+    fetch('http://localhost:5000/playlist', {
+      // mode: 'no-cors',
+      method: 'GET',
+      headers: {
+      Accept: 'application/json',
+      },
+    },
+    ).then(response => {
+      if (response.ok) {
+        response.json().then(json => {
+          this.props.dispatch(action.updateList(json))
+        });
+      }
+    });
+  // fetch("http://localhost:5000/playlist").then(res => console.log(res))
+}
+
+  componentDidUpdate(){
+    console.log(this.props.playListArray)
+  }
 
     render() {
         const listOfPlayList = this.props.playListArray
@@ -68,10 +91,10 @@ fontCallback(genre){
         console.log(listan)
 
         let render = (
-            listOfPlayList.map((list) =>
+            listOfPlayList.map((list,i) =>
 
-                <div key={`Key${list.id}`} className="listDiv">
-                    <h3 className="clickForPopup"  onClick={e => this.props.dispatch(action.showPopup(list))}>{list.playListName}</h3>
+                <div key={`Key${i}`} className="listDiv">
+                    <h3 className="clickForPopup"  onClick={e => this.props.dispatch(action.showPopup(list))}>{list.name}</h3>
                     <ul>
                         { list.genres.map((option, i) =>{
 

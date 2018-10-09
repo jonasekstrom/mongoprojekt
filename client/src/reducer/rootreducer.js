@@ -75,7 +75,7 @@ const initState = {
       genres: ["Classical","Country"],
       description: "SKJUT MIG IGEN",
     },
-    { 
+    {
       id: 43,
       playListName: "JAVASCRIPT MUSIC",
       userName: "thatzita",
@@ -139,7 +139,7 @@ const initState = {
 const rootReducer = (state = initState, action) => {
 
   switch (action.type) {
-    
+
     case "SHOW_POPUP":
       return {
         ...state.showPopup = true,
@@ -160,7 +160,7 @@ const rootReducer = (state = initState, action) => {
       // console.log(action.oldData)
       return {
         ...state,
-        playListArray: [...state.playListArray.filter(obj => 
+        playListArray: [...state.playListArray.filter(obj =>
           obj.id !== updatedPlaylist.id), updatedPlaylist],
       }
     case "CLOSE_POPUP":
@@ -287,12 +287,17 @@ const rootReducer = (state = initState, action) => {
         searchInfo: functions.getGenreState(action)
       }
 
-    case "UDATE_SEARCHFIELD":
+    case "UPDATE_SEARCHFIELD":
       return {
         ...state,
         searchField:action.data
       }
 
+    case "UPDATE_LIST":
+      return {
+        ...state,
+        playListArray:action.data
+      }
     default:
       return state
   }

@@ -4,6 +4,13 @@ const app = express();
 const port = 5000;
 
 
+app.use(function(req,res,next){
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+
+})
+
 
 app.get("/", (req,res) => {
     console.log("requsted URL: " + req.url);
@@ -52,12 +59,19 @@ app.post("/createPlaylist", (req,res)=>{
 
 app.get("/playlist", (req,res) => {
   //when user is logged in all the playlist should show up on the homepage
-    getAllPlaylists();
+
+    
+    let doc;
+    getAllPlaylists("javascriupt", function(err,docs){
+        doc = docs
+        console.log(JSON.stringify(docs))
+        res.send(doc);
+    })
 
   //when user is logged in all his or her playlists should be added to the state
     getUserPlaylist();
     console.log("requsted URL: " + req.url);
-    res.send("fetch all the music");
+    // res.send("fetch all ");
 });
 
 app.get("/search", (req,res) => {
