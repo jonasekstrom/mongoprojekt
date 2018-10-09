@@ -70,7 +70,7 @@ function createPlaylist(playlist){
   });
 }
 
-// db.playlist.aggregate([{ $match: { $and: [{creator: "Leif"}, {name:"LeifPlaylist"}]}}]) för både creator + playlistname
+db.playlist.aggregate([{ $match: { $and: [{creator: "Jim"}, {name:"JimsPlaylist"}]}}]) för både creator + playlistname
 
 function findPlaylistsByCreatorAndName(){
   MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
@@ -78,10 +78,10 @@ function findPlaylistsByCreatorAndName(){
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
       console.log(playlist)
-
+      
       const queryCreator = ''
       const queryPlaylistName = ''
-
+      
       db.collection(collectionName).aggregate([{ $match: { $and: [{ creator: queryCreator }, {name: queryPlaylistName }]}}]) //both creator and name must match
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
@@ -89,18 +89,19 @@ function findPlaylistsByCreatorAndName(){
 }
 
 
-//find Playlist based on creator
+
+//find Playlist based on creator 
 function findPlaylistsByCreator(){
   MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
       console.log(playlist)
-
+      
       const queryCreator = ''
-
+      
         db.collection(collectionName).aggregate([{ $match: { creator: queryCreator}}])
-
+      
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
@@ -114,18 +115,18 @@ function findPlaylistsByName(){
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
       console.log(playlist)
-
+      
       const queryPlaylistName = ''
-
+      
         db.collection(collectionName).aggregate([{ $match: { name: queryPlaylistName}}])
-
+      
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
 }
 
 //find a specific playlist in the collection based on genres (maximum 3 genres)
-//db.playlist.aggregate([{$match: { genres: "blues"}}])
+//db.playlist.aggregate([{$match: { genres: "blues"}}]) 
 //db.collection(collectionName).find( { genres: {$elemMatch: {"genre": queryGenre,"genre": queryGenre, "genre": queryGenre }}}) //med find
 
 
@@ -135,25 +136,22 @@ function findPlaylistsGenre(){
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
       console.log(playlist)
-
-
+      
+      
       const queryGenre = '';
       const queryList = [];
 
-
-
-      if(queryGenre !== '') {
+      if(queryGenre !='') {
         queryList.push(queryGenre)
+        console.log(queryList);
+        db.collection(collectionsName).aggregate([{$match: {genres: { $in: queryList}}}])
+      } else {
+        console.log("Failed to push playlists")
       }
-      if(queryList.length < 1) {
-        db.playlist.aggregate([{$match: { genres: queryGenre}}])
-      }  else if (queryList.length > 1) {
-        db.collection.find({ genres: { $all: [queryGenre, queryGenre, queryGenre] }})
-      }
-
-
-
-
+     
+      
+     
+      
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
@@ -161,7 +159,6 @@ function findPlaylistsGenre(){
 
 
 
-// db.playlist.find( { genres: {$elemMatch: {"genre":"disco","genre":"blues"}}})
 
 
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist };
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, findPlaylists };
