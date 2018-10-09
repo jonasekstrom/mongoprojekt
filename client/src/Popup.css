@@ -35,10 +35,10 @@ ul>li {
 }
 
 .closeBtn {
-    position: absolute;
-    left: 50%;
-    top: 95%;
-    transform: translate(-50%, -95%);
+    position: relative;
+    left: 48%;
+    top: 525px;
+    transform: translate(-70%, -50%);
 }
 
 .playListTitle {
@@ -77,6 +77,42 @@ ul>li {
 
 }
 
+.editPlayList{
+
+}
+.editDescription {
+
+}
+
+.editUrl{
+
+}
+.editGenres{
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.editPlayListName {
+    /* position: absolute; */
+    display: inline;
+    cursor: pointer;
+}
+
+.hidePlayListName {
+    /* position: absolute; */
+    display: none;
+}
+
+.genreInfo{
+    display: inline-block;
+    margin-left: 10px;
+}
 textarea {
     resize: none;
   }
+
+.editName, .editGenre, 
+.editDescription, .editUrl {
+    text-align: center;
+}

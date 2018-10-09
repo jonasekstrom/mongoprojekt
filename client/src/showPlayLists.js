@@ -8,8 +8,9 @@ class ShowPlayLists extends Component {
     
     render() {
         const listOfPlayList = this.props.playListArray
+        // console.log(listOfPlayList)
         const popup = <Popup/>
-
+        
         let render = (
             listOfPlayList.map((list) =>
 
@@ -37,7 +38,8 @@ class ShowPlayLists extends Component {
 const mapStateToProps = (state)=>{
     return{
         playListArray : state.playListArray,
-        showPopup: state.showPopup
+        showPopup: state.showPopup,
+        userId: state.id
     }
   }
 
