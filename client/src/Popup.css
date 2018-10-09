@@ -1,58 +1,92 @@
 .popup {
-    position: fixed;
-    width: 60%;
-    height: 80%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 10;
+    /* position: fixed; */
+    /* background-color: black; */
+    /* margin: auto; */
+    /* z-index: 10; */
+    /* background-color: black; */
 }
 
 .popup_inner {
-    position: absolute;
-    left: 2%;
-    right: 2%;
-    top: 15%;
-    bottom: 15%;
+    background: url("https://files.slack.com/files-pri/T6RE0MQD7-FD59W66LA/login_without_boy.jpg");
+    z-index: 10;
+    background-color: #333333;
+    background-size: 80% 90%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    /* padding:20px; */
+    bottom: 0;
     margin: auto;
     color: white;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .playListInformation {
     letter-spacing: 3px;
     margin-bottom: -5px;
+    text-align: center;
 }
 
 ul {
     margin-top: -5px;
 }
-
-ul>li {
-    list-style-type: square;
+.informationPlayList{
+    position: fixed;
+    background: rgba(0,0,0,0.3);
+    display: block;
+    background-size: 90% 80%;
+    /* border: 2px solid black; */
+    width:80%;
+    height: 90%;
+    top:36px;
+    left:152px;
+    transform: translate(0%, 0%);
+}
+.container{
+    /* border: 2px solid red; */
+    text-align: center;
+}
+.closeBtn {
+    z-index: 10;
+    position: fixed;
+    left: 53%;
+    top: 650px;
+    transform: translate(-70%, -50%);
 }
 
-.closeBtn {
-    position: relative;
-    left: 48%;
-    top: 525px;
+.soloCloseBtn {
+    z-index: 10;
+    position: fixed;
+    left: 51%;
+    top: 650px;
+    transform: translate(-70%, -50%);
+}
+
+.updateBtn {
+    z-index: 10;
+    position: fixed;
+    left: 49%;
+    top: 650px;
     transform: translate(-70%, -50%);
 }
 
 .playListTitle {
     position: relative;
-    margin-top: -50px;
+    margin-top: 5%;
     text-align: center;
 }
 
 .spotifyLink {
     left: 50%;
-    top: 100%;
-    transform: translate(-50%, -100%);
+    top: 85%;
+    transform: translate(-50%, -90%);
 
-    background-color:#0266b8;
+    background-color: #0266b8;
     box-shadow: 0 5px 0 #014f8f;
     color: white;
     padding: 0.5em 1em;
@@ -62,7 +96,7 @@ ul>li {
 }
 
 .spotifyLink:hover {
-    background-color:#1c8ce7;
+    background-color: #1c8ce7;
 }
 
 .spotifyLink:active {
@@ -73,21 +107,32 @@ ul>li {
     transform: translate(-50%, -100%);
 }
 
-.editInformation{
-
+.playListUserName {
+    display: block;
+    text-align: center;
 }
 
-.editPlayList{
-
+.editInformation {
+    display: block;
+    text-align: center;
 }
+
+.editPlayList {
+    display: block;
+    text-align: center;
+}
+
 .editDescription {
-
+    display: block;
+    text-align: center;
 }
 
-.editUrl{
-
+.editUrl {
+    display: block;
+    text-align: center;
 }
-.editGenres{
+
+.editGenres {
     display: inline-block;
     margin-left: 10px;
     cursor: pointer;
@@ -104,15 +149,43 @@ ul>li {
     display: none;
 }
 
-.genreInfo{
-    display: inline-block;
-    margin-left: 10px;
-}
-textarea {
-    resize: none;
-  }
 
-.editName, .editGenre, 
-.editDescription, .editUrl {
+ul#horizontal-list {
+    min-width: 696px;
+    list-style: none;
+    padding-top: 20px;
+}
+
+ul#horizontal-list li {
+    display: inline;
+}
+
+.tableDiv {
+    display: table;
+    margin: 0 auto;
+}
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+
+.genreInfo {
+    margin-right: 10px;
+    text-align: center;
+    /* text-align: center;
+    position: relative;
+    
+    left: 40em;
+    transform: translate(-50%, -100%); */
+    /* display: inline-block; */
+    /* margin-left: 650%; */
+
+}
+
+
+.editName,
+.editGenre,
+.editDescription,
+.editUrl {
     text-align: center;
 }

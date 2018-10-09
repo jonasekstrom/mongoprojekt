@@ -89,6 +89,13 @@ class Popup extends Component {
     }
   }
 
+  clearState() {  
+    this.setState(() => {
+      return { genres: [],checked: [] };
+    });
+    console.log(this.state.genres)
+  }
+
   isDisabled = genre => {
     return (
       this.state.checked.length > 2 && this.state.checked.indexOf(genre) === -1
@@ -119,7 +126,7 @@ class Popup extends Component {
               <h3 className="playListInformation">Genres:</h3>
 
 
-              <div onChange={this.onChange}>
+              <div className="playListInformation" onChange={this.onChange}>
                 <input type="checkbox" name="genre" value="Rock" disabled={this.isDisabled("Rock")} /> <span >Rock</span>
                 <input type="checkbox" name="genre" value="Metal" disabled={this.isDisabled("Metal")} /> <span >Metal</span>
                 <input type="checkbox" name="genre" value="Classical" disabled={this.isDisabled("Classical")} /> <span >Classical</span><br />
@@ -132,23 +139,21 @@ class Popup extends Component {
               </div>
 
               <h3 className="playListInformation">Playlist name:</h3>
-              <span className="editPlayList" suppressContentEditableWarning="true"  contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.playListName}</span> <br />
-              {/* <input  defaultValue={this.props.popup.playListName} onChange={event => this.changeInput(event)} /> <br /> */}
+              <span className="editPlayList" suppressContentEditableWarning="true" contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.playListName}</span> <br />
               <h3 className="playListInformation">Created by:</h3>
-              <span>{this.props.popup.userName}</span> <br />
+              <span className="playListUserName">{this.props.popup.userName}</span> <br />
               <h3 className="playListInformation">Description:</h3>
-              <span className="editDescription" suppressContentEditableWarning="true"  contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.description}</span> <br />
-              {/* <textarea className="editDescription" defaultValue={this.props.popup.description} onChange={event => this.changeInput(event)} /> <br /> */}
+              <span className="editDescription" suppressContentEditableWarning="true" contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.description}</span>
               <h3 className="playListInformation">Spotify link:</h3>
-              <span className="editUrl" suppressContentEditableWarning="true"  contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.spotify}</span> <br />
+              <span className="editUrl" suppressContentEditableWarning="true" contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.spotify}</span>
               <a className="spotifyLink" href={this.props.popup.spotify} target="_blank">Listen to it now!</a>
             </div>
             <br />
 
           </div>
           <div>
-            <button className="closeBtn" onClick={e => this.props.dispatch(action.updatePopup(this.state, this.props.popup))}>Update</button>
-            <button className="closeBtn" onClick={e => this.props.dispatch(action.closePopup())}>Close</button>
+            <button className="updateBtn" onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); this.clearState() }}>Update</button>
+            <button className="closeBtn" onClick={(e) => {this.props.dispatch(action.closePopup()); this.clearState()}}>Close</button>
           </div>
 
         </div>
@@ -162,21 +167,22 @@ class Popup extends Component {
               <h1 className="playListTitle">{this.props.popup.playListName}</h1> <br />
               <h3 className="playListInformation">Genres:</h3>
 
-              <ul>{listGenres.map(function (genre, index) {
-                return <li className="genreInfo" key={index}>{genre}</li>
-              })}</ul>
-
+              <div className="container">
+                <ul >{listGenres.map(function (genre, index) {
+                  return <span className="genreInfo" key={index}>{genre}</span>
+                })}</ul>
+              </div>
               <h3 className="playListInformation">Playlist name:</h3>
-              <span>{this.props.popup.playListName}</span> <br />
+              <span className="editPlayList">{this.props.popup.playListName}</span> <br />
               <h3 className="playListInformation">Created by:</h3>
-              <span>{this.props.popup.userName}</span> <br />
+              <span className="playListUserName">{this.props.popup.userName}</span> <br />
               <h3 className="playListInformation">Description:</h3>
-              <span>{this.props.popup.description}</span> <br />
+              <span className="editDescription">{this.props.popup.description}</span> <br />
               <a className="spotifyLink" href={this.props.popup.spotify} target="_blank">Listen to it now!</a>
             </div>
             <br />
           </div>
-          <button className="closeBtn" onClick={e => this.props.dispatch(action.closePopup())}>Close</button>
+          <button className="soloCloseBtn" onClick={(e) => {this.props.dispatch(action.closePopup()); this.clearState()}}>Close</button>
         </div>
       );
     }
@@ -190,7 +196,7 @@ const mapStateToProps = (state) => {
     playListArray: state.playListArray,
     userId: state.id,
     listId: state.popup.listId,
-    userName: state.userName
+    userName: state.userName,
   }
 }
 
