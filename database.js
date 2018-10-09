@@ -151,7 +151,7 @@ function findPlaylistsGenre(){
      
       
      
-      
+           
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
