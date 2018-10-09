@@ -152,7 +152,7 @@ class Popup extends Component {
 
           </div>
           <div>
-            <button className="updateBtn" onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); this.clearState() }}>Update</button>
+            <button className="updateBtn" onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); }}>Update</button>
             <button className="closeBtn" onClick={(e) => {this.props.dispatch(action.closePopup()); this.clearState()}}>Close</button>
           </div>
 
