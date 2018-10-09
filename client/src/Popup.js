@@ -9,6 +9,9 @@ class Popup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      nameValidate: true,
+      descValidate: true,
+      spotifyValidate: true,
       playListName: "",
       genres: [],
       description: "",
@@ -26,10 +29,24 @@ class Popup extends Component {
   editValues(nameOfClass, data) {
     switch (nameOfClass) {
       case "editPlayList":
-        this.setState({ playListName: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName })
+        if (data.length > 15) {
+          console.log("Name of your list is to long");
+          this.setState({
+            playListName: this.props.popup.playListName
+          })
+        } else {
+          this.setState({ playListName: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName })
+        }
         break;
       case "editDescription":
-        this.setState({ description: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName })
+        if (data.length > 150) {
+          console.log("Description is waaaay to long. No one will read all that.");
+          this.setState({
+            description: this.props.popup.description
+          })
+        } else {
+          this.setState({ description: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName })
+        }
         break;
       case "editUrl":
         this.setState({ spotify: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName })
@@ -89,9 +106,9 @@ class Popup extends Component {
     }
   }
 
-  clearState() {  
+  clearState() {
     this.setState(() => {
-      return { genres: [],checked: [] };
+      return { genres: [], checked: [] };
     });
     console.log(this.state.genres)
   }
@@ -153,7 +170,7 @@ class Popup extends Component {
           </div>
           <div>
             <button className="updateBtn" onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); }}>Update</button>
-            <button className="closeBtn" onClick={(e) => {this.props.dispatch(action.closePopup()); this.clearState()}}>Close</button>
+            <button className="closeBtn" onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
           </div>
 
         </div>
@@ -182,7 +199,7 @@ class Popup extends Component {
             </div>
             <br />
           </div>
-          <button className="soloCloseBtn" onClick={(e) => {this.props.dispatch(action.closePopup()); this.clearState()}}>Close</button>
+          <button className="soloCloseBtn" onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
         </div>
       );
     }

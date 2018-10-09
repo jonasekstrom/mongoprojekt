@@ -163,9 +163,12 @@ ul#horizontal-list li {
     display: table;
     margin: 0 auto;
 }
-
+[contenteditable]{
+    cursor: pointer;
+}
 [contenteditable]:focus {
     outline: 0px solid transparent;
+    
 }
 
 .genreInfo {
