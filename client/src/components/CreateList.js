@@ -12,7 +12,6 @@ class CreateList extends Component {
   constructor(){
     super()
     this.state={
-      finalMessage:"",
       name:true,
       description:true,
       spotify:true,
@@ -172,6 +171,12 @@ class CreateList extends Component {
   }
 
   sendValues(){
+
+    let regex = new RegExp('/^https://open.spotify.com*/')
+
+    var found = this.state.listUrl.match(regex);
+    console.log("found " + found)
+
     if(!this.state.description || !this.state.name || !this.state.spotify){
 
       console.log(this.state.description)
