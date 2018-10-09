@@ -16,8 +16,8 @@ class Header extends Component {
       clicked:false,
       clickedCreateList:{
         opacity:0,
-        height:0
-
+        height:0,
+        zIndex:-1
 
       }
     }
@@ -31,7 +31,8 @@ class Header extends Component {
         clicked:false,
         clickedCreateList:{
           opacity:0,
-          height:"0px"
+          height:"0px",
+          zIndex:-1
         }
       })
     }else{
@@ -40,7 +41,9 @@ class Header extends Component {
         clicked:true,
         clickedCreateList:{
           opacity:1,
-          height:"470px"
+          height:"470px",
+          zIndex:1
+
         }
       })
 
