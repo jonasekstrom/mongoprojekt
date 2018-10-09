@@ -70,7 +70,9 @@ function createPlaylist(playlist){
   });
 }
 
-db.playlist.aggregate([{ $match: { $and: [{creator: "Jim"}, {name:"JimsPlaylist"}]}}]) för både creator + playlistname
+//db.playlist.aggregate([{ $match: { $and: [{creator: "Jim"}, {name:"JimsPlaylist"}]}}]) för både creator + playlistname
+
+
 
 function findPlaylistsByCreatorAndName(){
   MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
@@ -78,10 +80,12 @@ function findPlaylistsByCreatorAndName(){
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
       console.log(playlist)
+
+     // const searchByName = []
       
       const queryCreator = ''
       const queryPlaylistName = ''
-      
+      //db.collection(collectionsName).aggregate([{$match: {genres: { $in: seachByName }}}])
       db.collection(collectionName).aggregate([{ $match: { $and: [{ creator: queryCreator }, {name: queryPlaylistName }]}}]) //both creator and name must match
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
