@@ -1,4 +1,4 @@
-let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist} = require("./database.js")
+let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected} = require("./database.js")
 const express = require("express");
 const app = express();
 const port = 5000;
@@ -14,7 +14,6 @@ app.use(function(req,res,next){
 
 app.get("/", (req,res) => {
     console.log("requsted URL: " + req.url);
-    console.log(ConnectToDB)
     res.send("Default");
 });
 
@@ -60,7 +59,7 @@ app.post("/createPlaylist", (req,res)=>{
 app.get("/playlist", (req,res) => {
   //when user is logged in all the playlist should show up on the homepage
 
-    
+
     let doc;
     getAllPlaylists("javascriupt", function(err,docs){
         doc = docs
@@ -74,8 +73,15 @@ app.get("/playlist", (req,res) => {
     // res.send("fetch all ");
 });
 
-app.get("/search", (req,res) => {
-    console.log("requsted URL: " + req.url);
+app.get("/search/:userName", (req,res) => {
+
+    console.log("requsted URL: " + req.params.userName);
+
+    // searchSelected(req, function(err,docs){
+    //     doc = docs
+    //     console.log(JSON.stringify(docs))
+    //     res.send(doc);
+    // })
     // REQ - genres, username, playlist name
     res.send("Search");
 });
