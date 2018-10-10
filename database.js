@@ -44,11 +44,11 @@ function getAllPlaylists(java, callback){
     		console.log("Found the following records:");
     		callback(err,docs)
     	});
-
-
       console.log("connected to database!!!!")
   });
 }
+
+
 
 //when user is logged in all his or her playlists should be added to the state
 function getUserPlaylist(){
@@ -70,132 +70,63 @@ function createPlaylist(playlist){
       const collectionName = "playlist";
       console.log(playlist)
 
-      db.collection(collectionName).insertOne(playlist)
+      db.collection(collectionName).insertOne(playlist);
 
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
 }
 
-<<<<<<< HEAD
-//db.playlist.aggregate([{ $match: { $and: [{creator: "Jim"}, {name:"JimsPlaylist"}]}}]) för både creator + playlistname
 
 
 
-function findPlaylistsByCreatorAndName(){
-  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
-     if( err ) throw err;  // if unable to connect
-      const db = client.db(dbName);  // ansluten
-      const collectionName = "playlist";
-      console.log(playlist)
+function searchSelected(searchText,firstGenre,secondGenre,thirdGenre, callback){
 
-     // const searchByName = []
-      
-      const queryCreator = ''
-      const queryPlaylistName = ''
-      //db.collection(collectionsName).aggregate([{$match: {genres: { $in: seachByName }}}])
-      db.collection(collectionName).aggregate([{ $match: { $and: [{ creator: queryCreator }, {name: queryPlaylistName }]}}]) //both creator and name must match
-      console.log("connected to database!!!!")
-       client.close();  // remember to close connections when done
-  });
-}
+  console.log("first: " + firstGenre)
+  console.log("second: " + secondGenre)
+  console.log("third: " + thirdGenre)
 
+  let first;
+  let second;
+  let third;
 
+  if(firstGenre === "undefined"){
+    console.log("fiiiiirst")
+    first = ""
+  }else{
+    first = firstGenre
+  }
 
-//find Playlist based on creator 
-function findPlaylistsByCreator(){
-  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
-     if( err ) throw err;  // if unable to connect
-      const db = client.db(dbName);  // ansluten
-      const collectionName = "playlist";
-      console.log(playlist)
-      
+  if(secondGenre === "undefined"){
+    second = ""
+  }else{
+    second = secondGenre
+  }
+  if( thirdGenre === "undefined"){
+    third = ""
+  }else{
+    third = thirdGenre
+  }
 
-    
-      
-      console.log("connected to database!!!!")
-       client.close();  // remember to close connections when done
-  });
-}
+  console.log("first: " + first)
+  console.log("second: " + second)
+  console.log("third: " + third)
 
-//find Playlist by name
+    if(!searchText && !first && !second && !third){
+      getAllPlaylists("javascriupt", function(err,docs){
+          // console.log(docs)
+          callback(err,docs)
+      })
+    }else if(!searchText && first || second || third){
+      let arr= [first,second,third]
+      console.log(arr)
 
-function findPlaylistsByName(){
-  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
-     if( err ) throw err;  // if unable to connect
-      const db = client.db(dbName);  // ansluten
-      const collectionName = "playlist";
-      console.log(playlist)
-      
-      const queryPlaylistName = ''
-      
-        db.collection(collectionName).aggregate([{ $match: { name: queryPlaylistName}}])
-      
-      console.log("connected to database!!!!")
-       client.close();  // remember to close connections when done
-  });
-}
+      findPlaylistsGenre(arr, function(err,docs){
+          // console.log(docs)
+          callback(err,docs)
+      })
+    }
 
-//find a specific playlist in the collection based on genres (maximum 3 genres)
-//db.playlist.aggregate([{$match: { genres: "blues"}}]) 
-//db.collection(collectionName).find( { genres: {$elemMatch: {"genre": queryGenre,"genre": queryGenre, "genre": queryGenre }}}) //med find
-
-
-function findPlayLists(){
-  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
-     if( err ) throw err;  // if unable to connect
-      const db = client.db(dbName);  // ansluten
-      const collectionName = "playlist";
-      console.log(playlist)
-      
-      const queryGenre = '';
-      const queryUsername = '';
-      const playListName = '';
-      const queryList = [];
-
-      if(queryGenre !='') {
-        queryList.push(queryGenre)
-        console.log(queryList);
-        db.collection(collectionsName).aggregate([{$match: {genres: { $in: queryList}}}])
-      } else {
-        console.log("Failed to push playlists")
-      }
-     
-      
-     
-           
-      console.log("connected to database!!!!")
-       client.close();  // remember to close connections when done
-  });
-
-
-function findPlaylistsGenre(){
-  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
-     if( err ) throw err;  // if unable to connect
-      const db = client.db(dbName);  // ansluten
-      const collectionName = "playlist";
-      console.log(playlist)
-      
-      
-      const queryGenre = '';
-      const queryList = [];
-
-      if(queryGenre !='') {
-        queryList.push(queryGenre)
-        console.log(queryList);
-        db.collection(collectionsName).aggregate([{$match: {genres: { $in: queryList}}}])
-      } else {
-        console.log("Failed to push playlists")
-      }
-     
-      
-     
-           
-      console.log("connected to database!!!!")
-       client.close();  // remember to close connections when done
-  });
-
-  
 }
 
 

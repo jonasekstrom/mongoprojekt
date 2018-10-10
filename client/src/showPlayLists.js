@@ -7,25 +7,28 @@ import Popup from "./Popup.js"
 class ShowPlayLists extends Component {
 
 
+
     callback(genre){
+
+      console.log(genre)
       switch (genre) {
-        case "Classical":
+        case "classical":
           return {background:"rgb(205, 124, 99)"}
-        case "Rock":
+        case "rock":
             return {background:"rgba(27, 23, 23,0.7)"}
-        case "Metal":
+        case "metal":
           return {background:"rgb(198, 60, 60)"}
-        case "Country":
+        case "country":
           return {background:"rgb(133, 96, 70)"}
-        case "Hiphop":
+        case "hiphop":
           return {background:"rgb(70, 139, 255)"}
-        case "Jazz":
+        case "jazz":
           return {background:"rgb(164, 93, 93)"}
-        case "Blues":
+        case "blues":
           return {background:"rgb(70, 68, 161)"}
-        case "Pop":
+        case "popmusic":
           return {background:"rgb(102, 173, 81)"}
-        case "Electro":
+        case "electro":
           return {background:"rgb(105, 41, 87)"}
 
           default:
@@ -83,6 +86,7 @@ componentDidMount(){
   }
 
     render() {
+      console.log(this.props.playListArray)
         const listOfPlayList = this.props.playListArray
         // console.log(listOfPlayList)
         const popup = <Popup/>

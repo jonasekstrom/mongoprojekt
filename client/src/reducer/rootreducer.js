@@ -164,6 +164,13 @@ const rootReducer = (state = initState, action) => {
         playListArray: [...state.playListArray.filter(obj =>
           obj.id !== updatedPlaylist.id), updatedPlaylist],
       }
+      case "ADD_PLAYLIST":
+      console.log(action.data)
+      return {
+        ...state,
+        playListArray:[ action.data, ...state.playListArray],
+        
+      }
     case "CLOSE_POPUP":
       return {
         ...state.showPopup = false,
