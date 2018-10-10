@@ -109,11 +109,17 @@ let updateList = (value)=>{
     data:value
   }
 }
-
+let addPlaylist = (value)=>{
+  return{
+    type:"ADD_PLAYLIST",
+    data:value
+  }
+}
 export default {
   showPopup,
   closePopup,
   updatePopup,
+  addPlaylist,
   rockClicked,
   rockUnclicked,
   countryClicked,

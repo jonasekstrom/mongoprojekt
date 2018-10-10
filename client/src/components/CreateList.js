@@ -9,18 +9,19 @@ import Genres from "./Genres.js"
 
 class CreateList extends Component {
 
-  constructor(){
+  constructor() {
     super()
-    this.state={
-      name:true,
-      description:true,
-      spotify:true,
-      message:"",
-      listName:"",
-      listDescription:"",
-      listUrl:"",
+    this.state = {
+      newList: {},
+      name: true,
+      description: true,
+      spotify: true,
+      message: "",
+      listName: "",
+      listDescription: "",
+      listUrl: "",
       listGenres: [],
-      clickedGenres:{
+      clickedGenres: {
         ROCK: false,
         METAL: false,
         CLASSICAL: false,
@@ -28,204 +29,229 @@ class CreateList extends Component {
         POPMUSIC: false,
         BLUES: false,
         JAZZ: false,
-        ELECTRO:false,
-        HIPHOP:false
+        ELECTRO: false,
+        HIPHOP: false
       }
     }
   }
 
-  handleChange(e, val){
-    if(val === "name"){
+  handleChange(e, val) {
+    if (val === "name") {
       console.log(this.state.listName.length)
-      if(this.state.listName.length > 15){
+      if (this.state.listName.length > 15) {
         this.setState({
-            name: false
+          name: false
         })
-      }else{
+      } else {
         this.setState({
-            name: true
-        })
-      }
-      this.setState({
-        listName:e.target.value
-      })
-    }else if(val === "description"){
-
-      if(this.state.listDescription.length > 150){
-        this.setState({
-            description: false
-        })
-      }else{
-        this.setState({
-            description: true
+          name: true
         })
       }
       this.setState({
-        listDescription:e.target.value
+        listName: e.target.value
       })
-    }else{
+    } else if (val === "description") {
+
+      if (this.state.listDescription.length > 150) {
+        this.setState({
+          description: false
+        })
+      } else {
+        this.setState({
+          description: true
+        })
+      }
+      this.setState({
+        listDescription: e.target.value
+      })
+    } else {
 
 
       this.setState({
-        listUrl:e.target.value
+        listUrl: e.target.value
       })
     }
   }
 
 
-  checkIfExist(val){
-    let newList = this.state.listGenres.filter(data => data === val)
-    if(newList.length ===0){
+  checkIfExist(val) {
 
-      if(this.state.listGenres.length ===3){
+    let newList = this.state.listGenres.filter(data => data === val);
+    if (newList.length === 0) {
+
+      if (this.state.listGenres.length === 3) {
 
         this.setState({
-          message:"You can only have max three genres"
+          message: "You can only have max three genres"
         })
         return
       }
 
       let newClickedGenres = {}
 
-      for(let x in this.state.clickedGenres){
-        if(val === x){
+      for (let x in this.state.clickedGenres) {
+        if (val === x) {
           newClickedGenres[val] = true
 
-        }else{
+        } else {
           newClickedGenres[x] = this.state.clickedGenres[x]
         }
       }
 
 
       this.setState({
-        clickedGenres:newClickedGenres,
-        message:"",
-        listGenres:[...this.state.listGenres, val]
+        clickedGenres: newClickedGenres,
+        message: "",
+        listGenres: [...this.state.listGenres, val]
       })
-    }else{
+    } else {
       let newClickedGenres = {}
 
-      for(let x in this.state.clickedGenres){
-        if(val === x){
+      for (let x in this.state.clickedGenres) {
+        if (val === x) {
           newClickedGenres[val] = false
 
-        }else{
+        } else {
           newClickedGenres[x] = this.state.clickedGenres[x]
         }
       }
       let newList = this.state.listGenres.filter(data => data !== val)
-      console.log(val +" finns du måste ta bort")
+      console.log(val + " finns du måste ta bort")
       this.setState({
-        clickedGenres:newClickedGenres,
-        message:"",
-        listGenres:[...newList]
+        clickedGenres: newClickedGenres,
+        message: "",
+        listGenres: [...newList]
       })
     }
   }
 
-  clickGenre(val, fromCheckIfExist){
+  clickGenre(val, fromCheckIfExist) {
 
-      switch (val) {
+    switch (val) {
 
-        case "ROCK":
+      case "ROCK":
 
-          this.checkIfExist(val)
+        this.checkIfExist(val)
 
 
-          break;
-        case "METAL":
-          this.checkIfExist(val)
+        break;
+      case "METAL":
+        this.checkIfExist(val)
 
-          break;
-        case "POPMUSIC":
-          this.checkIfExist(val)
+        break;
+      case "POPMUSIC":
+        this.checkIfExist(val)
 
-          break;
-        case "CLASSICAL":
-          this.checkIfExist(val)
+        break;
+      case "CLASSICAL":
+        this.checkIfExist(val)
 
-          break;
-        case "COUNTRY":
-          this.checkIfExist(val)
+        break;
+      case "COUNTRY":
+        this.checkIfExist(val)
 
-          break;
-        case "JAZZ":
-          this.checkIfExist(val)
+        break;
+      case "JAZZ":
+        this.checkIfExist(val)
 
-          break;
-        case "BLUES":
-          this.checkIfExist(val)
+        break;
+      case "BLUES":
+        this.checkIfExist(val)
 
-          break;
-        case "HIPHOP":
-          this.checkIfExist(val)
+        break;
+      case "HIPHOP":
+        this.checkIfExist(val)
 
-          break;
-        case "ELECTRO":
-          this.checkIfExist(val)
+        break;
+      case "ELECTRO":
+        this.checkIfExist(val)
 
-          break;
-        default:
+        break;
+      default:
 
-      }
+    }
   }
 
-  sendValues(){
-
+  sendValues() {
+    let newPlayList = {};
+    let url = "http://localhost:5000/createplaylist";
     let regex = new RegExp('/^https://open.spotify.com*/')
 
     var found = this.state.listUrl.match(regex);
     console.log("found " + found)
 
-    if(!this.state.description || !this.state.name || !this.state.spotify){
+    if (!this.state.description || !this.state.name || !this.state.spotify) {
 
       console.log(this.state.description)
       console.log(this.state.name)
       console.log(this.state.spotify)
 
-        this.setState({
-          message:"Something went wrong try again"
-        })
+      this.setState({
+        message: "Something went wrong try again"
+      })
 
 
-    }else if(this.state.listName && this.state.listDescription && this.state.listUrl){
+    } else if (this.state.listName && this.state.listDescription && this.state.listUrl) {
 
       //Här görs en fetch med alla värden!
-      if(this.state.listGenres.length === 0){
+      if (this.state.listGenres.length === 0) {
         this.setState({
-          message:"You have to add at least one genre"
+          message: "You have to add at least one genre"
         })
-      }else{
+      } else {
 
-        let values = {
-          name: this.state.listName,
-          description:this.state.listDescription,
-          url: this.state.listUrl,
-          genres: this.state.listGenres
+        let lowerCaseBeforePost = []
+
+        for (let i = 0; i < this.state.listGenres.length; i++) {
+          lowerCaseBeforePost.push(this.state.listGenres[i].toLowerCase())
         }
-        console.log(values)
+
+        newPlayList = {
+          playListName: this.state.listName,
+          userName: this.props.userName,
+          description: this.state.listDescription,
+          spotify: this.state.listUrl,
+          genres: lowerCaseBeforePost,
+          creator: this.props.userId
+        }
+
         this.setState({
-          message:"List added!",
-          listName:"",
-          listDescription:"",
-          listUrl:"",
-          name:true,
-          description:true,
-          spotify:true
+          message: "List added!",
+          listName: "",
+          listDescription: "",
+          listUrl: "",
+          name: true,
+          description: true,
+          spotify: true
         })
 
       }
 
-    }else{
+    } else {
       this.setState({
-        message:"Something went wrong try again"
+        message: "Something went wrong try again"
       })
     }
+    let self = this;
+    console.log(newPlayList)
+    fetch(url, {
+      method: 'post',
+      body: JSON.stringify(newPlayList),
+    }).then(function (response) {
+      console.log(response);
+      return response.json();
+    }).then(function (data) {
+      console.log(data)
+      self.props.dispatch(action.addPlaylist(data))
+    });
+
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
 
-    console.log(this.state.message)
+    console.log(this.state.message);
+    console.log(this.state.newList);
+    
   }
 
   render() {
@@ -242,7 +268,7 @@ class CreateList extends Component {
     let nameInp = this.state.name
     let descriptionInp = this.state.description
     let spotifyInp = this.state.spotify
-
+    console.log(this.state)
 
     return (
 
@@ -257,98 +283,98 @@ class CreateList extends Component {
               :
               <span>x</span>
             }
-            <input type="text" placeholder="Name" value={this.state.listName} onChange={e=> this.handleChange(e, "name")}/>
+            <input type="text" placeholder="Name" value={this.state.listName} onChange={e => this.handleChange(e, "name")} />
           </div>
           <div className="inputDivs">
-              {descriptionInp ?
-                <div></div>
-                :
-                <span>x</span>
-              }
-            <input id="description" type="text" value={this.state.listDescription} onChange={e=> this.handleChange(e, "description")} placeholder="Description"/>
-          </div>
-          <div className="inputDivs">
-              {spotifyInp ?
-                <div></div>
-                :
-                <span>x</span>
-              }
-            <input type="text" value={this.state.listUrl} onChange={e=> this.handleChange(e)} placeholder="Spotify url"/>
-          </div>
-            {this.state.message === "List added!"
-              ?
-              <span id="added">{this.state.message}</span>
-
+            {descriptionInp ?
+              <div></div>
               :
-              <span>{this.state.message}</span>
-
+              <span>x</span>
             }
+            <input id="description" type="text" value={this.state.listDescription} onChange={e => this.handleChange(e, "description")} placeholder="Description" />
+          </div>
+          <div className="inputDivs">
+            {spotifyInp ?
+              <div></div>
+              :
+              <span>x</span>
+            }
+            <input type="text" value={this.state.listUrl} onChange={e => this.handleChange(e)} placeholder="Spotify url" />
+          </div>
+          {this.state.message === "List added!"
+            ?
+            <span id="added">{this.state.message}</span>
+
+            :
+            <span>{this.state.message}</span>
+
+          }
           <ul>
             {rock ?
 
-                <li id="rockUnderline" className="onClick" onClick={e=> this.clickGenre("ROCK")}>Rock</li>
+              <li id="rockUnderline" className="onClick" onClick={e => this.clickGenre("ROCK")}>Rock</li>
 
-                :
-                <li id="rockUnderline" onClick={e=> this.clickGenre("ROCK")}>Rock</li>
+              :
+              <li id="rockUnderline" onClick={e => this.clickGenre("ROCK")}>Rock</li>
 
             }
             {metal ?
-              <li id="metalUnderline"  className="onClick" onClick={e=> this.clickGenre("METAL")}>Metal</li>
+              <li id="metalUnderline" className="onClick" onClick={e => this.clickGenre("METAL")}>Metal</li>
 
               :
-              <li id="metalUnderline"  onClick={e=> this.clickGenre("METAL")}>Metal</li>
+              <li id="metalUnderline" onClick={e => this.clickGenre("METAL")}>Metal</li>
             }
             {popMusic ?
 
-              <li id="popUnderline"  className="onClick"  onClick={e=> this.clickGenre("POPMUSIC")}>Pop</li>
+              <li id="popUnderline" className="onClick" onClick={e => this.clickGenre("POPMUSIC")}>Pop</li>
 
               :
-              <li id="popUnderline"  onClick={e=> this.clickGenre("POPMUSIC")}>Pop</li>
+              <li id="popUnderline" onClick={e => this.clickGenre("POPMUSIC")}>Pop</li>
             }
             {classical ?
-              <li id="classicalUnderline"  className="onClick" onClick={e=> this.clickGenre("CLASSICAL")}>Classical</li>
+              <li id="classicalUnderline" className="onClick" onClick={e => this.clickGenre("CLASSICAL")}>Classical</li>
 
               :
-              <li id="classicalUnderline"  onClick={e=> this.clickGenre("CLASSICAL")}>Classical</li>
+              <li id="classicalUnderline" onClick={e => this.clickGenre("CLASSICAL")}>Classical</li>
 
             }
             {country ?
-              <li id="countryUnderline"  className="onClick" onClick={e=> this.clickGenre("COUNTRY")}>Country</li>
+              <li id="countryUnderline" className="onClick" onClick={e => this.clickGenre("COUNTRY")}>Country</li>
 
               :
-              <li id="countryUnderline" onClick={e=> this.clickGenre("COUNTRY")}>Country</li>
+              <li id="countryUnderline" onClick={e => this.clickGenre("COUNTRY")}>Country</li>
             }
             {jazz ?
-              <li id="jazzUnderline"  className="onClick" onClick={e=> this.clickGenre("JAZZ")}>Jazz</li>
+              <li id="jazzUnderline" className="onClick" onClick={e => this.clickGenre("JAZZ")}>Jazz</li>
 
               :
-              <li id="jazzUnderline" onClick={e=> this.clickGenre("JAZZ")}>Jazz</li>
+              <li id="jazzUnderline" onClick={e => this.clickGenre("JAZZ")}>Jazz</li>
 
             }
             {blues ?
-              <li id="bluesUnderline"  className="onClick" onClick={e=> this.clickGenre("BLUES")}>Blues</li>
+              <li id="bluesUnderline" className="onClick" onClick={e => this.clickGenre("BLUES")}>Blues</li>
 
               :
-              <li id="bluesUnderline" onClick={e=> this.clickGenre("BLUES")}>Blues</li>
+              <li id="bluesUnderline" onClick={e => this.clickGenre("BLUES")}>Blues</li>
             }
             {electro ?
-              <li id="electroUnderline"  className="onClick" onClick={e=> this.clickGenre("ELECTRO")}>Electro</li>
+              <li id="electroUnderline" className="onClick" onClick={e => this.clickGenre("ELECTRO")}>Electro</li>
 
               :
 
-              <li id="electroUnderline" onClick={e=> this.clickGenre("ELECTRO")}>Electro</li>
+              <li id="electroUnderline" onClick={e => this.clickGenre("ELECTRO")}>Electro</li>
             }
             {hiphop ?
-              <li id="hiphopUnderline"  className="onClick" onClick={e=> this.clickGenre("HIPHOP")}>Hiphop</li>
+              <li id="hiphopUnderline" className="onClick" onClick={e => this.clickGenre("HIPHOP")}>Hiphop</li>
 
               :
-              <li id="hiphopUnderline" onClick={e=> this.clickGenre("HIPHOP")}>Hiphop</li>
+              <li id="hiphopUnderline" onClick={e => this.clickGenre("HIPHOP")}>Hiphop</li>
             }
           </ul>
 
-          <div className="saveDiv" onClick={e=> this.sendValues()}>
+          <div className="saveDiv" onClick={e => this.sendValues()}>
             <span>Save list</span>
-            <img src="compact-disc.png"/>
+            <img src="compact-disc.png" />
           </div>
 
         </div>
@@ -358,12 +384,13 @@ class CreateList extends Component {
   }
 }
 
-const mapStateToProps = (state)=>{
-  return{
+const mapStateToProps = (state) => {
+  return {
     userName: state.userName,
     searchField: state.searchField,
     searchInfo: state.searchInfo,
-    userImg:state.userImg
+    userImg: state.userImg,
+    userId: state.id
   }
 }
 

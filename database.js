@@ -44,8 +44,6 @@ function getAllPlaylists(java, callback){
     		console.log("Found the following records:");
     		callback(err,docs)
     	});
-
-
       console.log("connected to database!!!!")
   });
 }
@@ -72,7 +70,7 @@ function createPlaylist(playlist){
       const collectionName = "playlist";
       console.log(playlist)
 
-      db.collection(collectionName).insertOne(playlist)
+      db.collection(collectionName).insertOne(playlist);
 
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done

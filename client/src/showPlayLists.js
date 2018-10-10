@@ -26,7 +26,7 @@ class ShowPlayLists extends Component {
           return {background:"rgb(164, 93, 93)"}
         case "blues":
           return {background:"rgb(70, 68, 161)"}
-        case "pop":
+        case "popmusic":
           return {background:"rgb(102, 173, 81)"}
         case "electro":
           return {background:"rgb(105, 41, 87)"}
@@ -86,6 +86,7 @@ componentDidMount(){
   }
 
     render() {
+      console.log(this.props.playListArray)
         const listOfPlayList = this.props.playListArray
         // console.log(listOfPlayList)
         const popup = <Popup/>
