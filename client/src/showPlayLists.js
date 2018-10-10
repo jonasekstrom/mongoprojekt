@@ -99,11 +99,11 @@ componentDidMount(){
             listOfPlayList.map((list,i) =>
 
                 <div key={`Key${i}`} className="listDiv">
-                    <h3 className="clickForPopup"  onClick={e => this.props.dispatch(action.showPopup(list))}>{list.playListName.charAt(0).toUpperCase() + list.playListName.substring(1, list.playListName.length)}</h3>
+                    <h3 className="clickForPopup"  onClick={e => this.props.dispatch(action.showPopup(list))}>{list.playListName}</h3>
                     <ul>
                         { list.genres.map((option, i) =>{
 
-                            return (<li key={`Key${i}`}>{option.charAt(0).toUpperCase() + option.substring(1, option.length)}</li>)
+                            return (<li key={`Key${i}`}>{option}</li>)
 
                             }
                         )}

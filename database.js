@@ -58,13 +58,16 @@ function getUserPlaylist(){
 }
 
 //create a new playlist
-function createPlaylist(playlist){
+function createPlaylist(playlist,callback){
   MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
 
-      db.collection(collectionName).insertOne(playlist);
+      db.collection(collectionName).insertOne(playlist, function(err,docs){
+        console.log(docs.ops[0])
+        callback(err,docs)
+      });
 
        client.close();  // remember to close connections when done
   });
