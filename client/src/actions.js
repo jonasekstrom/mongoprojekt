@@ -98,7 +98,14 @@ let electroUnclicked = (searchInfo) => {
 
 let searchField = (value)=>{
   return {
-    type:"UDATE_SEARCHFIELD",
+    type:"UPDATE_SEARCHFIELD",
+    data:value
+  }
+}
+
+let updateList = (value)=>{
+  return{
+    type:"UPDATE_LIST",
     data:value
   }
 }
@@ -125,5 +132,6 @@ export default {
   hiphopUnclicked,
   electroClicked,
   electroUnclicked,
-  searchField
+  searchField,
+  updateList
 }

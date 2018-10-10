@@ -31,15 +31,22 @@ function loginUser(){
   });
 }
 
+
 //when user is logged in all the playlist should show up on the homepage
-function getAllPlaylists(){
+function getAllPlaylists(java, callback){
   MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
 
+       db.collection(collectionName).find({}).toArray(function(err, docs) {
+    		if( err )  // handle error here
+    		console.log("Found the following records:");
+    		callback(err,docs)
+    	});
+
+
       console.log("connected to database!!!!")
-       client.close();  // remember to close connections when done
   });
 }
 
@@ -70,6 +77,7 @@ function createPlaylist(playlist){
   });
 }
 
+<<<<<<< HEAD
 //db.playlist.aggregate([{ $match: { $and: [{creator: "Jim"}, {name:"JimsPlaylist"}]}}]) för både creator + playlistname
 
 
@@ -194,4 +202,5 @@ function findPlaylistsGenre(){
 
 
 
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist };
+
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected };

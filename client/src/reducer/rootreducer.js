@@ -2,7 +2,7 @@ import functions from "../functions.js"
 
 const initState = {
   userName: "thatzita",
-  id: "thatzita123",
+  id: "ObjectId(5bb60f66660ca9053b2b5)",
   userImg: "http://tricitycontracting.com/wp-content/uploads/2018/04/blank-profile-picture-973460_640-300x300.png",
   searchField:"",
   searchInfo: {
@@ -31,95 +31,96 @@ const initState = {
     spotify: "",
     id: ""
   },
-  playListArray: [{
-      id: 1,
-      playListName: "Pedro's classical",
-      userName: "Pedro",
-      creator: "pedro123",
-      genres: ["Classical"],
-      description: "This is what I listen to when I cry in the shower",
-      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX7K31D69s4M1?si=hWZ30QO3Tk6NWqEa9n9fPQ",
-    },
-    {
-      id: 2,
-      playListName: "Hackerman 1337",
-      userName: "Hackerman",
-      creator: "hackerman123",
-      genres: ["Electro", "Hiphop"],
-      description: "This is what I use when I want to get PUMPED lifting computers at the gym",
-      spotify: "https://open.spotify.com/user/s0etsmrf/playlist/0EFfOlwmjd3hq5HkOATip1?si=wbfnCFDtTnWZlyM6Opn82w",
-    },
-    {
-      id: 13,
-      playListName: "Rasmus, gymshark",
-      userName: "Rasmus",
-      creator: "rasmus123",
-      genres: ["Rock", "Metal", "Country"],
-      description: "Just listen, if you don't like it I will have to kill you, sorry brah",
-      spotify: "https://open.spotify.com/user/zetalot/playlist/01mmK7ynahEMyiSHQjjBwL?si=7wqjhJ3LRjyN0rvfnQ2PKg",
-    },
-    {
-      id: 99,
-      playListName: "THATZITA",
-      userName: "thatzita",
-      creator: "thatzita123",
-      genres: ["Pop"],
-      description: "SKJUT MIG",
-      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
-    },
-    {
-      id: 919,
-      playListName: "THATZITA IGEN",
-      userName: "thatzita",
-      creator: "thatzita123", //id från mongodb
-      genres: ["Classical","Country"],
-      description: "SKJUT MIG IGEN",
-    },
-    { 
-      id: 43,
-      playListName: "JAVASCRIPT MUSIC",
-      userName: "thatzita",
-      creator: "thatzita123",
-      genres: ["Pop"],
-      description: "SKJUT MIG",
-      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
-    },
-    {
-      id: 50,
-      playListName: "OHhh MUSIC",
-      userName: "thatzita",
-      creator: "thatzita123",
-      genres: ["Metal"],
-      description: "SKJUT MIG",
-      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
-    },
-    {
-      id: 21,
-      playListName: "pooo",
-      userName: "thatzita",
-      creator: "thatzita123",
-      genres: ["Country"],
-      description: "SKJUT MIG",
-      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
-    },
-    {
-      id: 22,
-      playListName: "Python",
-      userName: "thatzita",
-      creator: "thatzita123",
-      genres: ["Blues"],
-      description: "SKJUT MIG",
-      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
-    },
-    {
-      id: 23,
-      playListName: "MOTHAFUCKAAA",
-      userName: "thatzita",
-      creator: "thatzita123",
-      genres: ["Hiphop"],
-      description: "SKJUT MIG",
-      spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
-    }
+  playListArray: [
+    // {
+    //   id: 1,
+    //   playListName: "Pedro's classical",
+    //   userName: "Pedro",
+    //   creator: "pedro123",
+    //   genres: ["Classical"],
+    //   description: "This is what I listen to when I cry in the shower",
+    //   spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX7K31D69s4M1?si=hWZ30QO3Tk6NWqEa9n9fPQ",
+    // },
+    // {
+    //   id: 2,
+    //   playListName: "Hackerman 1337",
+    //   userName: "Hackerman",
+    //   creator: "hackerman123",
+    //   genres: ["Electro", "Hiphop"],
+    //   description: "This is what I use when I want to get PUMPED lifting computers at the gym",
+    //   spotify: "https://open.spotify.com/user/s0etsmrf/playlist/0EFfOlwmjd3hq5HkOATip1?si=wbfnCFDtTnWZlyM6Opn82w",
+    // },
+    // {
+    //   id: 13,
+    //   playListName: "Rasmus, gymshark",
+    //   userName: "Rasmus",
+    //   creator: "rasmus123",
+    //   genres: ["Rock", "Metal", "Country"],
+    //   description: "Just listen, if you don't like it I will have to kill you, sorry brah",
+    //   spotify: "https://open.spotify.com/user/zetalot/playlist/01mmK7ynahEMyiSHQjjBwL?si=7wqjhJ3LRjyN0rvfnQ2PKg",
+    // },
+    // {
+    //   id: 99,
+    //   playListName: "THATZITA",
+    //   userName: "thatzita",
+    //   creator: "thatzita123",
+    //   genres: ["Pop"],
+    //   description: "SKJUT MIG",
+    //   spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    // },
+    // {
+    //   id: 919,
+    //   playListName: "THATZITA IGEN",
+    //   userName: "thatzita",
+    //   creator: "thatzita123", //id från mongodb
+    //   genres: ["Classical","Country"],
+    //   description: "SKJUT MIG IGEN",
+    // },
+    // {
+    //   id: 43,
+    //   playListName: "JAVASCRIPT MUSIC",
+    //   userName: "thatzita",
+    //   creator: "thatzita123",
+    //   genres: ["Pop"],
+    //   description: "SKJUT MIG",
+    //   spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    // },
+    // {
+    //   id: 50,
+    //   playListName: "OHhh MUSIC",
+    //   userName: "thatzita",
+    //   creator: "thatzita123",
+    //   genres: ["Metal"],
+    //   description: "SKJUT MIG",
+    //   spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    // },
+    // {
+    //   id: 21,
+    //   playListName: "pooo",
+    //   userName: "thatzita",
+    //   creator: "thatzita123",
+    //   genres: ["Country"],
+    //   description: "SKJUT MIG",
+    //   spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    // },
+    // {
+    //   id: 22,
+    //   playListName: "Python",
+    //   userName: "thatzita",
+    //   creator: "thatzita123",
+    //   genres: ["Blues"],
+    //   description: "SKJUT MIG",
+    //   spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    // },
+    // {
+    //   id: 23,
+    //   playListName: "MOTHAFUCKAAA",
+    //   userName: "thatzita",
+    //   creator: "thatzita123",
+    //   genres: ["Hiphop"],
+    //   description: "SKJUT MIG",
+    //   spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
+    // }
   ]
 }
 
@@ -139,7 +140,7 @@ const initState = {
 const rootReducer = (state = initState, action) => {
 
   switch (action.type) {
-    
+
     case "SHOW_POPUP":
       return {
         ...state.showPopup = true,
@@ -160,7 +161,7 @@ const rootReducer = (state = initState, action) => {
       // console.log(action.oldData)
       return {
         ...state,
-        playListArray: [...state.playListArray.filter(obj => 
+        playListArray: [...state.playListArray.filter(obj =>
           obj.id !== updatedPlaylist.id), updatedPlaylist],
       }
     case "CLOSE_POPUP":
@@ -287,12 +288,17 @@ const rootReducer = (state = initState, action) => {
         searchInfo: functions.getGenreState(action)
       }
 
-    case "UDATE_SEARCHFIELD":
+    case "UPDATE_SEARCHFIELD":
       return {
         ...state,
         searchField:action.data
       }
 
+    case "UPDATE_LIST":
+      return {
+        ...state,
+        playListArray:action.data
+      }
     default:
       return state
   }
