@@ -48,6 +48,8 @@ function getAllPlaylists(java, callback){
   });
 }
 
+
+
 //when user is logged in all his or her playlists should be added to the state
 function getUserPlaylist(){
   MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
@@ -76,10 +78,54 @@ function createPlaylist(playlist){
 }
 
 
-function searchSelected(req, callback){
-  console.log(req)
-}
+function searchSelected(searchText,firstGenre,secondGenre,thirdGenre, callback){
 
+  console.log("first: " + firstGenre)
+  console.log("second: " + secondGenre)
+  console.log("third: " + thirdGenre)
+
+  let first;
+  let second;
+  let third;
+
+  if(firstGenre === "undefined"){
+    console.log("fiiiiirst")
+    first = ""
+  }else{
+    first = firstGenre
+  }
+
+  if(secondGenre === "undefined"){
+    second = ""
+  }else{
+    second = secondGenre
+  }
+  if( thirdGenre === "undefined"){
+    third = ""
+  }else{
+    third = thirdGenre
+  }
+
+  console.log("first: " + first)
+  console.log("second: " + second)
+  console.log("third: " + third)
+
+    if(!searchText && !first && !second && !third){
+      getAllPlaylists("javascriupt", function(err,docs){
+          // console.log(docs)
+          callback(err,docs)
+      })
+    }else if(!searchText && first || second || third){
+      let arr= [first,second,third]
+      console.log(arr)
+
+      findPlaylistsGenre(arr, function(err,docs){
+          // console.log(docs)
+          callback(err,docs)
+      })
+    }
+
+}
 // db.playlist.aggregate([{ $match: { $and: [{creator: "Leif"}, {name:"LeifPlaylist"}]}}]) för både creator + playlistname
 
 // function findPlaylistsByCreatorAndName(){
@@ -139,35 +185,33 @@ function searchSelected(req, callback){
 // //db.collection(collectionName).find( { genres: {$elemMatch: {"genre": queryGenre,"genre": queryGenre, "genre": queryGenre }}}) //med find
 //
 //
-// function findPlaylistsGenre(){
-//   MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
-//      if( err ) throw err;  // if unable to connect
-//       const db = client.db(dbName);  // ansluten
-//       const collectionName = "playlist";
-//       console.log(playlist)
-//
-//
-//       const queryGenre = '';
-//       const queryList = [];
-//
-//
-//
-//       if(queryGenre !== '') {
-//         queryList.push(queryGenre)
-//       }
-//       if(queryList.length < 1) {
-//         db.playlist.aggregate([{$match: { genres: queryGenre}}])
-//       }  else if (queryList.length > 1) {
-//         db.collection.find({ genres: { $all: [queryGenre, queryGenre, queryGenre] }})
-//       }
-//
-//
-//
-//
-//       console.log("connected to database!!!!")
-//        client.close();  // remember to close connections when done
-//   });
-// }
+function findPlaylistsGenre(queryList, callback){
+  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
+      const collectionName = "playlist";
+
+
+      // const queryGenre = '';
+
+
+
+      console.log("this is " + queryList)
+
+      db.collection(collectionName).find({genres: {$in: queryList}}).toArray(function(err, docs){
+        console.log(err)
+        console.log(docs)
+        callback(err,docs)
+      })
+
+
+
+      //db.playlist.find({genres: {$in: ["rock", "metal"]}})
+
+      console.log("connected to database!!!!")
+       client.close();  // remember to close connections when done
+  });
+}
 
 
 

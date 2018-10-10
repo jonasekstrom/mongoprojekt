@@ -79,17 +79,23 @@ app.get("/playlist", (req,res) => {
 });
 
 app.get("/search", (req,res) => {
+    //
+    // console.log("userName: " + req.query.searchText);
+    // console.log("firstGenre: " + req.query.firstGenre);
+    // console.log("secondGenre: " + req.query.secondGenre);
+    // console.log("thirdGenre: " + req.query.thirdGenre);
+    let searchText = req.query.searchText.toLowerCase();
+    let firstGenre = req.query.firstGenre.toLowerCase();
+    let secondGenre = req.query.secondGenre.toLowerCase();
+    let thirdGenre = req.query.thirdGenre.toLowerCase();
 
-    console.log("userName: " + req.query.userName);
-    console.log("playlist: " + req.query.playlist);
+    searchSelected(searchText,firstGenre,secondGenre,thirdGenre, function(err,docs){
+          console.log("this is docs: " +JSON.stringify(docs))
 
-    // searchSelected(req, function(err,docs){
-    //     doc = docs
-    //     console.log(JSON.stringify(docs))
-    //     res.send(doc);
-    // })
+        res.send(JSON.stringify(docs))
+    })
     // REQ - genres, username, playlist name
-    res.send("Search");
+    // res.send("Search");
 });
 
 app.listen(port, () => {

@@ -67,11 +67,16 @@ class Header extends Component {
         }
       }
 
-
-      console.log(genreArray)
-      console.log(searchField)
-      fetch(`$localhost:5000/search?searchText=${searchField}`)
-      //Skickas en fetch med get till servern med en querystring med ovantstående värden.
+      // console.log(genreArray)
+      // console.log(searchField)
+      fetch(`http://localhost:5000/search?searchText=${searchField}&firstGenre=${genreArray[0]}&secondGenre=${genreArray[1]}&thirdGenre=${genreArray[2]}`).then(response => {
+        if (response.ok) {
+          response.json().then(json => {
+            this.props.dispatch(action.updateList(json))
+          });
+        }
+      });
+      // //Skickas en fetch med get till servern med en querystring med ovantstående värden.
 
     }
   }
