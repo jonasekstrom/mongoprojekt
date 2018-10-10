@@ -234,6 +234,9 @@ class CreateList extends Component {
     }
     let self = this;
     console.log(newPlayList)
+    newPlayList.playListName = newPlayList.playListName.toLowerCase();
+    newPlayList.userName = newPlayList.userName.toLowerCase();
+    
     fetch(url, {
       method: 'post',
       body: JSON.stringify(newPlayList),
@@ -251,7 +254,7 @@ class CreateList extends Component {
 
     console.log(this.state.message);
     console.log(this.state.newList);
-    
+
   }
 
   render() {
