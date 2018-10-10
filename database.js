@@ -102,9 +102,8 @@ function findPlaylistsByCreator(){
       const collectionName = "playlist";
       console.log(playlist)
       
-      const queryCreator = ''
-      
-        db.collection(collectionName).aggregate([{ $match: { creator: queryCreator}}])
+
+    
       
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
@@ -165,4 +164,4 @@ function findPlaylistsGenre(){
 
 
 
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, findPlaylists };
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist };
