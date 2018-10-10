@@ -52,7 +52,7 @@ app.post("/createplaylist", (req,res)=>{
   })
 
   req.on("end", function(){
-    
+
     let obj = JSON.parse(playlist);
     console.log(playlist)
     createPlaylist(obj)
@@ -66,7 +66,7 @@ app.get("/playlist", (req,res) => {
 
 
     let doc;
-    getAllPlaylists("javascriupt", function(err,docs){
+    getAllPlaylists("_", function(err,docs){
         doc = docs
         console.log(JSON.stringify(docs))
         res.send(doc);

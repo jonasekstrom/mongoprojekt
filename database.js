@@ -80,9 +80,6 @@ function createPlaylist(playlist){
 
 function searchSelected(searchText,firstGenre,secondGenre,thirdGenre, callback){
 
-  console.log("first: " + firstGenre)
-  console.log("second: " + secondGenre)
-  console.log("third: " + thirdGenre)
 
   let first;
   let second;
@@ -106,12 +103,10 @@ function searchSelected(searchText,firstGenre,secondGenre,thirdGenre, callback){
     third = thirdGenre
   }
 
-  console.log("first: " + first)
-  console.log("second: " + second)
-  console.log("third: " + third)
+
 
     if(!searchText && !first && !second && !third){
-      getAllPlaylists("javascriupt", function(err,docs){
+      getAllPlaylists("_", function(err,docs){
           // console.log(docs)
           callback(err,docs)
       })
@@ -123,7 +118,39 @@ function searchSelected(searchText,firstGenre,secondGenre,thirdGenre, callback){
           // console.log(docs)
           callback(err,docs)
       })
+    }else if(searchText && !first && !second && !third){
+      console.log("JAVASCRIPT")
+      console.log(searchText)
+      console.log("first: " + first)
+      console.log("second: " + second)
+      console.log("third: " + third)
+      findPlaylistsText(searchText, function(err,docs){
+          callback(err,docs)
+      })
     }
+
+}
+
+
+function findPlaylistsText(searchText, callback) {
+
+  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
+      const collectionName = "playlist";
+
+      let text = searchText.toLowerCase();
+
+      // db.playlist.find({ $or: [ { userName: "thatzita" }, { playListName: "code" } ] })
+      db.collection(collectionName).find({ $or: [ { userName: text }, { playListName: text } ] }).toArray(function(err, docs){
+        console.log(err)
+        console.log(docs)
+        callback(err,docs)
+      })
+
+      console.log("connected to database!!!!")
+       client.close();  // remember to close connections when done
+  });
 
 }
 // db.playlist.aggregate([{ $match: { $and: [{creator: "Leif"}, {name:"LeifPlaylist"}]}}]) för både creator + playlistname
@@ -190,10 +217,6 @@ function findPlaylistsGenre(queryList, callback){
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
-
-
-      // const queryGenre = '';
-
 
 
       console.log("this is " + queryList)
