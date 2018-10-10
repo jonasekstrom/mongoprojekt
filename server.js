@@ -42,7 +42,9 @@ app.post("/createUser", (req,res) => {
     res.send("Post user to DB");
 });
 
-app.post("/createPlaylist", (req,res)=>{
+app.post("/createplaylist", (req,res)=>{
+
+  console.log(req)
 
   let playlist = ""
   req.on("data", (data)=>{
@@ -50,8 +52,11 @@ app.post("/createPlaylist", (req,res)=>{
   })
 
   req.on("end", function(){
+    
     let obj = JSON.parse(playlist);
+    console.log(playlist)
     createPlaylist(obj)
+    res.send(JSON.parse(playlist))
   })
 
 })

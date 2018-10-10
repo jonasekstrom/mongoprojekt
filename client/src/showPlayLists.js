@@ -83,6 +83,7 @@ componentDidMount(){
   }
 
     render() {
+      console.log(this.props.playListArray)
         const listOfPlayList = this.props.playListArray
         // console.log(listOfPlayList)
         const popup = <Popup/>

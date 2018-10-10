@@ -134,7 +134,7 @@ class Popup extends Component {
     }
     if (allowedToEdit === playListOwner) {
       let self = this;
-      // console.log(this.state)
+      console.log(this.props)
       return (
         <div className="popup">
           <div className={"popup_inner"}>
@@ -177,6 +177,7 @@ class Popup extends Component {
 
       );
     } else {
+      console.log(this.props)
       return (
         <div className="popup">
           <div className={"popup_inner"}>
