@@ -142,7 +142,7 @@ function findPlaylistsText(searchText, callback) {
       let text = searchText.toLowerCase();
 
       // db.playlist.find({ $or: [ { userName: "thatzita" }, { playListName: "code" } ] })
-      db.collection(collectionName).find({ $or: [ { userName: text }, { playListName: text } ] }).toArray(function(err, docs){
+      db.collection(collectionName).find({ $or: [ { userName: new RegExp(text) }, { playListName: new RegExp(text) } ] }).toArray(function(err, docs){
         console.log(err)
         console.log(docs)
         callback(err,docs)
