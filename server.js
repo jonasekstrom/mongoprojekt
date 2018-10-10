@@ -73,9 +73,10 @@ app.get("/playlist", (req,res) => {
     // res.send("fetch all ");
 });
 
-app.get("/search/:userName", (req,res) => {
+app.get("/search", (req,res) => {
 
-    console.log("requsted URL: " + req.params.userName);
+    console.log("userName: " + req.query.userName);
+    console.log("playlist: " + req.query.playlist);
 
     // searchSelected(req, function(err,docs){
     //     doc = docs
