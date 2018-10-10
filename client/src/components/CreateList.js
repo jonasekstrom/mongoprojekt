@@ -241,7 +241,7 @@ class CreateList extends Component {
       method: 'post',
       body: JSON.stringify(newPlayList),
     }).then(function (response) {
-      console.log(response);
+      console.log("what is dis? ", response);
       return response.json();
     }).then(function (data) {
       console.log(data)
@@ -271,7 +271,7 @@ class CreateList extends Component {
     let nameInp = this.state.name
     let descriptionInp = this.state.description
     let spotifyInp = this.state.spotify
-    console.log(this.state)
+    // console.log(this.state)
 
     return (
 

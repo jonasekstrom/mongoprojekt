@@ -151,7 +151,7 @@ const rootReducer = (state = initState, action) => {
           genres: [...action.payload.genres],
           description: action.payload.description,
           spotify: action.payload.spotify,
-          listId: action.payload.id
+          listId: action.payload._id
         },
         ...state,
       }
@@ -159,10 +159,11 @@ const rootReducer = (state = initState, action) => {
       let updatedPlaylist = functions.updateList(action.payload, [...state.playListArray], action.oldData);
       // console.log(action.payload)
       // console.log(action.oldData)
+      console.log(updatedPlaylist)
       return {
         ...state,
         playListArray: [...state.playListArray.filter(obj =>
-          obj.id !== updatedPlaylist.id), updatedPlaylist],
+          obj._id !== updatedPlaylist._id), updatedPlaylist],
       }
       case "ADD_PLAYLIST":
       console.log(action.data)

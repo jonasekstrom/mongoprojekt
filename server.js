@@ -51,6 +51,7 @@ app.post("/createplaylist", (req,res)=>{
 
     let obj = JSON.parse(playlist);
     createPlaylist(obj, function(err,docs){
+      console.log("this is the docs: ", docs)
       res.send(JSON.stringify(docs))
     })
   })

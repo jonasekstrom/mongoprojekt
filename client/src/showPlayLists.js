@@ -10,7 +10,7 @@ class ShowPlayLists extends Component {
 
     callback(genre){
 
-      console.log(genre)
+      // console.log(genre)
       switch (genre) {
         case "classical":
           return {background:"rgb(205, 124, 99)"}
@@ -82,18 +82,18 @@ componentDidMount(){
 }
 
   componentDidUpdate(){
-    console.log(this.props.playListArray)
+    // console.log(this.props.playListArray)
   }
 
     render() {
-      console.log(this.props.playListArray)
+      // console.log(this.props.playListArray);
         const listOfPlayList = this.props.playListArray
 
         // console.log(listOfPlayList)
         const popup = <Popup/>
 
         let listan = ""
-        console.log(listan)
+        // console.log(listan)
 
         let render = (
             listOfPlayList.map((list,i) =>
