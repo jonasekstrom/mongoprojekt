@@ -133,6 +133,34 @@ function findPlaylistsByName(){
 //db.collection(collectionName).find( { genres: {$elemMatch: {"genre": queryGenre,"genre": queryGenre, "genre": queryGenre }}}) //med find
 
 
+function findPlayLists(){
+  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
+      const collectionName = "playlist";
+      console.log(playlist)
+      
+      const queryGenre = '';
+      const queryUsername = '';
+      const playListName = '';
+      const queryList = [];
+
+      if(queryGenre !='') {
+        queryList.push(queryGenre)
+        console.log(queryList);
+        db.collection(collectionsName).aggregate([{$match: {genres: { $in: queryList}}}])
+      } else {
+        console.log("Failed to push playlists")
+      }
+     
+      
+     
+           
+      console.log("connected to database!!!!")
+       client.close();  // remember to close connections when done
+  });
+
+
 function findPlaylistsGenre(){
   MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
      if( err ) throw err;  // if unable to connect
@@ -158,6 +186,8 @@ function findPlaylistsGenre(){
       console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
+
+  
 }
 
 
