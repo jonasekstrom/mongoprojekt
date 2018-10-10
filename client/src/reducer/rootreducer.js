@@ -169,7 +169,7 @@ const rootReducer = (state = initState, action) => {
       return {
         ...state,
         playListArray:[ action.data, ...state.playListArray],
-        
+
       }
     case "CLOSE_POPUP":
       return {
@@ -302,6 +302,7 @@ const rootReducer = (state = initState, action) => {
       }
 
     case "UPDATE_LIST":
+    
       return {
         ...state,
         playListArray:action.data
