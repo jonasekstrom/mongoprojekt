@@ -50,8 +50,9 @@ app.post("/createplaylist", (req,res)=>{
   req.on("end", function(){
 
     let obj = JSON.parse(playlist);
-    createPlaylist(obj)
-    res.send(JSON.parse(playlist))
+    createPlaylist(obj, function(err,docs){
+      res.send(JSON.stringify(docs))
+    })
   })
 
 })
@@ -78,7 +79,7 @@ app.get("/search", (req,res) => {
     let secondGenre = req.query.secondGenre.toLowerCase();
     let thirdGenre = req.query.thirdGenre.toLowerCase();
 
-    
+
     searchSelected(searchText,firstGenre,secondGenre,thirdGenre, function(err,docs){
         res.send(JSON.stringify(docs))
     })
