@@ -156,9 +156,9 @@ function offClickedGenre(searchInfo,genre){
 }
 
 function updateList(data, allPlayLists, oldData){
-  // console.log(data)
-  // console.log(allPlayLists)
-  // console.log(oldData)
+  console.log(data)
+  console.log(allPlayLists)
+  console.log(oldData)
   let updatedList = {}
   let listName;
   let genres;
@@ -203,7 +203,7 @@ function updateList(data, allPlayLists, oldData){
       
 
       updatedList = {
-      id: data.listId,
+      _id: oldData.listId,
       playListName: listName,
       userName: data.userName,
       creator: data.userId,
@@ -211,6 +211,7 @@ function updateList(data, allPlayLists, oldData){
       description: desc,
       spotify: spotify
       }
+      console.log("updatedList", updatedList)
       return updatedList
     }
     

@@ -18,9 +18,7 @@ class Popup extends Component {
       spotify: "",
       listId: "",
       checked: [],
-      //
-      editable: "",
-      hidden: ""
+      edited: true
     }
     this.editValues = this.editValues.bind(this);
     // this.changeClass = this.changeClass.bind(this);
@@ -32,24 +30,26 @@ class Popup extends Component {
         if (data.length > 15) {
           console.log("Name of your list is to long");
           this.setState({
-            playListName: this.props.popup.playListName
+            playListName: this.props.popup.playListName,
+            edited: false
           })
         } else {
-          this.setState({ playListName: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName })
+          this.setState({ playListName: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName, edited: false })
         }
         break;
       case "editDescription":
         if (data.length > 150) {
           console.log("Description is waaaay to long. No one will read all that.");
           this.setState({
-            description: this.props.popup.description
+            description: this.props.popup.description,
+            edited: false
           })
         } else {
-          this.setState({ description: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName })
+          this.setState({ description: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName, edited: false })
         }
         break;
       case "editUrl":
-        this.setState({ spotify: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName })
+        this.setState({ spotify: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName, edited: false })
         break;
       default:
     }
@@ -74,14 +74,15 @@ class Popup extends Component {
     if (event.target.name === "genre") {
       arr.push(event.target.value);
       this.setState(() => {
-        return { checked: arr };
+        return { checked: arr, edited: false };
       });
 
       this.setState({
         listId: this.props.listId,
         userId: this.props.userId,
         userName: this.props.userName,
-        genres: arr
+        genres: arr,
+        edited: false
       });
 
       let newArr = arr;
@@ -108,7 +109,12 @@ class Popup extends Component {
 
   clearState() {
     this.setState(() => {
-      return { genres: [], checked: [] };
+      return { genres: [], checked: [],
+        playListName: "",
+        genres: [],
+        description: "",
+        spotify: "", 
+        edited: true};
     });
     console.log(this.state.genres)
   }
@@ -144,15 +150,15 @@ class Popup extends Component {
 
 
               <div className="playListInformation" onChange={this.onChange}>
-                <input type="checkbox" name="genre" value="Rock" disabled={this.isDisabled("Rock")} /> <span >Rock</span>
-                <input type="checkbox" name="genre" value="Metal" disabled={this.isDisabled("Metal")} /> <span >Metal</span>
-                <input type="checkbox" name="genre" value="Classical" disabled={this.isDisabled("Classical")} /> <span >Classical</span><br />
-                <input type="checkbox" name="genre" value="Country" disabled={this.isDisabled("Country")} /> <span >Country</span>
-                <input type="checkbox" name="genre" value="Pop" disabled={this.isDisabled("Pop")} /> <span >Pop</span>
-                <input type="checkbox" name="genre" value="Blues" disabled={this.isDisabled("Blues")} /> <span >Blues</span>
-                <input type="checkbox" name="genre" value="Jazz" disabled={this.isDisabled("Jazz")} /> <span >Jazz</span>
-                <input type="checkbox" name="genre" value="Electro" disabled={this.isDisabled("Electro")} /> <span >Electro</span>
-                <input type="checkbox" name="genre" value="Hiphop" disabled={this.isDisabled("Hiphop")} /> <span >Hiphop</span>
+                <input type="checkbox" name="genre" value="rock" disabled={this.isDisabled("rock")} /> <span >Rock</span>
+                <input type="checkbox" name="genre" value="metal" disabled={this.isDisabled("metal")} /> <span >Metal</span>
+                <input type="checkbox" name="genre" value="classical" disabled={this.isDisabled("classical")} /> <span >Classical</span><br />
+                <input type="checkbox" name="genre" value="country" disabled={this.isDisabled("country")} /> <span >Country</span>
+                <input type="checkbox" name="genre" value="popmusic" disabled={this.isDisabled("pop")} /> <span >Pop</span>
+                <input type="checkbox" name="genre" value="blue" disabled={this.isDisabled("blues")} /> <span >Blues</span>
+                <input type="checkbox" name="genre" value="jazz" disabled={this.isDisabled("jazz")} /> <span >Jazz</span>
+                <input type="checkbox" name="genre" value="electro" disabled={this.isDisabled("electro")} /> <span >Electro</span>
+                <input type="checkbox" name="genre" value="hiphop" disabled={this.isDisabled("hiphop")} /> <span >Hiphop</span>
               </div>
 
               <h3 className="playListInformation">Playlist name:</h3>
@@ -169,8 +175,8 @@ class Popup extends Component {
 
           </div>
           <div>
-            <button className="updateBtn" onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); }}>Update</button>
-            <button className="closeBtn" onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
+            <button className="updateBtn" disabled={this.state.edited} onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); this.clearState()}}>Update</button>
+            <button className="closeBtn"  onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
           </div>
 
         </div>
@@ -213,7 +219,7 @@ const mapStateToProps = (state) => {
     showPopup: state.showPopup,
     playListArray: state.playListArray,
     userId: state.id,
-    listId: state.popup.listId,
+    listId: state.popup._id,
     userName: state.userName,
   }
 }

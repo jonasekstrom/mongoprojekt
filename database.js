@@ -65,8 +65,8 @@ function createPlaylist(playlist,callback){
       const collectionName = "playlist";
 
       db.collection(collectionName).insertOne(playlist, function(err,docs){
-        console.log(docs.ops[0])
-        callback(err,docs)
+        // console.log(docs.ops[0])
+        callback(err, docs.ops[0])
       });
 
        client.close();  // remember to close connections when done
