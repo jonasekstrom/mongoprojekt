@@ -6,7 +6,6 @@ const dbName = 'sharemusic';  // Database Name
 
 //check if user allready exists if not create new user.
 function createUser(user){
-  console.log(user)
   MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
@@ -14,7 +13,6 @@ function createUser(user){
 
       db.collection(collectionName).insertOne(user)
 
-      console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
 }
@@ -26,7 +24,6 @@ function loginUser(){
       const db = client.db(dbName);  // ansluten
       const collectionName = "users";
 
-      console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
 }
@@ -38,13 +35,12 @@ function getAllPlaylists(java, callback){
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
-
        db.collection(collectionName).find({}).toArray(function(err, docs) {
     		if( err )  // handle error here
-    		console.log("Found the following records:");
+        console.log("hej")
+
     		callback(err,docs)
     	});
-      console.log("connected to database!!!!")
   });
 }
 
@@ -57,7 +53,6 @@ function getUserPlaylist(){
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
 
-      console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
 }
@@ -68,11 +63,9 @@ function createPlaylist(playlist){
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
-      console.log(playlist)
 
       db.collection(collectionName).insertOne(playlist);
 
-      console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
 }
@@ -86,7 +79,6 @@ function searchSelected(searchText,firstGenre,secondGenre,thirdGenre, callback){
   let third;
 
   if(firstGenre === "undefined"){
-    console.log("fiiiiirst")
     first = ""
   }else{
     first = firstGenre
@@ -104,31 +96,71 @@ function searchSelected(searchText,firstGenre,secondGenre,thirdGenre, callback){
   }
 
 
-
     if(!searchText && !first && !second && !third){
       getAllPlaylists("_", function(err,docs){
-          // console.log(docs)
           callback(err,docs)
       })
-    }else if(!searchText && first || second || third){
+    }else if(!searchText && (first || second || third)){
       let arr= [first,second,third]
-      console.log(arr)
 
+      console.log("javascript")
       findPlaylistsGenre(arr, function(err,docs){
-          // console.log(docs)
           callback(err,docs)
       })
     }else if(searchText && !first && !second && !third){
-      console.log("JAVASCRIPT")
-      console.log(searchText)
-      console.log("first: " + first)
-      console.log("second: " + second)
-      console.log("third: " + third)
+
       findPlaylistsText(searchText, function(err,docs){
           callback(err,docs)
       })
+    }else if(searchText && (first || second || third)){
+
+      let genreArray= []
+        if(first){
+          genreArray.push(first)
+        }
+        if(second){
+          genreArray.push(second)
+        }
+        if(third){
+          genreArray.push(third)
+        }
+
+        console.log(genreArray)
+      findPlaylistsTextAndGenre(searchText,genreArray, function(err,docs){
+        callback(err,docs)
+
+      })
     }
 
+}
+
+function findPlaylistsTextAndGenre(searchText, genres, callback){
+    MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
+       if( err ) throw err;  // if unable to connect
+        const db = client.db(dbName);  // ansluten
+        const collectionName = "playlist";
+        // const queryCreator = ''
+        // const queryPlaylistName = '
+        console.log(genres.length)
+        if(genres){
+          db.collection(collectionName).find({ $or: [ { userName: new RegExp(searchText) }, { playListName: new RegExp(searchText)}, {genres:{$in:genres}}] }).toArray(function(err, docs){
+            console.log("DOKFODSKFOSDKFOKSDOKODSKF")
+
+            // db.collection(collectionName).find({ $and: [ { userName: new RegExp(searchText) }, { playListName: {$in: genres} } ] }).count().toArray(function(err,docs){
+            //   console.log(docs)
+            // })
+            // db.collection(collectionName).aggregate([{ $match: { $and: [{ creator: queryCreator }, {name: queryPlaylistName }]}}]) //both creator and name must match
+            callback(err,docs)
+            client.close();  // remember to close connections when done
+          });
+        }else if(genres.length === 2){
+          console.log("bajs")
+        }
+
+
+
+
+     })
 }
 
 
@@ -143,12 +175,9 @@ function findPlaylistsText(searchText, callback) {
 
       // db.playlist.find({ $or: [ { userName: "thatzita" }, { playListName: "code" } ] })
       db.collection(collectionName).find({ $or: [ { userName: new RegExp(text) }, { playListName: new RegExp(text) } ] }).toArray(function(err, docs){
-        console.log(err)
-        console.log(docs)
         callback(err,docs)
       })
 
-      console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
 
@@ -160,13 +189,11 @@ function findPlaylistsText(searchText, callback) {
 //      if( err ) throw err;  // if unable to connect
 //       const db = client.db(dbName);  // ansluten
 //       const collectionName = "playlist";
-//       console.log(playlist)
 //
 //       const queryCreator = ''
 //       const queryPlaylistName = ''
 //
 //       db.collection(collectionName).aggregate([{ $match: { $and: [{ creator: queryCreator }, {name: queryPlaylistName }]}}]) //both creator and name must match
-//       console.log("connected to database!!!!")
 //        client.close();  // remember to close connections when done
 //   });
 // }
@@ -178,13 +205,11 @@ function findPlaylistsText(searchText, callback) {
 //      if( err ) throw err;  // if unable to connect
 //       const db = client.db(dbName);  // ansluten
 //       const collectionName = "playlist";
-//       console.log(playlist)
 //
 //       const queryCreator = ''
 //
 //         db.collection(collectionName).aggregate([{ $match: { creator: queryCreator}}])
 //
-//       console.log("connected to database!!!!")
 //        client.close();  // remember to close connections when done
 //   });
 // }
@@ -196,13 +221,11 @@ function findPlaylistsText(searchText, callback) {
 //      if( err ) throw err;  // if unable to connect
 //       const db = client.db(dbName);  // ansluten
 //       const collectionName = "playlist";
-//       console.log(playlist)
 //
 //       const queryPlaylistName = ''
 //
 //         db.collection(collectionName).aggregate([{ $match: { name: queryPlaylistName}}])
 //
-//       console.log("connected to database!!!!")
 //        client.close();  // remember to close connections when done
 //   });
 // }
@@ -219,11 +242,8 @@ function findPlaylistsGenre(queryList, callback){
       const collectionName = "playlist";
 
 
-      console.log("this is " + queryList)
 
       db.collection(collectionName).find({genres: {$in: queryList}}).toArray(function(err, docs){
-        console.log(err)
-        console.log(docs)
         callback(err,docs)
       })
 
@@ -231,7 +251,6 @@ function findPlaylistsGenre(queryList, callback){
 
       //db.playlist.find({genres: {$in: ["rock", "metal"]}})
 
-      console.log("connected to database!!!!")
        client.close();  // remember to close connections when done
   });
 }
