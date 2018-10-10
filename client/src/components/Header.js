@@ -58,6 +58,19 @@ class Header extends Component {
       let genreObj = this.props.searchInfo;
       let searchField = this.props.searchField;
 
+      let genreArray =[]
+
+
+      for(let element in genreObj){
+        if(genreObj[element]){
+          genreArray.push(element)
+        }
+      }
+
+
+      console.log(genreArray)
+      console.log(searchField)
+      fetch(`$localhost:5000/search?searchText=${searchField}`)
       //Skickas en fetch med get till servern med en querystring med ovantstående värden.
 
     }
