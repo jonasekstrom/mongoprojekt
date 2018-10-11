@@ -74,6 +74,8 @@ componentDidMount(){
     ).then(response => {
       if (response.ok) {
         response.json().then(json => {
+          console.log(json)
+
           this.props.dispatch(action.updateList(json))
         });
       }
@@ -92,7 +94,7 @@ componentDidMount(){
         // console.log(listOfPlayList)
         const popup = <Popup/>
 
-        let listan = ""
+        // let listan = ""
         // console.log(listan)
 
         let render = (
