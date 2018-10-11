@@ -1,4 +1,4 @@
-let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected} = require("./database.js")
+let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist} = require("./database.js")
 const express = require("express");
 const app = express();
 const port = 5000;
@@ -40,8 +40,6 @@ app.post("/createUser", (req,res) => {
 });
 
 app.post("/createplaylist", (req,res)=>{
-
-
   let playlist = ""
   req.on("data", (data)=>{
     playlist += data;
@@ -55,7 +53,24 @@ app.post("/createplaylist", (req,res)=>{
       res.send(JSON.stringify(docs))
     })
   })
+})
 
+app.post("/updateplaylist", (req,res)=>{
+  let updatedPlaylist = ""
+  req.on("data", (data)=>{
+    updatedPlaylist += data;
+  })
+
+  req.on("end", function(){
+
+    let obj = JSON.parse(updatedPlaylist);
+    updatePlaylist(obj, function(err,docs){
+      console.log("this is the docs: ", docs)
+    // res.send("updated");  
+    })
+    res.send("updated");
+  })
+  // res.send("updated");
 })
 
 app.get("/playlist", (req,res) => {

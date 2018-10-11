@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectID
 
 const url = 'mongodb://localhost:27017';
 const dbName = 'sharemusic';  // Database Name
@@ -70,6 +71,29 @@ function createPlaylist(playlist,callback){
       });
 
        client.close();  // remember to close connections when done
+  });
+}
+//create a new playlist
+function updatePlaylist(playlist,callback){
+  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
+      const collectionName = "playlist";
+      
+      db.collection(collectionName).updateOne({
+        "_id": ObjectId(playlist._id)},
+        {
+        $set: {
+    "playListName" : playlist.playListName, 
+    "userName" : playlist.userName, 
+    "description" : playlist.description, 
+    "spotify" : playlist.spotify, 
+    "genres" : playlist.genres, 
+    "creator" : playlist.creator
+        }
+    });
+    
+    client.close();  // remember to close connections when done
   });
 }
 
@@ -263,4 +287,4 @@ function findPlaylistsGenre(queryList, callback){
 // db.playlist.find( { genres: {$elemMatch: {"genre":"disco","genre":"blues"}}})
 
 
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected };
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, updatePlaylist };

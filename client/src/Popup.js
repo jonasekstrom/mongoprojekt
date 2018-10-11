@@ -18,11 +18,13 @@ class Popup extends Component {
       spotify: "",
       listId: "",
       checked: [],
-      edited: true
+      edited: true,
+      // updatedList: this.props.updatedList,
     }
     this.editValues = this.editValues.bind(this);
     // this.changeClass = this.changeClass.bind(this);
   }
+
 
   editValues(nameOfClass, data) {
     switch (nameOfClass) {
@@ -62,9 +64,7 @@ class Popup extends Component {
   };
 
   changeInput(event) {
-    // console.log(event.target.textContent)
     let nameOfClass = event.target.className
-    // let nameOfClass = event.target.textContent
     this.editValues(nameOfClass, event.target.textContent);
   }
 
@@ -109,14 +109,15 @@ class Popup extends Component {
 
   clearState() {
     this.setState(() => {
-      return { genres: [], checked: [],
+      return {
+        genres: [], checked: [],
         playListName: "",
         genres: [],
         description: "",
-        spotify: "", 
-        edited: true};
+        spotify: "",
+        edited: true,
+      };
     });
-    console.log(this.state.genres)
   }
 
   isDisabled = genre => {
@@ -125,8 +126,34 @@ class Popup extends Component {
     );
   };
 
+  updateDb = data => {
+    let objToDb = {
+      _id: data._id,
+      playListName: data.playListName,
+      userName: data.userName,
+      creator: this.props.userId,
+      genres: data.genres,
+      description: data.description,
+      spotify: data.spotify
+    }
+
+    let url = "http://localhost:5000/updateplaylist";
+    let self = this;
+    fetch(url, {
+      method: 'post',
+      body: JSON.stringify(objToDb),
+    }).then(function (response) {
+      return response.text();
+    }).then(function (response) {
+      self.props.dispatch(action.clearPopupUpdate())
+    });
+  }
 
   render() {
+    if (this.props.updatedList._id !== undefined) {
+      this.updateDb(this.props.updatedList);
+    }
+
     let allowedToEdit = this.props.popup.creator;
     let playListOwner = this.props.userId;
     let listGenres = this.props.popup.genres;
@@ -140,7 +167,7 @@ class Popup extends Component {
     }
     if (allowedToEdit === playListOwner) {
       let self = this;
-      console.log(this.props)
+      // console.log(this.props);
       return (
         <div className="popup">
           <div className={"popup_inner"}>
@@ -155,7 +182,7 @@ class Popup extends Component {
                 <input type="checkbox" name="genre" value="classical" disabled={this.isDisabled("classical")} /> <span >Classical</span><br />
                 <input type="checkbox" name="genre" value="country" disabled={this.isDisabled("country")} /> <span >Country</span>
                 <input type="checkbox" name="genre" value="popmusic" disabled={this.isDisabled("pop")} /> <span >Pop</span>
-                <input type="checkbox" name="genre" value="blue" disabled={this.isDisabled("blues")} /> <span >Blues</span>
+                <input type="checkbox" name="genre" value="blues" disabled={this.isDisabled("blues")} /> <span >Blues</span>
                 <input type="checkbox" name="genre" value="jazz" disabled={this.isDisabled("jazz")} /> <span >Jazz</span>
                 <input type="checkbox" name="genre" value="electro" disabled={this.isDisabled("electro")} /> <span >Electro</span>
                 <input type="checkbox" name="genre" value="hiphop" disabled={this.isDisabled("hiphop")} /> <span >Hiphop</span>
@@ -175,15 +202,15 @@ class Popup extends Component {
 
           </div>
           <div>
-            <button className="updateBtn" disabled={this.state.edited} onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); this.clearState()}}>Update</button>
-            <button className="closeBtn"  onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
+            <button className="updateBtn" disabled={this.state.edited} onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); this.clearState() }}>Update</button>
+            <button className="closeBtn" onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
           </div>
 
         </div>
 
       );
     } else {
-      console.log(this.props)
+      // console.log(this.props);
       return (
         <div className="popup">
           <div className={"popup_inner"}>
@@ -221,6 +248,7 @@ const mapStateToProps = (state) => {
     userId: state.id,
     listId: state.popup._id,
     userName: state.userName,
+    updatedList: state.updatedList,
   }
 }
 

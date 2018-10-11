@@ -13,6 +13,13 @@ let closePopup = () => {
   }
 }
 
+let clearPopupUpdate = () => {
+  return {
+    type: "CLEAR_POPUP_UPDATE"
+  }
+}
+
+
 let updatePopup = (payload, oldData) => {
   console.log(payload)
   // console.log(oldData)
@@ -118,6 +125,7 @@ let addPlaylist = (value)=>{
 export default {
   showPopup,
   closePopup,
+  clearPopupUpdate,
   updatePopup,
   addPlaylist,
   rockClicked,

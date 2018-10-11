@@ -82,11 +82,14 @@ componentDidMount(){
 }
 
   componentDidUpdate(){
-    // console.log(this.props.playListArray)
+    // console.log("_____________")
+    // console.log(this.props.playListArray);
+    // console.log(this.props.popup);
+    // console.log("_____________")
   }
 
     render() {
-      // console.log(this.props.playListArray);
+      
         const listOfPlayList = this.props.playListArray
 
         // console.log(listOfPlayList)
@@ -130,7 +133,8 @@ const mapStateToProps = (state)=>{
     return{
         playListArray : state.playListArray,
         showPopup: state.showPopup,
-        userId: state.id
+        userId: state.id,
+        popup: state.popup
     }
   }
 

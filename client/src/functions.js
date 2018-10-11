@@ -211,7 +211,7 @@ function updateList(data, allPlayLists, oldData){
       description: desc,
       spotify: spotify
       }
-      console.log("updatedList", updatedList)
+      // console.log("updatedList", updatedList)
       return updatedList
     }
     
