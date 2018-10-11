@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import { connect } from "react-redux";
 import action from "../actions.js";
-import Genres from "./Genres.js"
+// import Genres from "./Genres.js"
 
 
 
@@ -234,19 +234,21 @@ class CreateList extends Component {
     }
     let self = this;
     console.log(newPlayList)
-    newPlayList.playListName = newPlayList.playListName.toLowerCase();
-    newPlayList.userName = newPlayList.userName.toLowerCase();
+    if(newPlayList.playListName || newPlayList.userName){
+      newPlayList.playListName = newPlayList.playListName.toLowerCase();
+      newPlayList.userName = newPlayList.userName.toLowerCase();
+      fetch(url, {
+        method: 'post',
+        body: JSON.stringify(newPlayList),
+      }).then(function (response) {
+        console.log("what is dis? ", response);
+        return response.json();
+      }).then(function (data) {
+        console.log(data)
+        self.props.dispatch(action.addPlaylist(data))
+      });
+    }
       console.log(newPlayList)
-    fetch(url, {
-      method: 'post',
-      body: JSON.stringify(newPlayList),
-    }).then(function (response) {
-      console.log("what is dis? ", response);
-      return response.json();
-    }).then(function (data) {
-      console.log(data)
-      self.props.dispatch(action.addPlaylist(data))
-    });
 
   }
 
@@ -377,7 +379,7 @@ class CreateList extends Component {
 
           <div className="saveDiv" onClick={e => this.sendValues()}>
             <span>Save list</span>
-            <img src="compact-disc.png" />
+            <img alt="" src="compact-disc.png" />
           </div>
 
         </div>
