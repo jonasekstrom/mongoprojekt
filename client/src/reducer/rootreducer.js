@@ -157,9 +157,6 @@ const rootReducer = (state = initState, action) => {
       }
       case "UPDATE_POPUP":
       let updatedPlaylist = functions.updateList(action.payload, [...state.playListArray], action.oldData);
-      // console.log(action.payload);
-      // console.log(action.oldData);
-      // console.log(updatedPlaylist);
       return {
         ...state,
         playListArray: [...state.playListArray.filter(obj =>
@@ -172,7 +169,6 @@ const rootReducer = (state = initState, action) => {
         updatedList: {}
       }
       case "ADD_PLAYLIST":
-      // console.log(action.data);
       return {
         ...state,
         playListArray:[ ...state.playListArray, action.data],
@@ -240,7 +236,6 @@ const rootReducer = (state = initState, action) => {
       }
 
     case "POPMUSIC_CLICKED":
-      console.log(action.type)
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
@@ -288,8 +283,6 @@ const rootReducer = (state = initState, action) => {
         searchInfo: functions.getGenreState(action)
       }
     case "ELECTRO_CLICKED":
-    console.log(action.type)
-    console.log(action.data)
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
