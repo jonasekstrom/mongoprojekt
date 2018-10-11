@@ -66,11 +66,10 @@ app.post("/updateplaylist", (req,res)=>{
     let obj = JSON.parse(updatedPlaylist);
     updatePlaylist(obj, function(err,docs){
       console.log("this is the docs: ", docs)
-    // res.send("updated");  
+      res.send("updated");
     })
     res.send("updated");
   })
-  // res.send("updated");
 })
 
 app.get("/playlist", (req,res) => {

@@ -9,8 +9,6 @@ class ShowPlayLists extends Component {
 
 
     callback(genre){
-
-      // console.log(genre)
       switch (genre) {
         case "classical":
           return {background:"rgb(205, 124, 99)"}
@@ -74,31 +72,17 @@ componentDidMount(){
     ).then(response => {
       if (response.ok) {
         response.json().then(json => {
-          console.log(json)
-
           this.props.dispatch(action.updateList(json))
         });
       }
     });
-  // fetch("http://localhost:5000/playlist").then(res => console.log(res))
+  
 }
-
-  componentDidUpdate(){
-    // console.log("_____________")
-    // console.log(this.props.playListArray);
-    // console.log(this.props.popup);
-    // console.log("_____________")
-  }
 
     render() {
       
         const listOfPlayList = this.props.playListArray
-
-        // console.log(listOfPlayList)
         const popup = <Popup/>
-
-        // let listan = ""
-        // console.log(listan)
 
         let render = (
             listOfPlayList.map((list,i) =>

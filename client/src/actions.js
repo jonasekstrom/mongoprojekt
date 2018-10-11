@@ -21,8 +21,6 @@ let clearPopupUpdate = () => {
 
 
 let updatePopup = (payload, oldData) => {
-  console.log(payload)
-  // console.log(oldData)
   return {
     type: "UPDATE_POPUP",
     payload,
