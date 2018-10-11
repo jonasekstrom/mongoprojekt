@@ -393,10 +393,16 @@ input:focus{
   color:rgb(41, 191, 47)
 }
 
-.inputDivs span::after{
+#nameX::after{
   position: relative;
   left:20px;
   content: "To many letters"
+}
+
+#spotifyX::after{
+  position: relative;
+  left:20px;
+  content: "Uncorrect Spotify url"
 }
 
 .saveDiv span{

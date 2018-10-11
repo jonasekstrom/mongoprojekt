@@ -37,7 +37,6 @@ class CreateList extends Component {
 
   handleChange(e, val) {
     if (val === "name") {
-      console.log(this.state.listName.length)
       if (this.state.listName.length > 15) {
         this.setState({
           name: false
@@ -64,8 +63,7 @@ class CreateList extends Component {
       this.setState({
         listDescription: e.target.value
       })
-    } else {
-
+    } else if(val === "spotify"){
 
       this.setState({
         listUrl: e.target.value
@@ -75,6 +73,7 @@ class CreateList extends Component {
 
 
   checkIfExist(val) {
+
 
     let newList = this.state.listGenres.filter(data => data === val);
     if (newList.length === 0) {
@@ -116,7 +115,6 @@ class CreateList extends Component {
         }
       }
       let newList = this.state.listGenres.filter(data => data !== val)
-      console.log(val + " finns du måste ta bort")
       this.setState({
         clickedGenres: newClickedGenres,
         message: "",
@@ -175,16 +173,14 @@ class CreateList extends Component {
   sendValues() {
     let newPlayList = {};
     let url = "http://localhost:5000/createplaylist";
-    let regex = new RegExp('/^https://open.spotify.com*/')
+    // let regex = new RegExp('/^https://open.spotify.com*/')
+    let regex = new RegExp('https://open.spotify.com/')
 
-    var found = this.state.listUrl.match(regex);
-    console.log("found " + found)
+    let validateSpotify = regex.test(this.state.listUrl)
 
-    if (!this.state.description || !this.state.name || !this.state.spotify) {
 
-      console.log(this.state.description)
-      console.log(this.state.name)
-      console.log(this.state.spotify)
+    if (!this.state.description || !this.state.name || !validateSpotify) {
+
 
       this.setState({
         message: "Something went wrong try again"
@@ -233,7 +229,6 @@ class CreateList extends Component {
       })
     }
     let self = this;
-    console.log(newPlayList)
     if(newPlayList.playListName || newPlayList.userName){
       newPlayList.playListName = newPlayList.playListName.toLowerCase();
       newPlayList.userName = newPlayList.userName.toLowerCase();
@@ -241,21 +236,16 @@ class CreateList extends Component {
         method: 'post',
         body: JSON.stringify(newPlayList),
       }).then(function (response) {
-        console.log("what is dis? ", response);
         return response.json();
       }).then(function (data) {
-        console.log(data)
         self.props.dispatch(action.addPlaylist(data))
       });
     }
-      console.log(newPlayList)
 
   }
 
   componentDidUpdate() {
 
-    console.log(this.state.message);
-    console.log(this.state.newList);
 
   }
 
@@ -273,7 +263,6 @@ class CreateList extends Component {
     let nameInp = this.state.name
     let descriptionInp = this.state.description
     let spotifyInp = this.state.spotify
-    // console.log(this.state)
 
     return (
 
@@ -283,28 +272,16 @@ class CreateList extends Component {
           <h4>Create your own list</h4>
 
           <div className="inputDivs">
-            {nameInp ?
-              <div></div>
-              :
-              <span>x</span>
-            }
+            {!nameInp && <span id="nameX">x</span>}
             <input type="text" placeholder="Name" value={this.state.listName} onChange={e => this.handleChange(e, "name")} />
           </div>
           <div className="inputDivs">
-            {descriptionInp ?
-              <div></div>
-              :
-              <span>x</span>
-            }
+            {!descriptionInp && <span>x</span>}
             <input id="description" type="text" value={this.state.listDescription} onChange={e => this.handleChange(e, "description")} placeholder="Description" />
           </div>
           <div className="inputDivs">
-            {spotifyInp ?
-              <div></div>
-              :
-              <span>x</span>
-            }
-            <input type="text" value={this.state.listUrl} onChange={e => this.handleChange(e)} placeholder="Spotify url" />
+            {!spotifyInp && <span id="spotifyX">x</span>}
+            <input type="text" value={this.state.listUrl} onChange={e => this.handleChange(e, "spotify")} placeholder="Spotify url" />
           </div>
           {this.state.message === "List added!"
             ?
