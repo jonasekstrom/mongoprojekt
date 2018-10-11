@@ -163,11 +163,30 @@ function findPlaylistsTextAndGenre(searchText, genres, callback) {
     if (err) throw err;  // if unable to connect
     const db = client.db(dbName);  // ansluten
     const collectionName = "playlist";
+
     if (genres) {
-      db.collection(collectionName).find({ $or: [{ userName: new RegExp(searchText) }, { playListName: new RegExp(searchText) }, { genres: { $in: genres } }] }).toArray(function (err, docs) {
+
+      db.collection(collectionName).aggregate([
+
+        {$match:{$or:[{ userName:new RegExp(searchText) }, { playListName: new RegExp(searchText) }]}},
+        {$match:{genres:{$in:genres}}}
+
+      ]).toArray(function (err, docs) {
         callback(err, docs)
         client.close();  // remember to close connections when done
       });
+
+      // db.playlist.aggregate([
+      //
+      //   {$match:{$or:[{ userName:"thatzita" }, { playListName: "thatzita" }]}},
+      //   {$match:{genres:{$in:["metal","classical"]}}}
+      // ])
+
+      //
+      // db.collection(collectionName).find({ $or: [{ userName: new RegExp(searchText) }, { playListName: new RegExp(searchText) }, { genres: { $in: genres } }] }).toArray(function (err, docs) {
+      //   callback(err, docs)
+      //   client.close();  // remember to close connections when done
+      // });
     }
   })
 }
@@ -199,6 +218,7 @@ function findPlaylistsGenre(queryList, callback) {
     if (err) throw err;  // if unable to connect
     const db = client.db(dbName);  // ansluten
     const collectionName = "playlist";
+
 
     db.collection(collectionName).find({ genres: { $in: queryList } }).toArray(function (err, docs) {
       callback(err, docs)
