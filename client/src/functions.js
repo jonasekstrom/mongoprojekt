@@ -155,6 +155,14 @@ function offClickedGenre(searchInfo,genre){
     }
 }
 
+
+function removeList(deleteData, allPlayLists) {
+  console.log("Hejsssssssss")
+  console.log(deleteData)
+
+
+  
+}
 function updateList(data, allPlayLists, oldData){
   console.log(data)
   console.log(allPlayLists)
@@ -225,5 +233,6 @@ export default {
   onClickedGenre,
   offClickedGenre,
   getGenreState,
+  removeList,
   updateList,
 }

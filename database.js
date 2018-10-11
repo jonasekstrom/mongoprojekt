@@ -258,9 +258,23 @@ function findPlaylistsGenre(queryList, callback){
   });
 }
 
+function deleteList1(listToRemove){
+  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
+      const collectionName = "playlist";
+      console.log("test")
+      db.collection(collectionName).deleteOne(listToRemove)
+        callback(err,docs)
+      })
+
+       client.close();  // remember to close connections when done
+
+}
+
 
 
 // db.playlist.find( { genres: {$elemMatch: {"genre":"disco","genre":"blues"}}})
 
 
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected };
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteList1 };

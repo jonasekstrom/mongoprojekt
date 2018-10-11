@@ -31,6 +31,7 @@ const initState = {
     spotify: "",
     id: ""
   },
+  
   playListArray: [
     // {
     //   id: 1,
@@ -155,6 +156,17 @@ const rootReducer = (state = initState, action) => {
         },
         ...state,
       }
+      case "DELETE_POPUP":
+      console.log("TESTA REDUCERSS")
+      let removedPlayList = functions.removeList(action.deleteData);
+  
+      return {
+        ...state,
+        playListArray: [...state.playListArray.filter(objToRemove =>
+          objToRemove._id !== action.deleteData.id)]
+       
+      }
+     
       case "UPDATE_POPUP":
       let updatedPlaylist = functions.updateList(action.payload, [...state.playListArray], action.oldData);
       // console.log(action.payload)
@@ -165,6 +177,7 @@ const rootReducer = (state = initState, action) => {
         playListArray: [...state.playListArray.filter(obj =>
           obj._id !== updatedPlaylist._id), updatedPlaylist],
       }
+
       case "ADD_PLAYLIST":
       console.log(action.data)
       return {
@@ -310,7 +323,24 @@ const rootReducer = (state = initState, action) => {
       }
     default:
       return state
-  }
+  
+      // case "DELETE_LIST":
+        
+      //   return {
+      //   ...state,
+      //   playListArray:action.data
+      // }
+      // default:
+      // return state
+    
+  
+  
+  
+  
+    }
+
+  
+  
 }
 
 

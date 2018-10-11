@@ -1,4 +1,4 @@
-let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected} = require("./database.js")
+let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, deleteList} = require("./database.js")
 const express = require("express");
 const app = express();
 const port = 5000;
@@ -87,6 +87,27 @@ app.get("/search", (req,res) => {
     // REQ - genres, username, playlist name
     // res.send("Search");
 });
+
+app.post("/delete", (req,res) => {
+  let listToDelete = ''
+  
+  
+  req.on("data", (data)=>{
+    listToDelete += data;
+  })
+
+  req.on("end", function(){
+    console.log("llolplpol")
+    //let obj = JSON.parse(listToDelete)
+    console.log(listToDelete);
+   // res.send(JSON.stringify(obj))
+    // createPlaylist(obj, function(err,docs){
+    //   console.log("this is the docs: ", docs)
+    //   res.send(JSON.stringify(docs))
+    // })
+  });
+})
+
 
 app.listen(port, () => {
 });

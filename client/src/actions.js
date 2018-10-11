@@ -23,6 +23,15 @@ let updatePopup = (payload, oldData) => {
   }
 }
 
+let deleteList = (deleteData) => {
+  console.log(deleteData)
+  // console.log(oldData)
+  return {
+    type: "DELETE_POPUP",
+    deleteData
+  }
+}
+
 
 let rockClicked = (searchInfo) => {
   return functions.onClickedGenre(searchInfo, "ROCK")
@@ -119,6 +128,7 @@ export default {
   showPopup,
   closePopup,
   updatePopup,
+  deleteList,
   addPlaylist,
   rockClicked,
   rockUnclicked,

@@ -18,7 +18,9 @@ class Popup extends Component {
       spotify: "",
       listId: "",
       checked: [],
-      edited: true
+      edited: true,
+      idToRemove: ''
+      
     }
     this.editValues = this.editValues.bind(this);
     // this.changeClass = this.changeClass.bind(this);
@@ -64,6 +66,7 @@ class Popup extends Component {
   changeInput(event) {
     // console.log(event.target.textContent)
     let nameOfClass = event.target.className
+    console.log(nameOfClass)
     // let nameOfClass = event.target.textContent
     this.editValues(nameOfClass, event.target.textContent);
   }
@@ -124,7 +127,26 @@ class Popup extends Component {
       this.state.checked.length > 2 && this.state.checked.indexOf(genre) === -1
     );
   };
+  
 
+  removeThis() {
+    console.log("test")
+    fetch('http://localhost:5000/delete', {
+      // mode: 'no-cors',
+      method: 'POST',
+      body: JSON.stringify(this.props.listId),
+    },
+    ).then(function (response){
+      console.log(response)
+          // return response.text()
+        }).then(function (reponse) {
+        this.props.dispatch(action.deleteList(this.props.popup))
+      })
+     
+    
+   
+
+  }
 
   render() {
     let allowedToEdit = this.props.popup.creator;
@@ -140,7 +162,7 @@ class Popup extends Component {
     }
     if (allowedToEdit === playListOwner) {
       let self = this;
-      console.log(this.props)
+     // console.log(this.props)
       return (
         <div className="popup">
           <div className={"popup_inner"}>
@@ -170,6 +192,7 @@ class Popup extends Component {
               <h3 className="playListInformation">Spotify link:</h3>
               <span className="editUrl" suppressContentEditableWarning="true" contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.spotify}</span>
               <a className="spotifyLink" href={this.props.popup.spotify} target="_blank">Listen to it now!</a>
+              <button className="removeBtnz" onClick={this.removeThis.bind(this)}>Remove this List</button>
             </div>
             <br />
 

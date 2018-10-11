@@ -5,7 +5,7 @@ import action from "./actions.js"
 import Popup from "./Popup.js"
 
 class ShowPlayLists extends Component {
-
+     
 
 
     callback(genre){
@@ -85,6 +85,16 @@ componentDidMount(){
     // console.log(this.props.playListArray)
   }
 
+  // removeList(ev) {
+  //   console.log(this.props.playListArray)
+  //   let listToRemove = [...this.props.playListArray]
+  //   let index = listToRemove.indexOf(ev.target.value)
+  //   listToRemove.splice(index, 1)
+  //   this.setState({playListArray: listToRemove});
+
+  // }
+
+
     render() {
       // console.log(this.props.playListArray);
         const listOfPlayList = this.props.playListArray
@@ -94,6 +104,8 @@ componentDidMount(){
 
         let listan = ""
         // console.log(listan)
+
+       
 
         let render = (
             listOfPlayList.map((list,i) =>
