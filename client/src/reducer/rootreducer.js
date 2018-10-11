@@ -189,7 +189,6 @@ const rootReducer = (state = initState, action) => {
         searchInfo: functions.getGenreState(action)
 
       }
-      break;
     case "ROCK_CLICKED":
       return {
         ...state,
@@ -309,7 +308,7 @@ const rootReducer = (state = initState, action) => {
       }
 
     case "UPDATE_LIST":
-    
+
       return {
         ...state,
         playListArray:action.data

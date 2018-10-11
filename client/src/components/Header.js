@@ -99,7 +99,7 @@ class Header extends Component {
           </div>
           <div className="header">
 
-            <img className="userImg" src={this.props.userImg}/>
+            <img className="userImg" alt="" src={this.props.userImg}/>
             <Genres/>
             <div className="inputfield">
               <div className="clip">

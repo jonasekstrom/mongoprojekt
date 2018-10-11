@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import './Popup.css';
 
 import { connect } from "react-redux"
@@ -92,12 +92,12 @@ class Popup extends Component {
         let currentGenre = arr[h];
         let foundCount = 0;
         for (i = 0; i < arr.length; i++) {
-          if (arr[i] == arr[h])
+          if (arr[i] === arr[h])
             foundCount++;
         }
         if (foundCount > 1) {
           for (j = 0; j < newArr.length; j++) {
-            if (newArr[j] == currentGenre) {
+            if (newArr[j] === currentGenre) {
               newArr.splice(j, 1);
               j--;
             }
@@ -110,13 +110,13 @@ class Popup extends Component {
   clearState() {
     this.setState(() => {
       return {
-        genres: [], checked: [],
-        playListName: "",
         genres: [],
+        checked: [],
+        playListName: "",
         description: "",
         spotify: "",
-        edited: true,
-      };
+        edited: true};
+
     });
   }
 
@@ -168,6 +168,7 @@ class Popup extends Component {
     if (allowedToEdit === playListOwner) {
       let self = this;
       // console.log(this.props);
+
       return (
         <div className="popup">
           <div className={"popup_inner"}>
@@ -196,7 +197,7 @@ class Popup extends Component {
               <span className="editDescription" suppressContentEditableWarning="true" contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.description}</span>
               <h3 className="playListInformation">Spotify link:</h3>
               <span className="editUrl" suppressContentEditableWarning="true" contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.spotify}</span>
-              <a className="spotifyLink" href={this.props.popup.spotify} target="_blank">Listen to it now!</a>
+              <a className="spotifyLink" href={this.props.popup.spotify} target="">Listen to it now!</a>
             </div>
             <br />
 
@@ -229,7 +230,7 @@ class Popup extends Component {
               <span className="playListUserName">{this.props.popup.userName}</span> <br />
               <h3 className="playListInformation">Description:</h3>
               <span className="editDescription">{this.props.popup.description}</span> <br />
-              <a className="spotifyLink" href={this.props.popup.spotify} target="_blank">Listen to it now!</a>
+              <a className="spotifyLink" href={this.props.popup.spotify} target="">Listen to it now!</a>
             </div>
             <br />
           </div>
