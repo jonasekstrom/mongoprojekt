@@ -282,11 +282,13 @@ class Popup extends Component {
       return (
         <div className="popup">
           <div className={"popup_inner"}>
-            <div className="informationPlayList">
-              <h1 className="playListTitle">{this.props.popup.playListName}</h1> <br />
-              <h3 className="playListInformation">Genres:</h3>
-
-              <div className="styleTransition">
+              <div>
+              <h2 className="playListTitle">{this.props.popup.playListName}</h2> <br />
+              <h4 className="playListInformation">Genres:</h4>
+              <ul >{listGenres.map(function (genre, index) {
+                  
+                  return <span className="genreInfo" key={index}>{genre}</span>
+                })}</ul>
 
                 <ul>
 
@@ -339,24 +341,24 @@ class Popup extends Component {
 
                 
                 </ul>
-              </div>
-
-              <h3 className="playListInformation">Playlist name:</h3>
+              <h4 >Playlist name:</h4>
               <span className="editPlayList" suppressContentEditableWarning="true" contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.playListName}</span> <br />
-              <h3 className="playListInformation">Created by:</h3>
+              <h4 >Created by:</h4>
               <span className="playListUserName">{this.props.popup.userName}</span> <br />
-              <h3 className="playListInformation">Description:</h3>
+              <h4 >Description:</h4>
               <span className="editDescription" suppressContentEditableWarning="true" contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.description}</span>
-              <h3 className="playListInformation">Spotify link:</h3>
+              <h4 id="spotify">Spotify link:</h4>
               <span className="editUrl" suppressContentEditableWarning="true" contentEditable="true" onInput={event => this.changeInput(event)}>{this.props.popup.spotify}</span>
+              </div>
               <a className="spotifyLink" href={this.props.popup.spotify} rel="noopener noreferrer"  target="_blank">Listen to it now!</a>
-            </div>
             <br />
 
           </div>
-          <div>
-            <button className="updateBtn" disabled={this.state.edited} onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); this.clearState() }}>Update</button>
-            <button className="closeBtn" onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
+          <div className="updateClose">
+            <div>
+              <button  disabled={this.state.edited} onClick={(e) => { this.props.dispatch(action.updatePopup(this.state, this.props.popup)); this.clearState() }}>Update</button>
+              <button  onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
+            </div>
           </div>
 
         </div>
@@ -367,26 +369,31 @@ class Popup extends Component {
         <div className="popup">
           <div className={"popup_inner"}>
             <div className="informationPlayList">
-              <h1 className="playListTitle">{this.props.popup.playListName}</h1> <br />
-              <h3 className="playListInformation">Genres:</h3>
+              <h2 className="playListTitle">{this.props.popup.playListName}</h2> <br />
+              <h4 className="playListInformation">Genres:</h4>
 
               <div className="container">
                 <ul >{listGenres.map(function (genre, index) {
                   return <span className="genreInfo" key={index}>{genre}</span>
                 })}</ul>
               </div>
-              <h3 className="playListInformation">Playlist name:</h3>
+              <h4 className="playListInformation">Playlist name:</h4>
               <span className="editPlayList">{this.props.popup.playListName}</span> <br />
-              <h3 className="playListInformation">Created by:</h3>
+              <h4 className="playListInformation">Created by:</h4>
               <span className="playListUserName">{this.props.popup.userName}</span> <br />
-              <h3 className="playListInformation">Description:</h3>
+              <h4 className="playListInformation">Description:</h4>
               <span className="editDescription">{this.props.popup.description}</span> <br />
               <a className="spotifyLink" href={this.props.popup.spotify} rel="noopener noreferrer"  target="_blank">Listen to it now!</a>
             </div>
             <br />
           </div>
-          <button className="soloCloseBtn" onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
+          <div className="updateClose">
+                <div>
+            <button  onClick={(e) => { this.props.dispatch(action.closePopup()); this.clearState() }}>Close</button>
+                </div>
+          </div>
         </div>
+
       );
     }
   }
