@@ -484,7 +484,7 @@ input:focus{
 }
 
 #popUnderline{
-  border-bottom: 4px solid rgba(102, 173, 81,0.5)
+  border-bottom: 4px solid rgba(102, 173, 81,0.5);
 }
 
 
@@ -557,3 +557,194 @@ ShowPlaylists
 .listDiv li:nth-child(even), .listDiv li:nth-child(3){
   margin-left: 5px;
 }
+
+
+
+
+
+
+
+
+
+
+
+/*
+************************
+Popup
+************************/
+
+.popup {
+  /* position: fixed; */
+  /* background-color: black; */
+  /* margin: auto; */
+  /* z-index: 10; */
+  /* background-color: black; */
+}
+
+.popup_inner {
+  /* background: url("https://files.slack.com/files-pri/T6RE0MQD7-FD59W66LA/login_without_boy.jpg"); */
+  z-index: 10;
+  background-color: #BBBAC2;
+  /* background-size: 80% 90%; */
+  position: absolute;
+  /* width: 100%;
+  height: 100%; */
+   left: 0;
+ right: 0;
+  top: 0; 
+  /* padding:20px; */
+  /* bottom: 0; */
+  /* margin: auto; */
+  /* color: white; */
+  /* background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; */
+}
+
+/* .playListInformation {
+  letter-spacing: 3px;
+  margin-bottom: -5px;
+  text-align: center;
+} */
+
+/* ul {
+  margin-top: -5px;
+} */
+
+.informationPlayList{
+  /* position: fixed; */
+  background: #BBBAC2;
+  /* display: block; */
+  /* background-size: 90% 80%; */
+  /* border: 2px solid black; */
+  /* width:80%;
+  height: 90%;
+  top:36px;
+  left:152px;
+  transform: translate(0%, 0%); */
+}
+.container{
+  /* border: 2px solid red; */
+  text-align: center;
+}
+.closeBtn {
+  z-index: 10;
+  position: fixed;
+  left: 53%;
+  top: 650px;
+  transform: translate(-70%, -50%);
+}
+
+.soloCloseBtn {
+  z-index: 10;
+  position: fixed;
+  left: 51%;
+  top: 650px;
+  transform: translate(-70%, -50%);
+}
+
+.updateBtn {
+  z-index: 10;
+  position: fixed;
+  left: 49%;
+  top: 650px;
+  transform: translate(-70%, -50%);
+}
+
+.playListTitle {
+  position: relative;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.spotifyLink {
+  
+
+  background-color: #0266b8;
+  box-shadow: 0 5px 0 #014f8f;
+  color: white;
+  padding: 0.5em 1em;
+  position: absolute;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.spotifyLink:hover {
+  background-color: #1c8ce7;
+}
+
+.spotifyLink:active {
+  box-shadow: none;
+  left: 50%;
+  top: 85%;
+  transform: translate(-50%, -90%);
+}
+
+.playListUserName {
+  display: block;
+  text-align: center;
+}
+
+.editInformation {
+  display: block;
+  text-align: center;
+}
+
+.editPlayList {
+  display: block;
+  text-align: center;
+}
+
+.editDescription {
+  display: block;
+  text-align: center;
+}
+
+.editUrl {
+  display: block;
+  text-align: center;
+}
+
+.editGenres {
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.editPlayListName {
+  /* position: absolute; */
+  display: inline;
+  cursor: pointer;
+}
+
+.hidePlayListName {
+  /* position: absolute; */
+  display: none;
+}
+
+
+
+.tableDiv {
+  display: table;
+  margin: 0 auto;
+}
+[contenteditable]{
+  cursor: pointer;
+}
+[contenteditable]:focus {
+  outline: 0px solid transparent;
+  
+}
+
+.genreInfo {
+  margin-right: 10px;
+  text-align: center;
+}
+
+.editName,
+.editGenre,
+.editDescription,
+.editUrl {
+  text-align: center;
+}
+

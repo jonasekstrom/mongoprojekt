@@ -88,7 +88,7 @@ componentDidMount(){
             listOfPlayList.map((list,i) =>
 
                 <div key={`Key${i}`} className="listDiv">
-                    <h3 className="clickForPopup"  onClick={e => this.props.dispatch(action.showPopup(list))}>{list.playListName}</h3>
+                    <h3 className="clickForPopup"  onClick={e => this.props.dispatch(action.showPopup(list))}>{list.playListName.toLowerCase()}</h3>
                     <ul>
                         { list.genres.map((option, i) =>{
 
@@ -101,7 +101,6 @@ componentDidMount(){
 
                     </div>
 
-                    {popup}
                 </div>
             )
         )

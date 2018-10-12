@@ -1,5 +1,5 @@
- import React, { Component } from 'react';
-import './Popup.css';
+import React, { Component } from 'react';
+import './App.css';
 
 import { connect } from "react-redux"
 import action from "./actions.js"
@@ -19,6 +19,18 @@ class Popup extends Component {
       listId: "",
       checked: [],
       edited: true,
+      listGenres: [],
+      clickedGenres: {
+        rock: false,
+        metal: false,
+        classical: false,
+        country: false,
+        popmusic: false,
+        blues: false,
+        jazz: false,
+        electro: false,
+        hiphop: false
+      }
       // updatedList: this.props.updatedList,
     }
     this.editValues = this.editValues.bind(this);
@@ -33,7 +45,7 @@ class Popup extends Component {
           console.log("Name of your list is to long");
           this.setState({
             playListName: this.props.popup.playListName,
-            edited: false
+            edited: true
           })
         } else {
           this.setState({ playListName: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName, edited: false })
@@ -44,7 +56,7 @@ class Popup extends Component {
           console.log("Description is waaaay to long. No one will read all that.");
           this.setState({
             description: this.props.popup.description,
-            edited: false
+            edited: true
           })
         } else {
           this.setState({ description: data, listId: this.props.listId, userId: this.props.userId, userName: this.props.userName, edited: false })
@@ -68,68 +80,35 @@ class Popup extends Component {
     this.editValues(nameOfClass, event.target.textContent);
   }
 
-  onChange = (event) => {
-    let arr = [...this.state.genres];
-
-    if (event.target.name === "genre") {
-      arr.push(event.target.value);
-      this.setState(() => {
-        return { checked: arr, edited: false };
-      });
-
-      this.setState({
-        listId: this.props.listId,
-        userId: this.props.userId,
-        userName: this.props.userName,
-        genres: arr,
-        edited: false
-      });
-
-      let newArr = arr;
-      let h, i, j;
-
-      for (h = 0; h < arr.length; h++) {
-        let currentGenre = arr[h];
-        let foundCount = 0;
-        for (i = 0; i < arr.length; i++) {
-          if (arr[i] === arr[h])
-            foundCount++;
-        }
-        if (foundCount > 1) {
-          for (j = 0; j < newArr.length; j++) {
-            if (newArr[j] === currentGenre) {
-              newArr.splice(j, 1);
-              j--;
-            }
-          }
-        }
-      }
-    }
-  }
-
   clearState() {
     this.setState(() => {
       return {
+        listGenres: [],
         genres: [],
         checked: [],
         playListName: "",
         description: "",
         spotify: "",
-        edited: true};
-
+        edited: true,
+        clickedGenres: {
+          rock: false,
+          metal: false,
+          classical: false,
+          country: false,
+          popmusic: false,
+          blues: false,
+          jazz: false,
+          electro: false,
+          hiphop: false
+        }
+      };
     });
   }
-
-  isDisabled = genre => {
-    return (
-      this.state.checked.length > 2 && this.state.checked.indexOf(genre) === -1
-    );
-  };
 
   updateDb = data => {
     let objToDb = {
       _id: data._id,
-      playListName: data.playListName,
+      playListName: data.playListName.toLowerCase(),
       userName: data.userName,
       creator: this.props.userId,
       genres: data.genres,
@@ -149,15 +128,149 @@ class Popup extends Component {
     });
   }
 
+  clickGenre(val, fromCheckIfExist) {
+    switch (val) {
+      case "rock":
+        this.setState({
+          edited: false
+        })
+        this.checkIfExist(val)
+        break;
+      case "metal":
+        this.setState({
+          edited: false
+        })
+        this.checkIfExist(val);
+        break;
+      case "popmusic":
+        this.setState({
+          edited: false
+        })
+        this.checkIfExist(val);
+        break;
+      case "classical":
+        this.setState({
+          edited: false
+        })
+        this.checkIfExist(val);
+        break;
+      case "country":
+        this.setState({
+          edited: false
+        })
+        this.checkIfExist(val);
+        break;
+      case "jazz":
+        this.setState({
+          edited: false
+        })
+        this.checkIfExist(val);
+        break;
+      case "blues":
+        this.setState({
+          edited: false
+        })
+        this.checkIfExist(val);
+        break;
+      case "hiphop":
+        this.setState({
+          edited: false
+        })
+        this.checkIfExist(val);
+        break;
+      case "electro":
+        this.setState({
+          edited: false
+        })
+        this.checkIfExist(val);
+        break;
+      default:
+    }
+  }
+
+
+  checkIfExist(val) {
+    let newList = this.state.listGenres.filter(data => data === val);
+    if (newList.length === 0) {
+
+      if (this.state.listGenres.length === 3) {
+        this.setState({
+          message: "You can only have max three genres"
+        })
+        return;
+      }
+
+      let newClickedGenres = {};
+
+      for (let x in this.state.clickedGenres) {
+        if (val === x) {
+          newClickedGenres[val] = true
+        } else {
+          newClickedGenres[x] = this.state.clickedGenres[x]
+        }
+      }
+
+      this.setState({
+        clickedGenres: newClickedGenres,
+        message: "",
+        listGenres: [...this.state.listGenres, val],
+        genres: [...this.state.listGenres, val],
+        listId: this.props.listId,
+        userId: this.props.userId,
+        userName: this.props.userName,
+        edited: false
+      })
+    } else {
+      let newClickedGenres = {}
+
+      for (let x in this.state.clickedGenres) {
+        if (val === x) {
+          newClickedGenres[val] = false
+
+        } else {
+          newClickedGenres[x] = this.state.clickedGenres[x]
+        }
+      }
+
+      let newList = this.state.listGenres.filter(data => data !== val);
+
+      this.setState({
+        clickedGenres: newClickedGenres,
+        message: "",
+        genres: [...newList],
+        listGenres: [...newList],
+        listId: this.props.listId,
+        userId: this.props.userId,
+        userName: this.props.userName,
+        edited: false
+      })
+    }
+  }
+
+
+
   render() {
     if (this.props.updatedList._id !== undefined) {
       this.updateDb(this.props.updatedList);
     }
 
+    let rock = this.state.clickedGenres.rock;
+    let metal = this.state.clickedGenres.metal;
+    let classical = this.state.clickedGenres.classical;
+    let country = this.state.clickedGenres.country;
+    let popMusic = this.state.clickedGenres.popmusic;
+    let blues = this.state.clickedGenres.blues;
+    let jazz = this.state.clickedGenres.jazz;
+    let electro = this.state.clickedGenres.electro;
+    let hiphop = this.state.clickedGenres.hiphop;
+
     let allowedToEdit = this.props.popup.creator;
     let playListOwner = this.props.userId;
     let listGenres = this.props.popup.genres;
     let showPopup = this.props.showPopup;
+
+
+
 
     if (showPopup !== true) {
       return (
@@ -173,17 +286,59 @@ class Popup extends Component {
               <h1 className="playListTitle">{this.props.popup.playListName}</h1> <br />
               <h3 className="playListInformation">Genres:</h3>
 
+              <div className="styleTransition">
 
-              <div className="playListInformation" onChange={this.onChange}>
-                <input type="checkbox" name="genre" value="rock" disabled={this.isDisabled("rock")} /> <span >Rock</span>
-                <input type="checkbox" name="genre" value="metal" disabled={this.isDisabled("metal")} /> <span >Metal</span>
-                <input type="checkbox" name="genre" value="classical" disabled={this.isDisabled("classical")} /> <span >Classical</span><br />
-                <input type="checkbox" name="genre" value="country" disabled={this.isDisabled("country")} /> <span >Country</span>
-                <input type="checkbox" name="genre" value="popmusic" disabled={this.isDisabled("pop")} /> <span >Pop</span>
-                <input type="checkbox" name="genre" value="blues" disabled={this.isDisabled("blues")} /> <span >Blues</span>
-                <input type="checkbox" name="genre" value="jazz" disabled={this.isDisabled("jazz")} /> <span >Jazz</span>
-                <input type="checkbox" name="genre" value="electro" disabled={this.isDisabled("electro")} /> <span >Electro</span>
-                <input type="checkbox" name="genre" value="hiphop" disabled={this.isDisabled("hiphop")} /> <span >Hiphop</span>
+                <ul>
+
+
+                  {rock ?
+                    <li id="rockUnderline" className="onClick" onClick={e => this.clickGenre("rock")}>Rock</li>
+                    :
+                    <li id="rockUnderline" onClick={e => this.clickGenre("rock")}>Rock</li>
+                  }
+                  {metal ?
+                    <li id="metalUnderline" className="onClick" onClick={e => this.clickGenre("metal")}>Metal</li>
+                    :
+                    <li id="metalUnderline" onClick={e => this.clickGenre("metal")}>Metal</li>
+                  }
+                  {popMusic ?
+                    <li id="popUnderline" className="onClick" onClick={e => this.clickGenre("popmusic")}>Pop</li>
+                    :
+                    <li id="popUnderline" onClick={e => this.clickGenre("popmusic")}>Pop</li>
+                  }
+                  {classical ?
+                    <li id="classicalUnderline" className="onClick" onClick={e => this.clickGenre("classical")}>Classical</li>
+                    :
+                    <li id="classicalUnderline" onClick={e => this.clickGenre("classical")}>Classical</li>
+                  }
+                  {country ?
+                    <li id="countryUnderline" className="onClick" onClick={e => this.clickGenre("country")}>Country</li>
+                    :
+                    <li id="countryUnderline" onClick={e => this.clickGenre("country")}>Country</li>
+                  }
+                  {jazz ?
+                    <li id="jazzUnderline" className="onClick" onClick={e => this.clickGenre("jazz")}>Jazz</li>
+                    :
+                    <li id="jazzUnderline" onClick={e => this.clickGenre("jazz")}>Jazz</li>
+                  }
+                  {blues ?
+                    <li id="bluesUnderline" className="onClick" onClick={e => this.clickGenre("blues")}>Blues</li>
+                    :
+                    <li id="bluesUnderline" onClick={e => this.clickGenre("blues")}>Blues</li>
+                  }
+                  {electro ?
+                    <li id="electroUnderline" className="onClick" onClick={e => this.clickGenre("electro")}>Electro</li>
+                    :
+                    <li id="electroUnderline" onClick={e => this.clickGenre("electro")}>Electro</li>
+                  }
+                  {hiphop ?
+                    <li id="hiphopUnderline" className="onClick" onClick={e => this.clickGenre("hiphop")}>Hiphop</li>
+                    :
+                    <li id="hiphopUnderline" onClick={e => this.clickGenre("hiphop")}>Hiphop</li>
+                  }
+
+                
+                </ul>
               </div>
 
               <h3 className="playListInformation">Playlist name:</h3>
