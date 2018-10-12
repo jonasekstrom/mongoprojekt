@@ -82,7 +82,7 @@ componentDidMount(){
     render() {
       
         const listOfPlayList = this.props.playListArray
-        const popup = <Popup/>
+       
 
         let render = (
             listOfPlayList.map((list,i) =>

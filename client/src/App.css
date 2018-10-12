@@ -675,9 +675,7 @@ Popup
 
 .spotifyLink:active {
   box-shadow: none;
-  left: 50%;
-  top: 85%;
-  transform: translate(-50%, -90%);
+
 }
 
 .playListUserName {
