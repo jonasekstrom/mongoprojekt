@@ -158,12 +158,11 @@ const rootReducer = (state = initState, action) => {
       }
       case "DELETE_POPUP":
       console.log("TESTA REDUCERSS")
-      let removedPlayList = functions.removeList(action.deleteData);
-  
+      let removedPlayList = functions.removeList(action.deleteData, [...state.playListArray]);
+      console.log(removedPlayList)
       return {
         ...state,
-        playListArray: [...state.playListArray.filter(objToRemove =>
-          objToRemove._id !== action.deleteData.id)]
+        playListArray: removedPlayList
        
       }
      

@@ -156,11 +156,14 @@ function offClickedGenre(searchInfo,genre){
 }
 
 
-function removeList(deleteData, allPlayLists) {
-  console.log("Hejsssssssss")
+function removeList(deleteData, playListArray) {
+  console.log(playListArray)
   console.log(deleteData)
 
-
+  let newList = [...playListArray]
+  let theNewList = playListArray.filter(listItem => { return listItem._id !== deleteData} )
+  console.log(theNewList);
+   return theNewList
   
 }
 function updateList(data, allPlayLists, oldData){

@@ -129,18 +129,29 @@ class Popup extends Component {
   };
   
 
-  removeThis() {
+  removeThis(ev) {
+    console.log(this.props.playListArray)
+    let list = this.props.playListArray
     console.log("test")
+    console.log(this.props.popup.listId)
+    
+    let self = this;
     fetch('http://localhost:5000/delete', {
-      // mode: 'no-cors',
+      //mode: 'no-cors',
       method: 'POST',
-      body: JSON.stringify(this.props.listId),
+      headers: {
+      Accept: 'application/json',
+      },
+      body: JSON.stringify(this.props.popup.listId),
     },
+    console.log("Enter")
     ).then(function (response){
       console.log(response)
-          // return response.text()
-        }).then(function (reponse) {
-        this.props.dispatch(action.deleteList(this.props.popup))
+           return response
+        }).then(function (response) {
+          console.log(response)
+     // self.props.dispatch(action.deleteList(self.props.playListArray))  
+      self.props.dispatch(action.deleteList(self.props.popup.listId))
       })
      
     

@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-
+const ObjectId = require('mongodb').ObjectID
 const url = 'mongodb://localhost:27017';
 const dbName = 'sharemusic';  // Database Name
 
@@ -258,13 +258,15 @@ function findPlaylistsGenre(queryList, callback){
   });
 }
 
-function deleteList1(listToRemove){
-  MongoClient.connect(url,  {useNewUrlParser: true}, (err, client) => {
+function deleteListBackEnd(listToDelete){
+  console.log("går den in?")
+  MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
       console.log("test")
-      db.collection(collectionName).deleteOne(listToRemove)
+      db.collection(collectionName).deleteOne( { "_id" : ObjectId(listToDelete)});
+      //db.test_users.remove( {"_id": ObjectId("4d512b45cc9374271b02ec4f")});
         callback(err,docs)
       })
 
@@ -277,4 +279,4 @@ function deleteList1(listToRemove){
 // db.playlist.find( { genres: {$elemMatch: {"genre":"disco","genre":"blues"}}})
 
 
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteList1 };
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteListBackEnd};
