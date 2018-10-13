@@ -267,12 +267,14 @@ function deleteListBackEnd(listToDelete){
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
       console.log("test")
-      db.collection(collectionName).deleteOne( { "_id" : (listToDelete)})//.toString(function(err, docs){
+      console.log(listToDelete)
+      db.collection(collectionName).deleteOne( { "_id" : ObjectId(listToDelete)})//.toString(function(err, docs){
       //db.test_users.remove( {"_id": ObjectId("4d512b45cc9374271b02ec4f")});
         //callback(err,docs)
       //})
       
-      //client.close();  // remember to close connections when done
+      console.log("kom du hit?")
+      client.close();  // remember to close connections when done
     })
 }
 

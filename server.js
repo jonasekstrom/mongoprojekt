@@ -108,18 +108,19 @@ app.post("/delete", (req,res) => {
   // res.send(deleteList1)
   
   req.on("data", (data)=>{
-    console.log("testigen")
+    console.log("testigen1223")
     listToDelete += data;
   })
 
   
   req.on("end", function(){
-    //console.log("EndLOg")
+    console.log("EndLOg")
     
-    //console.log(listToDelete);
+    console.log("helo" +listToDelete);
     //let theList = JSON.parse(listToDelete)
     deleteListBackEnd(listToDelete);
     res.send("Deleted")
+    console.log("finito")
    // res.send(listToDelete)
   //   createPlaylist(obj, function(err,docs){
   //     console.log("this is the docs: ", docs)
