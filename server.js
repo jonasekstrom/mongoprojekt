@@ -1,4 +1,4 @@
-let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist} = require("./database.js")
+let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist, deleteListBackEnd} = require("./database.js")
 const express = require("express");
 const app = express();
 const port = 5000;
@@ -114,11 +114,12 @@ app.post("/delete", (req,res) => {
 
   
   req.on("end", function(){
-    console.log("llolplpol")
+    //console.log("EndLOg")
     
-    console.log(listToDelete);
+    //console.log(listToDelete);
+    //let theList = JSON.parse(listToDelete)
     deleteListBackEnd(listToDelete);
-    
+    res.send("Deleted")
    // res.send(listToDelete)
   //   createPlaylist(obj, function(err,docs){
   //     console.log("this is the docs: ", docs)
