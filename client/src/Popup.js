@@ -130,6 +130,7 @@ class Popup extends Component {
   
 
   removeThis(ev) {
+    //this.props.dispatch(action.deleteList(this.props.popup.listId))
     console.log(this.props.playListArray)
     let list = this.props.playListArray
     console.log("test")
@@ -139,20 +140,18 @@ class Popup extends Component {
     fetch('http://localhost:5000/delete', {
       //mode: 'no-cors',
       method: 'POST',
-      headers: {
-      Accept: 'application/json',
-      },
+      // headers: {
+      // Accept: 'application/json',
+      // },
       body: JSON.stringify(this.props.popup.listId),
-    },
-    console.log("Enter")
-    ).then(function (response){
+    }).then(function (response){
       console.log(response)
-           return response
-        }).then(function (response) {
-          console.log(response)
+      return response
+        })
+          //console.log(response)
      // self.props.dispatch(action.deleteList(self.props.playListArray))  
       self.props.dispatch(action.deleteList(self.props.popup.listId))
-      })
+    
      
     
    
@@ -257,5 +256,6 @@ const mapStateToProps = (state) => {
     userName: state.userName,
   }
 }
+
 
 export default connect(mapStateToProps)(Popup);

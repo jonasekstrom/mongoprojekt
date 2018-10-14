@@ -260,29 +260,29 @@ function findPlaylistsGenre(queryList, callback){
 
 function deleteListBackEnd(listToDelete){
   console.log("går den in?")
-  console.log(listToDelete)
   MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
-    console.log("KLIENT")
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
-      console.log("pppppp")
-      //console.log(listToDelete)
-      // let list = ObjectId(listToDelete)
-      // console.log(list)
-      db.collection(collectionName).deleteOne( {"_id" :(listToDelete)})//.toString(function(err, docs){
-      //db.test_users.remove( {"_id": ObjectId("4d512b45cc9374271b02ec4f")});
-        //callback(err,docs)
-      //})
-      
-      console.log("kom du hit?")
-      client.close();  // remember to close connections when done
-    })
+      console.log(listToDelete)
+      //db.collection(collectionName).deleteOne( { "_id" : ObjectId(listToDelete)});
+      db.collection(collectionName).deleteOne( {_id: ObjectId(listToDelete)}, (err, result) => {
+        if( err) throw err
+        console.log("success")
+        
+        client.close()
+
+      })
+       
+      })
+
+        // remember to close connections when done
+
 }
 
 
 
-// db.playlist.find( { genres: {$elemMatch: {"genre":"disco","genre":"blues"}}})
+
 
 
 module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteListBackEnd};

@@ -96,7 +96,6 @@ app.get("/search", (req,res) => {
 
 
     searchSelected(searchText,firstGenre,secondGenre,thirdGenre, function(err,docs){
-      console.log(docs)
         res.send(JSON.stringify(docs))
     })
     // REQ - genres, username, playlist name
@@ -109,26 +108,25 @@ app.post("/delete", (req,res) => {
   // res.send(deleteList1)
   
   req.on("data", (data)=>{
-    console.log("testigen1223")
+    console.log("testigen")
     listToDelete += data;
   })
 
   
   req.on("end", function(){
-    console.log("EndLOg")
+    console.log("llolplpol")
     
-    console.log("helo" +listToDelete);
-    //let theList = JSON.parse(listToDelete)
-    deleteListBackEnd(listToDelete);
-    res.send(ObjectId(listToDelete))
-    console.log("finito")
-   // res.send(listToDelete)
+    console.log(listToDelete);
+    deleteListBackEnd(JSON.parse(listToDelete));
+    res.send("hej")
+    
   //   createPlaylist(obj, function(err,docs){
   //     console.log("this is the docs: ", docs)
   //     res.send(JSON.stringify(docs))
      //})
    //});
   })
+  
 })
 
 app.listen(port, () => {
