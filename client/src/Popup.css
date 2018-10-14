@@ -58,6 +58,11 @@ ul {
     top: 650px;
     transform: translate(-70%, -50%);
 }
+.removeBtnz {
+    background-color: blue;
+    width: 300px;
+    margin-right: 300px;
+}
 
 .soloCloseBtn {
     z-index: 10;
