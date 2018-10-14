@@ -9,8 +9,6 @@ class ShowPlayLists extends Component {
 
 
     callback(genre){
-
-      // console.log(genre)
       switch (genre) {
         case "classical":
           return {background:"rgb(205, 124, 99)"}
@@ -78,32 +76,20 @@ componentDidMount(){
         });
       }
     });
-  // fetch("http://localhost:5000/playlist").then(res => console.log(res))
+  
 }
 
-  componentDidUpdate(){
-    // console.log(this.props.playListArray)
-  }
 
-  // removeList(ev) {
-  //   console.log(this.props.playListArray)
-  //   let listToRemove = [...this.props.playListArray]
-  //   let index = listToRemove.indexOf(ev.target.value)
-  //   listToRemove.splice(index, 1)
-  //   this.setState({playListArray: listToRemove});
+  
 
-  // }
+  
+
 
 
     render() {
-      // console.log(this.props.playListArray);
+      
         const listOfPlayList = this.props.playListArray
-
-        // console.log(listOfPlayList)
-        const popup = <Popup/>
-
-        let listan = ""
-        // console.log(listan)
+       
 
        
 
@@ -111,7 +97,7 @@ componentDidMount(){
             listOfPlayList.map((list,i) =>
 
                 <div key={`Key${i}`} className="listDiv">
-                    <h3 className="clickForPopup"  onClick={e => this.props.dispatch(action.showPopup(list))}>{list.playListName}</h3>
+                    <h3 className="clickForPopup"  onClick={e => this.props.dispatch(action.showPopup(list))}>{list.playListName.toLowerCase()}</h3>
                     <ul>
                         { list.genres.map((option, i) =>{
 
@@ -124,7 +110,6 @@ componentDidMount(){
 
                     </div>
 
-                    {popup}
                 </div>
             )
         )
@@ -142,7 +127,8 @@ const mapStateToProps = (state)=>{
     return{
         playListArray : state.playListArray,
         showPopup: state.showPopup,
-        userId: state.id
+        userId: state.id,
+        popup: state.popup
     }
   }
 

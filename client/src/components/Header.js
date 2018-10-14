@@ -25,7 +25,6 @@ class Header extends Component {
 
   createListClick(){
     if(this.state.clicked){
-      console.log("hej")
       this.setState({
         createList:"Create list",
         clicked:false,
@@ -67,8 +66,6 @@ class Header extends Component {
         }
       }
 
-      // console.log(genreArray)
-      // console.log(searchField)
       fetch(`http://localhost:5000/search?searchText=${searchField}&firstGenre=${genreArray[0]}&secondGenre=${genreArray[1]}&thirdGenre=${genreArray[2]}`).then(response => {
         if (response.ok) {
           response.json().then(json => {
@@ -81,10 +78,6 @@ class Header extends Component {
     }
   }
 
-  componentDidUpdate(){
-    console.log(this.state.clickedCreateList)
-
-  }
   render() {
 
     return (
@@ -99,7 +92,7 @@ class Header extends Component {
           </div>
           <div className="header">
 
-            <img className="userImg" src={this.props.userImg}/>
+            <img className="userImg" alt="" src={this.props.userImg}/>
             <Genres/>
             <div className="inputfield">
               <div className="clip">

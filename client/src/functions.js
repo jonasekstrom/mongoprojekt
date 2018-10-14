@@ -1,8 +1,4 @@
-function getGenreState(action){
-
-
-  console.log(action.data)
-
+function getGenreState(action) {
   return {
     ROCK: action.data.ROCK,
     METAL: action.data.METAL,
@@ -12,23 +8,23 @@ function getGenreState(action){
     BLUES: action.data.BLUES,
     JAZZ: action.data.JAZZ,
     ELECTRO: action.data.ELECTRO,
-    HIPHOP:action.data.HIPHOP
+    HIPHOP: action.data.HIPHOP
   }
 }
 
 
 
-function onClickedGenre(searchInfo, genre){
+function onClickedGenre(searchInfo, genre) {
 
   let howManyTrue = 0
-  for(let x in searchInfo){
-    if(searchInfo[x]=== true){
-      howManyTrue +=1
+  for (let x in searchInfo) {
+    if (searchInfo[x] === true) {
+      howManyTrue += 1
     }
   }
 
-  if(howManyTrue > 2){
-    
+  if (howManyTrue > 2) {
+
     return {
       type: "GENRELIMIT",
       data: searchInfo,
@@ -39,19 +35,15 @@ function onClickedGenre(searchInfo, genre){
 
   let currentAction = ""
 
-  console.log(genre)
-
-  for(let x in searchInfo){
-    if(genre === x){
-      console.log(x)
-
+  for (let x in searchInfo) {
+    if (genre === x) {
       searchInfo[x] = true;
       currentAction = x
-    }else{
+    } else {
       switch (x) {
 
         case "rock":
-            searchInfo[x] = searchInfo.rock
+          searchInfo[x] = searchInfo.rock
           break;
         case "metal":
           searchInfo[x] = searchInfo.metal
@@ -83,6 +75,53 @@ function onClickedGenre(searchInfo, genre){
           break;
         case "hiphop":
           searchInfo[x] = searchInfo.jazz
+          break;
+        default:
+      }
+    }
+  }
+
+  return {
+    type: currentAction + "_CLICKED",
+    data: searchInfo,
+  }
+}
+
+function offClickedGenre(searchInfo, genre) {
+  let currentAction = ""
+
+  for (let x in searchInfo) {
+    if (genre === x) {
+      searchInfo[x] = false;
+      currentAction = x
+    } else {
+      switch (x) {
+
+        case "rock":
+          searchInfo[x] = searchInfo.rock
+          break;
+        case "metal":
+          searchInfo[x] = searchInfo.metal
+
+          break;
+        case "classical":
+          searchInfo[x] = searchInfo.classical
+
+          break;
+        case "country":
+          searchInfo[x] = searchInfo.country
+
+          break;
+        case "popMusic":
+          searchInfo[x] = searchInfo.popMusic
+
+          break;
+        case "blues":
+          searchInfo[x] = searchInfo.blues
+
+          break;
+        case "jazz":
+          searchInfo[x] = searchInfo.jazz
 
           break;
         default:
@@ -91,69 +130,12 @@ function onClickedGenre(searchInfo, genre){
     }
 
   }
-
-  console.log(searchInfo)
-
-  console.log(currentAction)
-
-
-
   return {
-    type: currentAction+ "_CLICKED",
-    data: searchInfo,
+    type: currentAction + "_UNCLICKED",
+    data: searchInfo
   }
 }
 
-function offClickedGenre(searchInfo,genre){
-
-
-    let currentAction = ""
-
-    for(let x in searchInfo){
-      if(genre === x){
-        searchInfo[x] = false;
-        currentAction = x
-      }else{
-        switch (x) {
-
-          case "rock":
-              searchInfo[x] = searchInfo.rock
-            break;
-          case "metal":
-            searchInfo[x] = searchInfo.metal
-
-            break;
-          case "classical":
-            searchInfo[x] = searchInfo.classical
-
-            break;
-          case "country":
-            searchInfo[x] = searchInfo.country
-
-            break;
-          case "popMusic":
-            searchInfo[x] = searchInfo.popMusic
-
-            break;
-          case "blues":
-            searchInfo[x] = searchInfo.blues
-
-            break;
-          case "jazz":
-            searchInfo[x] = searchInfo.jazz
-
-            break;
-          default:
-
-        }
-      }
-
-    }
-    return {
-      type: currentAction+"_UNCLICKED",
-      data: searchInfo
-    }
-}
 
 
 function removeList(deleteData, playListArray) {
@@ -166,69 +148,58 @@ function removeList(deleteData, playListArray) {
    return theNewList
   
 }
-function updateList(data, allPlayLists, oldData){
-  console.log(data)
-  console.log(allPlayLists)
-  console.log(oldData)
+
+
+function updateList(data, allPlayLists, oldData) {
+
   let updatedList = {}
   let listName;
   let genres;
   let desc;
   let spotify;
 
-  for(let i = 0; i < allPlayLists.length; i++){
-    if(allPlayLists[i].id == data.listId){
-      console.log("matching playlist ID");
-      console.log(data)
-      if(data.playListName == ""){
+  for (let i = 0; i < allPlayLists.length; i++) {
+    if (allPlayLists[i].id === data.listId) {
+      if (data.playListName === "") {
         listName = oldData.playListName;
-        // console.log("old playlistname " +listName);
-      }else{
+      } else {
         listName = data.playListName;
-        // console.log("new playlistname " +listName);
       }
 
-      if(data.description == ""){
+      if (data.description === "") {
         desc = oldData.description;
-        // console.log("old description " +desc);
-      }else{
+      } else {
         desc = data.description;
-        // console.log("new description " +desc);
       }
 
-      if(data.spotify == ""){
+      if (data.spotify === "") {
         spotify = oldData.spotify;
-      }else{
+      } else {
         spotify = data.spotify;
       }
 
-      if(data.genres.length == 0){
-        // console.log("new genres ", data.genres);
-        // console.log("old genres ", oldData.genres);
+      if (data.genres.length === 0) {
         genres = oldData.genres;
-      }else{
-        // console.log("new genres ", data.genres);
-        // console.log("old genres ", oldData.genres);
+      } else {
         genres = data.genres;
       }
-      
+
 
       updatedList = {
-      _id: oldData.listId,
-      playListName: listName,
-      userName: data.userName,
-      creator: data.userId,
-      genres: genres,
-      description: desc,
-      spotify: spotify
+        _id: oldData.listId,
+        playListName: listName,
+        userName: data.userName,
+        creator: data.userId,
+        genres: genres,
+        description: desc,
+        spotify: spotify
       }
-      console.log("updatedList", updatedList)
       return updatedList
     }
-    
+
   }
-  
-  
+
+
 
 }
 

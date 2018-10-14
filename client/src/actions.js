@@ -13,9 +13,14 @@ let closePopup = () => {
   }
 }
 
+let clearPopupUpdate = () => {
+  return {
+    type: "CLEAR_POPUP_UPDATE"
+  }
+}
+
+
 let updatePopup = (payload, oldData) => {
-  console.log(payload)
-  // console.log(oldData)
   return {
     type: "UPDATE_POPUP",
     payload,
@@ -127,6 +132,7 @@ let addPlaylist = (value)=>{
 export default {
   showPopup,
   closePopup,
+  clearPopupUpdate,
   updatePopup,
   deleteList,
   addPlaylist,

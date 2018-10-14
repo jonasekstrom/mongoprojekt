@@ -31,7 +31,9 @@ const initState = {
     spotify: "",
     id: ""
   },
-  
+
+  updatedList: {},
+
   playListArray: [
     // {
     //   id: 1,
@@ -141,7 +143,6 @@ const initState = {
 const rootReducer = (state = initState, action) => {
 
   switch (action.type) {
-
     case "SHOW_POPUP":
       return {
         ...state.showPopup = true,
@@ -168,20 +169,22 @@ const rootReducer = (state = initState, action) => {
      
       case "UPDATE_POPUP":
       let updatedPlaylist = functions.updateList(action.payload, [...state.playListArray], action.oldData);
-      // console.log(action.payload)
-      // console.log(action.oldData)
-      console.log(updatedPlaylist)
       return {
         ...state,
         playListArray: [...state.playListArray.filter(obj =>
           obj._id !== updatedPlaylist._id), updatedPlaylist],
+          updatedList: updatedPlaylist
+      }
+      case "CLEAR_POPUP_UPDATE":
+      return{
+        ...state,
+        updatedList: {}
       }
 
       case "ADD_PLAYLIST":
-      console.log(action.data)
       return {
         ...state,
-        playListArray:[ action.data, ...state.playListArray],
+        playListArray:[ ...state.playListArray, action.data],
 
       }
     case "CLOSE_POPUP":
@@ -195,7 +198,6 @@ const rootReducer = (state = initState, action) => {
         searchInfo: functions.getGenreState(action)
 
       }
-      break;
     case "ROCK_CLICKED":
       return {
         ...state,
@@ -247,7 +249,6 @@ const rootReducer = (state = initState, action) => {
       }
 
     case "POPMUSIC_CLICKED":
-      console.log(action.type)
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
@@ -295,8 +296,6 @@ const rootReducer = (state = initState, action) => {
         searchInfo: functions.getGenreState(action)
       }
     case "ELECTRO_CLICKED":
-    console.log(action.type)
-    console.log(action.data)
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
@@ -315,7 +314,7 @@ const rootReducer = (state = initState, action) => {
       }
 
     case "UPDATE_LIST":
-    
+
       return {
         ...state,
         playListArray:action.data

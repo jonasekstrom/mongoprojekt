@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist, deleteListBackEnd} = require("./database.js")
+=======
+let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist} = require("./database.js")
+>>>>>>> e75e304ed1a5beee53061fa90fc7a6c26014a167
 const express = require("express");
 const app = express();
 const port = 5000;
@@ -62,6 +66,8 @@ app.post("/updateplaylist", (req,res)=>{
   })
 
   req.on("end", function(){
+
+
 
     let obj = JSON.parse(updatedPlaylist);
     updatePlaylist(obj, function(err,docs){

@@ -174,14 +174,6 @@ ul#horizontal-list li {
 .genreInfo {
     margin-right: 10px;
     text-align: center;
-    /* text-align: center;
-    position: relative;
-    
-    left: 40em;
-    transform: translate(-50%, -100%); */
-    /* display: inline-block; */
-    /* margin-left: 650%; */
-
 }
 
 
@@ -191,3 +183,4 @@ ul#horizontal-list li {
 .editUrl {
     text-align: center;
 }
+
