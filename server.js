@@ -96,6 +96,7 @@ app.get("/search", (req,res) => {
 
 
     searchSelected(searchText,firstGenre,secondGenre,thirdGenre, function(err,docs){
+      console.log(docs)
         res.send(JSON.stringify(docs))
     })
     // REQ - genres, username, playlist name
@@ -119,7 +120,7 @@ app.post("/delete", (req,res) => {
     console.log("helo" +listToDelete);
     //let theList = JSON.parse(listToDelete)
     deleteListBackEnd(listToDelete);
-    res.send("Deleted")
+    res.send(ObjectId(listToDelete))
     console.log("finito")
    // res.send(listToDelete)
   //   createPlaylist(obj, function(err,docs){
