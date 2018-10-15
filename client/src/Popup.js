@@ -148,6 +148,8 @@ class Popup extends Component {
       })
       .then(function(response) {
         self.props.dispatch(action.clearPopupUpdate());
+        self.props.dispatch(action.closePopup());
+        self.clearState();
       });
   };
 
