@@ -125,12 +125,7 @@ function offClickedGenre(searchInfo, genre) {
     data: searchInfo
   };
 }
-function removeList(deleteData, playListArray) {
-  let theNewList = playListArray.filter(listItem => {
-    return listItem._id !== deleteData;
-  });
-  return theNewList;
-}
+
 
 
 
@@ -150,7 +145,7 @@ function removeList(deleteData, playListArray) {
 function updateList(data, allPlayLists, oldData) {
 
   let updatedList = {}
-
+  let listName;
   let genres;
   let desc;
   let spotify;

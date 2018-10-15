@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./showPlayLists.css";
@@ -5,8 +6,31 @@ import action from "./actions.js";
 import Popup from "./Popup.js";
 
 class ShowPlayLists extends Component {
-sets  
-setss
+  callback(genre) {
+    switch (genre) {
+      case "classical":
+        return { background: "rgb(205, 124, 99)" };
+      case "rock":
+        return { background: "rgba(27, 23, 23,0.7)" };
+      case "metal":
+        return { background: "rgb(198, 60, 60)" };
+      case "country":
+        return { background: "rgb(133, 96, 70)" };
+      case "hiphop":
+        return { background: "rgb(70, 139, 255)" };
+      case "jazz":
+        return { background: "rgb(164, 93, 93)" };
+      case "blues":
+        return { background: "rgb(70, 68, 161)" };
+      case "popmusic":
+        return { background: "rgb(102, 173, 81)" };
+      case "electro":
+        return { background: "rgb(105, 41, 87)" };
+
+      default:
+    }
+  }
+
   fontCallback(genre) {
     switch (genre) {
       case "Classical":
@@ -46,17 +70,7 @@ setss
         });
       }
     });
-
-  
-}
-
-
-  
-
-  
-
-
-
+  }
 
   render() {
     const listOfPlayList = this.props.playListArray;
