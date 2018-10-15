@@ -506,13 +506,15 @@ class Popup extends Component {
             >
               Listen to it now!
             </a>
-            <button className="removeBtnz" onClick={this.removeThis.bind(this)}>
-              Remove this List
-            </button>
+            
             <br />
           </div>
           <div className="updateClose">
+          
             <div>
+            <button  onClick={this.removeThis.bind(this)}>
+              Remove
+            </button>
               <button
                 disabled={this.state.edited}
                 onClick={e => {
