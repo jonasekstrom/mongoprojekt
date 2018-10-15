@@ -1,134 +1,134 @@
-import functions from "./functions.js"
+import functions from "./functions.js";
 
-let showPopup = (payload) => {
+let setLoading = () => {
+  return {
+    type: "PLAYLIST_LOADING"
+  };
+};
+let showPopup = payload => {
   return {
     type: "SHOW_POPUP",
     payload
-  }
-}
+  };
+};
 
 let closePopup = () => {
   return {
     type: "CLOSE_POPUP"
-  }
-}
+  };
+};
 
 let clearPopupUpdate = () => {
   return {
     type: "CLEAR_POPUP_UPDATE"
-  }
-}
-
+  };
+};
 
 let updatePopup = (payload, oldData) => {
   return {
     type: "UPDATE_POPUP",
     payload,
     oldData
-  }
-}
-
-let deleteList = (deleteData) => {
-  console.log(deleteData)
-  // console.log(oldData)
+  };
+};
+let deleteList = deleteData => {
   return {
     type: "DELETE_POPUP",
     deleteData
-  }
-}
+  };
+};
+let rockClicked = searchInfo => {
+  return functions.onClickedGenre(searchInfo, "ROCK");
+};
 
+let rockUnclicked = searchInfo => {
+  return functions.offClickedGenre(searchInfo, "ROCK");
+};
 
-let rockClicked = (searchInfo) => {
-  return functions.onClickedGenre(searchInfo, "ROCK")
-}
+let countryClicked = searchInfo => {
+  return functions.onClickedGenre(searchInfo, "COUNTRY");
+};
 
-let rockUnclicked = (searchInfo) => {
-  return functions.offClickedGenre(searchInfo, "ROCK")
-}
+let countryUnclicked = searchInfo => {
+  return functions.offClickedGenre(searchInfo, "COUNTRY");
+};
 
-let countryClicked = (searchInfo) => {
-  return functions.onClickedGenre(searchInfo, "COUNTRY")
-}
+let metalClicked = searchInfo => {
+  return functions.onClickedGenre(searchInfo, "METAL");
+};
 
-let countryUnclicked = (searchInfo) => {
-  return functions.offClickedGenre(searchInfo, "COUNTRY")
-}
+let metalUnclicked = searchInfo => {
+  return functions.offClickedGenre(searchInfo, "METAL");
+};
 
-let metalClicked = (searchInfo) => {
-  return functions.onClickedGenre(searchInfo, "METAL")
-}
+let classicalClicked = searchInfo => {
+  return functions.onClickedGenre(searchInfo, "CLASSICAL");
+};
 
-let metalUnclicked = (searchInfo) => {
-  return functions.offClickedGenre(searchInfo, "METAL")
-}
+let classicalUnclicked = searchInfo => {
+  return functions.offClickedGenre(searchInfo, "CLASSICAL");
+};
 
-let classicalClicked = (searchInfo) => {
-  return functions.onClickedGenre(searchInfo, "CLASSICAL")
-}
+let popClicked = searchInfo => {
+  return functions.onClickedGenre(searchInfo, "POPMUSIC");
+};
 
-let classicalUnclicked = (searchInfo) => {
-  return functions.offClickedGenre(searchInfo, "CLASSICAL")
-}
+let popUnclicked = searchInfo => {
+  return functions.offClickedGenre(searchInfo, "POPMUSIC");
+};
 
-let popClicked = (searchInfo) => {
-  return functions.onClickedGenre(searchInfo, "POPMUSIC")
-}
+let jazzClicked = searchInfo => {
+  return functions.onClickedGenre(searchInfo, "JAZZ");
+};
 
-let popUnclicked = (searchInfo) => {
-  return functions.offClickedGenre(searchInfo, "POPMUSIC")
-}
+let jazzUnclicked = searchInfo => {
+  return functions.offClickedGenre(searchInfo, "JAZZ");
+};
 
-let jazzClicked = (searchInfo) => {
-  return functions.onClickedGenre(searchInfo, "JAZZ")
-}
+let bluesClicked = searchInfo => {
+  return functions.onClickedGenre(searchInfo, "BLUES");
+};
 
-let jazzUnclicked = (searchInfo) => {
-  return functions.offClickedGenre(searchInfo, "JAZZ")
-}
+let bluesUnclicked = searchInfo => {
+  return functions.offClickedGenre(searchInfo, "BLUES");
+};
 
-let bluesClicked = (searchInfo) => {
-  return functions.onClickedGenre(searchInfo, "BLUES")
-}
+let hiphopClicked = searchInfo => {
+  return functions.onClickedGenre(searchInfo, "HIPHOP");
+};
 
-let bluesUnclicked = (searchInfo) => {
-  return functions.offClickedGenre(searchInfo, "BLUES")
-}
+let hiphopUnclicked = searchInfo => {
+  return functions.offClickedGenre(searchInfo, "HIPHOP");
+};
 
-let hiphopClicked = (searchInfo) => {
-  return functions.onClickedGenre(searchInfo, "HIPHOP")
-}
+let electroClicked = searchInfo => {
+  return functions.onClickedGenre(searchInfo, "ELECTRO");
+};
 
-let hiphopUnclicked = (searchInfo) => {
-  return functions.offClickedGenre(searchInfo, "HIPHOP")
-}
+let electroUnclicked = searchInfo => {
+  return functions.offClickedGenre(searchInfo, "ELECTRO");
+};
 
-let electroClicked = (searchInfo) => {
-  return functions.onClickedGenre(searchInfo, "ELECTRO")
-}
-
-let electroUnclicked = (searchInfo) => {
-  return functions.offClickedGenre(searchInfo, "ELECTRO")
-}
-
-let searchField = (value)=>{
+let searchField = value => {
   return {
-    type:"UPDATE_SEARCHFIELD",
-    data:value
-  }
-}
+    type: "UPDATE_SEARCHFIELD",
+    data: value
+  };
+};
 
-let updateList = (value)=>{
-  return{
-    type:"UPDATE_LIST",
-    data:value
-  }
-}
-let addPlaylist = (value)=>{
-  return{
-    type:"ADD_PLAYLIST",
-    data:value
-  }
-}
+
+let updateList = value => {
+  return {
+    type: "UPDATE_LIST",
+    data: value
+  };
+};
+let addPlaylist = value => {
+  return {
+    type: "ADD_PLAYLIST",
+    data: value
+  };
+};
 export default {
   showPopup,
   closePopup,
@@ -155,5 +155,7 @@ export default {
   electroClicked,
   electroUnclicked,
   searchField,
-  updateList
-}
+  updateList,
+  setLoading,
+  deleteList
+};

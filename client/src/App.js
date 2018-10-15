@@ -1,50 +1,59 @@
-import React, { Component } from 'react';
-import ShowPlaylists from './showPlayLists.js';
-import Header from "./components/Header.js"
-import './App.css';
-import { connect } from "react-redux";
-// import action from "./actions.js";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { clearCurrentProfile } from "./actions/profileActions";
+import { Provider } from "react-redux";
+import store from "./store";
+import PrivateRoute from "./components/common/PrivateRoute";
+import Footer from "./components/layout/Footer";
+import Landing from "./components/layout/Landing";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 
+import "./App.css";
+
+// check for token
+if (localStorage.jwtToken) {
+  // set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+  // decode token and get user info and exp
+  const decoded = jwt_decode(localStorage.jwtToken);
+  // set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+  // check for expired token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    // logout user
+    store.dispatch(logoutUser);
+    // TODO: Clear current Profile
+    store.dispatch(clearCurrentProfile);
+    // Redirect to login
+    localStorage.removeItem("jwtToken");
+    window.location.href = "/login";
+  }
+}
 
 class App extends Component {
-
   render() {
     return (
-      <div className="App">
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Route exact path="/" component={Landing} />
 
-        <Header/>
-        <ShowPlaylists/>
-
-      </div>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Switch>
+              <PrivateRoute exact path="/header" />
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
 
-
-// <div className="sidebar">
-//   <button>Login</button>
-//   <button>Create user</button>
-// </div>
-// <div className="backgroundImage">
-//
-//
-//
-// </div>
-// <div className="sidebar">
-// </div>
-
-// <ShowPlaylists/>
-// <Popup/>
-//
-//   {this.props.post}
-//
-//   <button onClick={e => this.props.dispatch(action.addPost())}>Click</button>
-//   <button onClick={ e=> this.props.dispatch(action.deletePost())}>Delete</button>
-
-const mapStateToProps = (state)=>{
-  return{
-    post : state.post
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

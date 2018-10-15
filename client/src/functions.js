@@ -9,72 +9,65 @@ function getGenreState(action) {
     JAZZ: action.data.JAZZ,
     ELECTRO: action.data.ELECTRO,
     HIPHOP: action.data.HIPHOP
-  }
+  };
 }
 
-
-
 function onClickedGenre(searchInfo, genre) {
-
-  let howManyTrue = 0
+  let howManyTrue = 0;
   for (let x in searchInfo) {
     if (searchInfo[x] === true) {
-      howManyTrue += 1
+      howManyTrue += 1;
     }
   }
 
   if (howManyTrue > 2) {
-
     return {
       type: "GENRELIMIT",
-      data: searchInfo,
-
-    }
+      data: searchInfo
+    };
   }
 
-
-  let currentAction = ""
+  let currentAction = "";
 
   for (let x in searchInfo) {
     if (genre === x) {
       searchInfo[x] = true;
-      currentAction = x
+      currentAction = x;
     } else {
       switch (x) {
-
         case "rock":
-          searchInfo[x] = searchInfo.rock
+          searchInfo[x] = searchInfo.rock;
           break;
         case "metal":
-          searchInfo[x] = searchInfo.metal
+          searchInfo[x] = searchInfo.metal;
 
           break;
         case "classical":
-          searchInfo[x] = searchInfo.classical
+          searchInfo[x] = searchInfo.classical;
 
           break;
         case "country":
-          searchInfo[x] = searchInfo.country
+          searchInfo[x] = searchInfo.country;
 
           break;
         case "popMusic":
-          searchInfo[x] = searchInfo.popMusic
+          searchInfo[x] = searchInfo.popMusic;
 
           break;
         case "blues":
-          searchInfo[x] = searchInfo.blues
+          searchInfo[x] = searchInfo.blues;
 
           break;
         case "jazz":
-          searchInfo[x] = searchInfo.jazz
+          searchInfo[x] = searchInfo.jazz;
 
           break;
         case "electro":
-          searchInfo[x] = searchInfo.jazz
+          searchInfo[x] = searchInfo.jazz;
 
           break;
         case "hiphop":
-          searchInfo[x] = searchInfo.jazz
+          searchInfo[x] = searchInfo.jazz;
           break;
         default:
       }
@@ -83,58 +76,62 @@ function onClickedGenre(searchInfo, genre) {
 
   return {
     type: currentAction + "_CLICKED",
-    data: searchInfo,
-  }
+    data: searchInfo
+  };
 }
 
 function offClickedGenre(searchInfo, genre) {
-  let currentAction = ""
+  let currentAction = "";
 
   for (let x in searchInfo) {
     if (genre === x) {
       searchInfo[x] = false;
-      currentAction = x
+      currentAction = x;
     } else {
       switch (x) {
-
         case "rock":
-          searchInfo[x] = searchInfo.rock
+          searchInfo[x] = searchInfo.rock;
           break;
         case "metal":
-          searchInfo[x] = searchInfo.metal
+          searchInfo[x] = searchInfo.metal;
 
           break;
         case "classical":
-          searchInfo[x] = searchInfo.classical
+          searchInfo[x] = searchInfo.classical;
 
           break;
         case "country":
-          searchInfo[x] = searchInfo.country
+          searchInfo[x] = searchInfo.country;
 
           break;
         case "popMusic":
-          searchInfo[x] = searchInfo.popMusic
+          searchInfo[x] = searchInfo.popMusic;
 
           break;
         case "blues":
-          searchInfo[x] = searchInfo.blues
+          searchInfo[x] = searchInfo.blues;
 
           break;
         case "jazz":
-          searchInfo[x] = searchInfo.jazz
+          searchInfo[x] = searchInfo.jazz;
 
           break;
         default:
-
       }
     }
-
   }
   return {
     type: currentAction + "_UNCLICKED",
     data: searchInfo
-  }
+  };
 }
+function removeList(deleteData, playListArray) {
+  let theNewList = playListArray.filter(listItem => {
+    return listItem._id !== deleteData;
+  });
+  return theNewList;
+}
+
 
 
 
@@ -153,7 +150,7 @@ function removeList(deleteData, playListArray) {
 function updateList(data, allPlayLists, oldData) {
 
   let updatedList = {}
-  let listName;
+
   let genres;
   let desc;
   let spotify;
@@ -184,7 +181,6 @@ function updateList(data, allPlayLists, oldData) {
         genres = data.genres;
       }
 
-
       updatedList = {
         _id: oldData.listId,
         playListName: listName,
@@ -193,14 +189,10 @@ function updateList(data, allPlayLists, oldData) {
         genres: genres,
         description: desc,
         spotify: spotify
-      }
-      return updatedList
+      };
+      return updatedList;
     }
-
   }
-
-
-
 }
 
 export default {
@@ -209,4 +201,5 @@ export default {
   getGenreState,
   removeList,
   updateList,
-}
+  removeList
+};

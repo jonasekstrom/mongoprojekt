@@ -1,44 +1,43 @@
 .showPlayListsDiv {
-    background-color: gray;
-    position: fixed; bottom: 0;
-    height: 400px;
-    width: 100vw;
-    color: white;
-    border-top: 4px solid white;
-    overflow-y: auto;
-    
+  background-color: gray;
+  position: fixed;
+  bottom: 0;
+  height: 400px;
+  width: 100vw;
+  color: white;
+  border-top: 4px solid white;
+  overflow-y: auto;
 }
 
 .playListDiv {
-    background-color:black;
-    color: white;
-    height: 130px;
-    width: 540px;
-    margin: 30px;
-    cursor: pointer;
-    display: inline-block;
-    list-style-type: none;
+  background-color: black;
+  color: white;
+  height: 130px;
+  width: 540px;
+  margin: 30px;
+  cursor: pointer;
+  display: inline-block;
+  list-style-type: none;
 }
 
-
 ul {
-    display: inline-block;
+  display: inline-block;
 }
 
 h4 {
-    text-align: center;
+  text-align: center;
 }
 
-.clickForPopup:hover{
-    cursor: pointer;
-
-
+.clickForPopup:hover {
+  cursor: pointer;
 }
 
-.playListDiv:hover {background-color: darkred};
+.playListDiv:hover {
+  background-color: darkred;
+}
 
 .playListUL {
-    overflow: auto;
+  overflow: auto;
 }
 
 .removeBtnz {
