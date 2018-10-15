@@ -281,6 +281,8 @@ class Popup extends Component {
     });
     //console.log(response)
     // self.props.dispatch(action.deleteList(self.props.playListArray))
+    self.props.dispatch(action.closePopup());
+    self.clearState();
     self.props.dispatch(action.deleteList(self.props.popup.listId));
   }
   render() {
