@@ -86,9 +86,9 @@ class Header extends Component {
     const authLinks = (
       <span id="username">
         {user.name}
-        <a href="" onClick={this.onLogoutClick.bind(this)}>
+        <button onClick={this.onLogoutClick.bind(this)}>
           Logga Ut
-        </a>
+        </button>
       </span>
     );
     return (
