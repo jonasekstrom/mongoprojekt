@@ -250,16 +250,17 @@ function findPlaylistsText(searchText, callback) {
   );
 }
 
+
+
+
 function deleteListBackEnd(listToDelete) {
-  //console.log("går den in?")
-  MongoClient.connect(
-    url,
-    { useNewUrlParser: true },
-    (err, client) => {
-      if (err) throw err; // if unable to connect
-      const db = client.db(dbName); // ansluten
+  // console.log("går den in?")
+  MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
-      //console.log(listToDelete)
+      // console.log(listToDelete)
+
       //db.collection(collectionName).deleteOne( { "_id" : ObjectId(listToDelete)});
       db.collection(collectionName).deleteOne(
         { _id: ObjectId(listToDelete) },
@@ -277,7 +278,6 @@ function deleteListBackEnd(listToDelete) {
 }
 
 function deleteAllListBackEnd(creatorListsToDelete) {
-  //console.log("går den in?")
   MongoClient.connect(
     url,
     { useNewUrlParser: true },
@@ -285,23 +285,32 @@ function deleteAllListBackEnd(creatorListsToDelete) {
       if (err) throw err; // if unable to connect
       const db = client.db(dbName); // ansluten
       const collectionName = "playlist";
-      //console.log(creatorListsToDelete)
-      //console.log("DELTETE DÅ")
 
-      db.collection(collectionName).deleteMany(
-        { creator: creatorListsToDelete },
-        (err, result) => {
-          if (err) throw err;
-          //console.log("success")
+     
+      db.collection(collectionName).deleteMany( {creator: creatorListsToDelete}, (err, result) => {
+        if( err) throw err
+        console.log("success");
+        client.close();
+      })
 
-          client.close();
-        }
-      );
-    }
-  );
+    });
 
   // remember to close connections when done
 }
+
+
+function deleteAccountBackEnd(accToDelete) {
+  MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
+      const collectionName = "users";
+      db.collection(collectionName).deleteOne( {_id: ObjectId(accToDelete.id)}, (err, result) => {
+        if( err) throw err
+        client.close()
+      })
+      })
+}
+
 
 function findPlaylistsGenre(queryList, callback) {
   MongoClient.connect(
@@ -323,14 +332,8 @@ function findPlaylistsGenre(queryList, callback) {
   );
 }
 
-module.exports = {
-  createUser,
-  loginUser,
-  getAllPlaylists,
-  getUserPlaylist,
-  createPlaylist,
-  searchSelected,
-  deleteListBackEnd,
-  deleteAllListBackEnd,
-  updatePlaylist
-};
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteListBackEnd, deleteAllListBackEnd, deleteAccountBackEnd, updatePlaylist};
+
+
+
+

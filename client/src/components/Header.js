@@ -6,7 +6,10 @@ import action from "../actions";
 import Genres from "./Genres.js";
 import CreateList from "./CreateList.js";
 import { logoutUser } from "../actions/authActions";
+import RemoveLists from "./RemoveLists.js";
+
 import { clearCurrentProfile } from "../actions/profileActions";
+
 class Header extends Component {
   constructor() {
     super();
@@ -17,7 +20,16 @@ class Header extends Component {
         opacity: 0,
         height: 0,
         zIndex: -1
+      },
+
+      clickedInfo: false,
+      clickedGetUserInfo: {
+        opacity: 0,
+        height: 0,
+        zIndex: -1
       }
+
+
     };
   }
   onLogoutClick(e) {
@@ -49,6 +61,31 @@ class Header extends Component {
       });
     }
   }
+
+  getUserInfo() {
+
+    if (this.state.clickedInfo) {
+      this.setState({
+
+        clickedInfo: false,
+        clickedGetUserInfo: {
+          opacity: 0,
+          height: "0px",
+          zIndex: -1
+        }
+      });
+    } else {
+      this.setState({
+
+        clickedInfo: true,
+        clickedGetUserInfo: {
+          opacity: 1,
+          height: "470px",
+          zIndex: 1
+        }
+      });
+    }
+  }
   changeInp(e) {
     this.props.dispatch(action.searchField(e.target.value));
   }
@@ -68,7 +105,7 @@ class Header extends Component {
 
       fetch(
         `http://localhost:5000/search?searchText=${searchField}&firstGenre=${
-          genreArray[0]
+        genreArray[0]
         }&secondGenre=${genreArray[1]}&thirdGenre=${genreArray[2]}`
       ).then(response => {
         if (response.ok) {
@@ -82,11 +119,11 @@ class Header extends Component {
   }
 
   removeAll(ev) {
-    const {user} = this.props.auth
-    
-    
+    const { user } = this.props.auth
 
-     let self = this;
+
+
+    let self = this;
     fetch('http://localhost:5000/deleteall', {
       //mode: 'no-cors',
       method: 'POST',
@@ -94,19 +131,25 @@ class Header extends Component {
       // Accept: 'application/json',
       // },
       body: JSON.stringify(user.id),
-    }).then(function (response){
+    }).then(function (response) {
       return response
-        })
-    self.props.dispatch(action.deleteAllLists(user.id))    
+    })
+    self.props.dispatch(action.deleteAllLists(user.id))
   }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
-    <div className="user">
-        <button onClick={this.removeAll.bind(this)} id="username">
+      // <<<<<<< HEAD
+      //     <div className="user">
+      //         {/* <button onClick={this.removeAll.bind(this)} id="username"> */}
+      // =======
+      <div className="user" onClick={e => this.getUserInfo()}>
+        <span id="username">
+          {/* >>>>>>> 1f97f38ba7972767b58ff6a468bea8815fdf0d80 */}
           {user.name}
-        </button>
+          {/* </button> */}
+        </span>
         <button onClick={this.onLogoutClick.bind(this)}>Log out</button>
       </div>
     );
@@ -119,22 +162,29 @@ class Header extends Component {
           <div style={this.state.clickedCreateList} className="styleTransition">
             <CreateList />
           </div>
-          <div id="username">{isAuthenticated ? authLinks : ""}> </div>          
-        </div>
-        <div className="header">
-          <img className="userImg" alt="" src={user.img} />
-          <Genres />
-          <div className="inputfield">
-            <div className="clip" />
-            <input
-              type="text"
-              value={this.props.searchField}
-              onChange={e => this.changeInp(e)}
-              onKeyPress={e => this.handleKeyPress(e)}
-            />
+          <span id="userInf" onClick={e => this.getUserInfo()}>{this.state.userinfo}</span>
+          <div style={this.state.clickedGetUserInfo} className="styleTransition" >
+          <RemoveLists />
           </div>
+          <span id="username">{isAuthenticated ? authLinks : ""} </span>
+          </div>
+          
+
+      <div className="header">
+
+        <img className="userImg" alt="" src={user.img} />
+        <Genres />
+        <div className="inputfield">
+          <div className="clip" />
+          <input
+            type="text"
+            value={this.props.searchField}
+            onChange={e => this.changeInp(e)}
+            onKeyPress={e => this.handleKeyPress(e)}
+          />
         </div>
-      </React.Fragment>
+      </div>
+      </React.Fragment >
     );
   }
 }

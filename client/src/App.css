@@ -391,6 +391,7 @@ input:focus {
 }
 
 #createList {
+
   position: absolute;
   font-size: 1em;
   background: none;
@@ -406,6 +407,22 @@ input:focus {
 #createList:hover {
   color: rgba(0, 0, 0, 0.6);
   background: rgba(255, 255, 255, 0.3);
+}
+
+#userInf {
+  font-size: 1em;
+  background: none;
+  border:none;
+  cursor: pointer;
+  padding:8px;
+  color:rgba(255,255,255,0.7);
+  transition: color 0.3s ease-out, 
+  background;
+}
+
+#userInf:hover{
+  color:rgba(0,0,0,0.6);
+  background: rgba(255,255,255,0.3);
 }
 
 .styleTransition {
