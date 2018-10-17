@@ -84,12 +84,14 @@ class Header extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
-      <span id="username">
-        {user.name}
+      <div className="user">
+        <span id="username">
+          {user.name}
+        </span>
         <button onClick={this.onLogoutClick.bind(this)}>
-          Logga Ut
+          Log out
         </button>
-      </span>
+      </div>
     );
     return (
       <React.Fragment>
