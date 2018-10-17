@@ -71,7 +71,7 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then(user => {
     // Check for user
     if (!user) {
-      errors.email = "Finns ingen användare till denna epost";
+      errors.email = "No user exists with that mail address";
       return res.status(404).json(errors);
     }
 
@@ -94,7 +94,7 @@ router.post("/login", (req, res) => {
           }
         );
       } else {
-        errors.password = "Felaktigt lösenord";
+        errors.password = "Wrong password";
         return res.status(400).json(errors);
       }
     });

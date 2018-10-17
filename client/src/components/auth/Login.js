@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 
+
 class Login extends Component {
   constructor() {
     super();
@@ -45,17 +46,25 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="login">
+      // <div className="login">
+      <div className="landing">
+      <div className="dark-overlay landing-inner text-light">
         <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center text-white">Logga in</h1>
+            {/* <div className="col-md-8 m-auto"> */}
+            <div className="col-md-12 text-center">
+              {/* <h1 className="display-4 text-center text-white">Login</h1> */}
+              <h1 className="display-3 mb-4">Login</h1>
               <p className="lead text-center">
-                Logga in till ditt Share your music konto
+                Login to your Share Your Music account
               </p>
+              <div className="col-md-12 text-center">
+              <hr/>
+              </div>
+              
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="Epost Adress"
+                  placeholder="Email"
                   name="email"
                   type="email"
                   value={this.state.email}
@@ -64,7 +73,7 @@ class Login extends Component {
                 />
                 <div className="form-group">
                   <TextFieldGroup
-                    placeholder="Lösenord"
+                    placeholder="Password"
                     name="password"
                     type="password"
                     value={this.state.password}
@@ -72,10 +81,12 @@ class Login extends Component {
                     error={errors.password}
                   />
                 </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input value="Login" type="submit" className="btn btn-info btn-block mr-2" />
+                <button className="btn btn-light" onClick={e => this.props.history.push("/")}>Back</button>
               </form>
             </div>
           </div>
+        </div>
         </div>
       </div>
     );

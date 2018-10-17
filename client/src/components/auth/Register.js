@@ -45,18 +45,21 @@ class Register extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="register">
+      <div className="landing">
+      <div className="dark-overlay landing-inner text-light">
         <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center text-white">Registrera</h1>
+            {/* <div className="col-md-8 m-auto"> */}
+            <div className="col-md-12 text-center">
+              <h1 className="display-3 mb-4">Register</h1>
               <p className="lead text-center">
-                Skapa ditt egna Share your music konto
+                Create your own Share Your Music account
               </p>
+              <hr/>
               <form noValidate onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <TextFieldGroup
-                    placeholder="Namn"
+                    placeholder="Name"
                     name="name"
                     type="text"
                     value={this.state.name}
@@ -66,7 +69,7 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                   <TextFieldGroup
-                    placeholder="Epost"
+                    placeholder="Email"
                     name="email"
                     type="email"
                     value={this.state.email}
@@ -76,7 +79,7 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                   <TextFieldGroup
-                    placeholder="Lösenord"
+                    placeholder="Password"
                     name="password"
                     type="password"
                     value={this.state.password}
@@ -86,7 +89,7 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                   <TextFieldGroup
-                    placeholder="Bekräfta Lösenord"
+                    placeholder="Verify password"
                     name="password2"
                     type="password"
                     value={this.state.password2}
@@ -94,10 +97,12 @@ class Register extends Component {
                     error={errors.password2}
                   />
                 </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input value="Submit" type="submit" className="btn btn-info btn-block mr-2" />
+                <button className="btn btn-light" onClick={e => this.props.history.push("/")}>Back</button>
               </form>
             </div>
           </div>
+        </div>
         </div>
       </div>
     );
