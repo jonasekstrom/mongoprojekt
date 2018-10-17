@@ -158,6 +158,7 @@ class Register extends Component {
                     className="buttons login"
                   />
                   <button
+                    type="button"
                     className="buttons login"
                     onClick={e => this.props.history.push("/")}
                   >
