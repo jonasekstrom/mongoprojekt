@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 
-
 class Login extends Component {
   constructor() {
     super();
@@ -48,45 +47,55 @@ class Login extends Component {
     return (
       // <div className="login">
       <div className="landing">
-      <div className="dark-overlay landing-inner text-light">
-        <div className="container">
-          <div className="row">
-            {/* <div className="col-md-8 m-auto"> */}
-            <div className="col-md-12 text-center">
-              {/* <h1 className="display-4 text-center text-white">Login</h1> */}
-              <h1 className="display-3 mb-4">Login</h1>
-              <p className="lead text-center">
-                Login to your Share Your Music account
-              </p>
+        <div className="dark-overlay landing-inner text-light">
+          <div className="container">
+            <div className="row">
+              {/* <div className="col-md-8 m-auto"> */}
               <div className="col-md-12 text-center">
-              <hr/>
-              </div>
-              
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Email"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                />
-                <div className="form-group">
-                  <TextFieldGroup
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                    error={errors.password}
-                  />
+                {/* <h1 className="display-4 text-center text-white">Login</h1> */}
+                <h1 className="display-3 mb-4">Login</h1>
+                <p className="lead text-center">
+                  Login to your Share Your Music account
+                </p>
+                <div className="col-md-12 text-center">
+                  <hr />
                 </div>
-                <input value="Login" type="submit" className="buttons login" />
-                <button className="buttons login" onClick={e => this.props.history.push("/")}>Back</button>
-              </form>
+
+                <form onSubmit={this.onSubmit}>
+                  <TextFieldGroup
+                    placeholder="Email"
+                    name="email"
+                    type="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    error={errors.email}
+                  />
+                  <div className="form-group">
+                    <TextFieldGroup
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      error={errors.password}
+                    />
+                  </div>
+                  <input
+                    value="Login"
+                    type="submit"
+                    className="buttons login"
+                  />
+                  <button
+                    type="button"
+                    className="buttons login"
+                    onClick={e => this.props.history.push("/")}
+                  >
+                    Back
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     );
