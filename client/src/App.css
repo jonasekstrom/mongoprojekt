@@ -491,6 +491,7 @@ ShowPlaylists
   width: 70%;
   flex-wrap: wrap;
   margin-top: 30px;
+  margin-bottom: 100px
 }
 
 .listDiv {
@@ -579,15 +580,34 @@ Popup
   flex-direction: column;
 }
 
-.updateClose {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0px;
-  z-index: 1;
-  width: 100%;
+.delete{
+  position: absolute;
+  top:-25px;
+  left:40px;
+  background: none;
+  border:none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor:pointer;
+}
 
-  background: rgba(66, 66, 66, 1);
+.close {
+  position: absolute;
+  right:40px;
+  background: none;
+  color: rgba(255, 255, 255, 0.7);
+  top:-25px;
+  cursor: pointer;
+}
+
+.update{
+  position: absolute;
+  right: 40px;
+  bottom: 10px;
+    color: rgba(0, 0, 0, 0.7);
+cursor: pointer;
+  background: none;
+  border: none;
+  font-size:1em;
 }
 
 #closebtn {
@@ -698,10 +718,17 @@ Popup
 }
 
 .playListTitle {
+
   position: relative;
   text-align: center;
   top: 20px;
 }
+
+
+
+
+
+
 
 .spotifyLink {
   padding: 10px;
@@ -790,4 +817,48 @@ Popup
 .editDescription,
 .editUrl {
   text-align: center;
+}
+
+.popupMenu{
+  position: absolute;
+  right:10px;
+  bottom:-20px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  padding:0;
+  margin: 0;
+
+}
+
+.popupMenu li{
+  margin:0;
+  border:none;
+}
+
+.popupMenu button{  
+    cursor: pointer;
+
+  padding:10px;
+  font-size: 1em;
+  background: #333333;
+  position: relative;
+  display: inline-block;
+  float:none;
+  margin:0;
+  border: none;
+}
+
+#delete{
+  color:#A5474B;
+}
+
+#close{
+  position: absolute;
+  font-size: 1em;
+  background: none;
+  border:none;
+  left:40px;
+  top:-25px;
+  color:rgba(255,255,255,0.7);
 }

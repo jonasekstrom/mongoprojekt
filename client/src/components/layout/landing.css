@@ -248,12 +248,17 @@
 .bg-dark {
 }
 
+.register{
+  margin:auto;
+}
+
 .footer {
   background-color: #343a40;
   color: #fff;
-  margin-top: 3rem;
+  margin-top: 120px;
   padding: 1.5rem;
   text-align: center;
+
 }
 /* Login component */
 .col-md-8 {
