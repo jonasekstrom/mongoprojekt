@@ -163,7 +163,18 @@ const playListReducer = (state = initState, action) => {
         ...state,
         playListArray: removedPlayList
       };
-    case "UPDATE_POPUP":
+
+      case "DELETE_ALL_LISTS":
+      
+      let removedAllLists = functions.removeLists(action.deleteAllListData, [
+        ...state.playListArray ])
+      
+        return {
+        ...state,
+        playListArray: removedAllLists
+      }
+    
+      case "UPDATE_POPUP":
       let updatedPlaylist = functions.updateList(
         action.payload,
         [...state.playListArray],
