@@ -30,7 +30,8 @@ class Popup extends Component {
         jazz: false,
         electro: false,
         hiphop: false
-      }
+      },
+      message: "",
       // updatedList: this.props.updatedList,
 
 
@@ -45,10 +46,10 @@ class Popup extends Component {
     switch (nameOfClass) {
       case "editPlayList":
         if (data.length > 15) {
-          console.log("Name of your list is to long");
           this.setState({
             playListName: this.props.popup.playListName,
-            edited: true
+            edited: true,
+            message: "Name of your list is to long"
           });
         } else {
           this.setState({
@@ -56,7 +57,8 @@ class Popup extends Component {
             listId: this.props.listId,
             userId: user.id,
             userName: user.name,
-            edited: false
+            edited: false,
+            message: ""
           });
         }
         break;
@@ -287,11 +289,6 @@ class Popup extends Component {
 
 
   removeThis(ev) {
-    //this.props.dispatch(action.deleteList(this.props.popup.listId))
-    console.log(this.props.playListArray)
-    let list = this.props.playListArray
-    console.log("test")
-    console.log(this.props.popup.listId)
     
     let self = this;
     fetch('http://localhost:5000/delete', {
@@ -305,8 +302,6 @@ class Popup extends Component {
     }).then(function (response) {
       return response;
     });
-    //console.log(response)
-    // self.props.dispatch(action.deleteList(self.props.playListArray))
     self.props.dispatch(action.closePopup());
     self.clearState();
     self.props.dispatch(action.deleteList(self.props.popup.listId));
@@ -340,9 +335,6 @@ class Popup extends Component {
       return <React.Fragment />;
     }
     if (allowedToEdit === playListOwner) {
-
-      let self = this;
-     // console.log(this.props)
 
       return (
         <div className="popup">
@@ -383,6 +375,7 @@ class Popup extends Component {
               <h1 className="playListTitle">{this.props.popup.playListName}</h1>
               <br />
               <h4 className="playListInformationGenre">Genres:</h4>
+              <div className="container">
               <ul>
                 {listGenres.map(function (genre, index) {
                   return (
@@ -532,7 +525,12 @@ class Popup extends Component {
                   </li>
                   )}
               </ul>
+              </div>
+              
+              <br/>
+              <div className="playListInfoDiv">
               <h4 className="playListInformationName">Playlist name:</h4>
+              
               <span
                 className="editPlayList"
                 suppressContentEditableWarning="true"
@@ -540,7 +538,9 @@ class Popup extends Component {
                 onInput={event => this.changeInput(event)}
               >
                 {this.props.popup.playListName}
-              </span>{" "}
+              </span>
+              <span className="errorMsg">{this.state.message}</span>
+              {/* <div className="errorMsg">{this.state.message}</div> */}
               <br />
               <h4 className="playListInformationCreatedBy">Created by:</h4>
               <span className="playListUserName">
@@ -556,7 +556,7 @@ class Popup extends Component {
               >
                 {this.props.popup.description}
               </span>
-
+              <br/>
               <h4 className="playListInformationSpotify">Spotify link:</h4>
               <span
                 className="editUrl"
@@ -578,6 +578,7 @@ class Popup extends Component {
             <br />
 
           </div>
+          </div>
         </div>
       );
     } else {
@@ -593,7 +594,7 @@ class Popup extends Component {
               Close
               </button>
             <div className="informationPlayList">
-              <h2 className="playListTitle">{this.props.popup.playListName}</h2>{" "}
+              <h2 className="playListTitle">{this.props.popup.playListName}</h2>
               <br />
               <h4 className="playListInformationGenre">Genres:</h4>
               <div className="container">
@@ -607,6 +608,7 @@ class Popup extends Component {
                   })}
                 </ul>
               </div>
+              <div className="playListInfoDivNonUser">
               <h4 className="playListInformationName">Playlist name:</h4>
               <span className="editPlayList">
                 {this.props.popup.playListName}
@@ -622,6 +624,7 @@ class Popup extends Component {
                 {this.props.popup.description}
               </span>
               <br />
+              </div>
               <a
                 className="spotifyLink"
                 href={this.props.popup.spotify}
@@ -634,16 +637,6 @@ class Popup extends Component {
             <br />
           </div>
           <div className="updateClose">
-            {/* <div>
-              <button
-                onClick={e => {
-                  this.props.dispatch(action.closePopup());
-                  this.clearState();
-                }}
-                      >
-                Close
-              </button>
-            </div> */}
           </div>
         </div>
       );

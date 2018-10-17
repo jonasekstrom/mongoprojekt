@@ -706,10 +706,14 @@ Popup
   background: rgba(255, 255, 255, 0.6);
 }
 
-.popup_inner div {
+
+/* .popup_inner div {
+
   display: flex;
   flex-direction: column;
-}
+}  */
+
+
 
 .popup_inner ul {
   display: flex;
@@ -756,6 +760,9 @@ Popup
 .container {
   /* border: 2px solid red; */
   text-align: center;
+  display: flex;
+  flex-direction: column;
+
 }
 .closeBtn {
   z-index: 10;
@@ -794,11 +801,15 @@ Popup
   position: relative;
 }
 
+
+
+
 .playListInformationName {
   text-align: center;
   font-size: 18px;
 }
 .playListInformationSpotify {
+
   text-align: center;
   font-size: 18px;
   top: -3em;
@@ -818,6 +829,28 @@ Popup
   top: -1.5em;
   position: relative;
 }
+
+.playListInformationName{
+  text-align: center;
+  font-size: 18px;
+  display: inline-block;
+  margin: 10px;
+  font-weight: 600;
+}
+
+.errorMsg{
+  /* right: 28%; */
+  color: red;
+  display: inline-block;
+  /* top: 44%;
+  position: absolute; */
+}
+
+.messageDiv{
+  display: inline;
+  /* justify-content: space-between; */ 
+}
+
 
 .spotifyLink {
   padding: 10px;
@@ -979,13 +1012,24 @@ Popup
   padding: 6px;
   color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  transition: color 0.3s ease-out, background;
+  transition: color 0.3s ease-out,
 }
 
 #close:hover {
   color: rgba(0, 0, 0, 0.6);
   background: rgba(255, 255, 255, 0.3);
 }
+
+
+.playListInfoDiv{
+  top:-20px;
+  position: relative;
+}
+
+.playListInfoDivNonUser{
+  top:15px;
+  position: relative;
+
 label > input[type="radio"] {
   /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
@@ -1001,4 +1045,5 @@ label > input + img {
 label > input:checked + img {
   /* (RADIO CHECKED) IMAGE STYLES */
   border: 2px solid #f00;
+
 }

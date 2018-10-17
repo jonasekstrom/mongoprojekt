@@ -112,8 +112,10 @@ class Header extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
-      <div className="user">
-        <span id="username">{user.name}</span>
+    <div className="user">
+        <button onClick={this.removeAll.bind(this)} id="username">
+          {user.name}
+        </button>
         <button onClick={this.onLogoutClick.bind(this)}>Log out</button>
       </div>
     );
@@ -126,8 +128,7 @@ class Header extends Component {
           <div style={this.state.clickedCreateList} className="styleTransition">
             <CreateList />
           </div>
-          <button onClick={this.removeAll.bind(this)} id="username">{isAuthenticated ? authLinks : ""}> </button>
-          
+          <div id="username">{isAuthenticated ? authLinks : ""}> </div>          
         </div>
         <div className="header">
           <img className="userImg" alt="" src={user.img} />

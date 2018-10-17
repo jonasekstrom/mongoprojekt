@@ -168,5 +168,4 @@ export default {
   searchField,
   updateList,
   setLoading,
-  deleteList
 };

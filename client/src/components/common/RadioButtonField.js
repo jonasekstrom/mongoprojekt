@@ -12,7 +12,7 @@ const RadioButtonField = ({ onChange, value, name, type, checked, src }) => {
           onChange={onChange}
           checked={checked}
         />
-        <img src={src} />
+        <img alt="" src={src} />
       </label>
     </Fragment>
   );
