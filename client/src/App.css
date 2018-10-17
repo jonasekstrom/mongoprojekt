@@ -725,10 +725,12 @@ cursor: pointer;
 
 
 
-.popup_inner div {
+/* .popup_inner div {
   display: flex;
   flex-direction: column;
-}
+} */
+
+
 
 .popup_inner ul {
   display: flex;
@@ -775,6 +777,9 @@ cursor: pointer;
 .container {
   /* border: 2px solid red; */
   text-align: center;
+  display: flex;
+  flex-direction: column;
+
 }
 .closeBtn {
   z-index: 10;
@@ -813,10 +818,7 @@ cursor: pointer;
   position: relative;
 }
 
-.playListInformationName{
-  text-align: center;
-  font-size: 18px;
-}
+
 .playListInformationSpotify{
   text-align: center;
   font-size: 18px;
@@ -838,6 +840,26 @@ cursor: pointer;
   position: relative;
 }
 
+.playListInformationName{
+  text-align: center;
+  font-size: 18px;
+  display: inline-block;
+  margin: 10px;
+  font-weight: 600;
+}
+
+.errorMsg{
+  /* right: 28%; */
+  color: red;
+  display: inline-block;
+  /* top: 44%;
+  position: absolute; */
+}
+
+.messageDiv{
+  display: inline;
+  /* justify-content: space-between; */ 
+}
 
 .spotifyLink {
   padding: 10px;
@@ -1018,3 +1040,12 @@ cursor: pointer;
 
 
 
+.playListInfoDiv{
+  top:-20px;
+  position: relative;
+}
+
+.playListInfoDivNonUser{
+  top:15px;
+  position: relative;
+}
