@@ -248,8 +248,8 @@
 .bg-dark {
 }
 
-.register{
-  margin:auto;
+.register {
+  margin: auto;
 }
 
 .footer {
@@ -258,7 +258,6 @@
   margin-top: 120px;
   padding: 1.5rem;
   text-align: center;
-
 }
 /* Login component */
 .col-md-8 {
@@ -287,6 +286,9 @@
   font-size: 1.25rem;
   font-weight: 300;
   color: #fff;
+}
+.form-group2 {
+  display: inline-block;
 }
 @media (min-width: 768px) {
   .container {
