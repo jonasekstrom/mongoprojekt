@@ -113,12 +113,8 @@ class Header extends Component {
     const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
       <div className="user">
-        <span id="username">
-          {user.name}
-        </span>
-        <button onClick={this.onLogoutClick.bind(this)}>
-          Log out
-        </button>
+        <span id="username">{user.name}</span>
+        <button onClick={this.onLogoutClick.bind(this)}>Log out</button>
       </div>
     );
     return (
@@ -134,7 +130,7 @@ class Header extends Component {
           
         </div>
         <div className="header">
-          <img className="userImg" alt="" src={this.props.userImg} />
+          <img className="userImg" alt="" src={user.img} />
           <Genres />
           <div className="inputfield">
             <div className="clip" />

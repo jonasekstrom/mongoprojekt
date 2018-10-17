@@ -1,6 +1,14 @@
-
-let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist, deleteListBackEnd, deleteAllListBackEnd} = require("./database.js")
-
+let {
+  createUser,
+  loginUser,
+  getAllPlaylists,
+  getUserPlaylist,
+  createPlaylist,
+  searchSelected,
+  updatePlaylist,
+  deleteListBackEnd,
+  deleteAllListBackEnd
+} = require("./database.js");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -69,7 +77,7 @@ app.post("/createUser", (req, res) => {
 
 app.post(
   "/createplaylist",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let playlist = "";
     req.on("data", data => {
@@ -79,7 +87,7 @@ app.post(
     req.on("end", function() {
       let obj = JSON.parse(playlist);
       createPlaylist(obj, function(err, docs) {
-        console.log("this is the docs: ", docs);
+        //console.log("this is the docs: ", docs);
         res.send(JSON.stringify(docs));
       });
     });
@@ -88,18 +96,17 @@ app.post(
 
 app.post(
   "/updateplaylist",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let updatedPlaylist = "";
     req.on("data", data => {
       updatedPlaylist += data;
     });
 
-
     req.on("end", function() {
       let obj = JSON.parse(updatedPlaylist);
       updatePlaylist(obj, function(err, docs) {
-        console.log("this is the docs: ", docs);
+        //console.log("this is the docs: ", docs);
         res.send("updated");
       });
 
@@ -141,7 +148,7 @@ app.get("/search", (req, res) => {
 
 app.post(
   "/delete",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let listToDelete = "";
     // res.send(deleteList1)
@@ -150,30 +157,22 @@ app.post(
       listToDelete += data;
     });
 
-
     req.on("end", function() {
       deleteListBackEnd(JSON.parse(listToDelete));
       res.send("hej");
 
+      app.post("/deleteAll", (req, res) => {
+        let creatorListsToDelete = "";
 
+        req.on("data", data => {
+          creatorListsToDelete += data;
+        });
 
-app.post("/deleteAll", (req, res) => {
-  let creatorListsToDelete = "";
-  
-
-  req.on("data", data => {
-    creatorListsToDelete += data;
-  });
-
-  req.on("end", function() {
-    deleteAllListBackEnd(JSON.parse(creatorListsToDelete));
-    res.send("hej");
-
-    
-    
-  });
-});
-
+        req.on("end", function() {
+          deleteAllListBackEnd(JSON.parse(creatorListsToDelete));
+          res.send("hej");
+        });
+      });
 
       //   createPlaylist(obj, function(err,docs){
       //     console.log("this is the docs: ", docs)
@@ -187,4 +186,3 @@ app.post("/deleteAll", (req, res) => {
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
-

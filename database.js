@@ -1,9 +1,7 @@
-
 const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectID;
 const url = "mongodb://admin:abc123@ds125683.mlab.com:25683/shareyourmusic";
 const dbName = "shareyourmusic"; // Database Name
-
 
 //check if user allready exists if not create new user.
 function createUser(user) {
@@ -252,75 +250,86 @@ function findPlaylistsText(searchText, callback) {
   );
 }
 
-
-
-function deleteListBackEnd(listToDelete){
-  console.log("går den in?")
-  MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
-     if( err ) throw err;  // if unable to connect
-      const db = client.db(dbName);  // ansluten
+function deleteListBackEnd(listToDelete) {
+  //console.log("går den in?")
+  MongoClient.connect(
+    url,
+    { useNewUrlParser: true },
+    (err, client) => {
+      if (err) throw err; // if unable to connect
+      const db = client.db(dbName); // ansluten
       const collectionName = "playlist";
-      console.log(listToDelete)
+      //console.log(listToDelete)
       //db.collection(collectionName).deleteOne( { "_id" : ObjectId(listToDelete)});
-      db.collection(collectionName).deleteOne( {_id: ObjectId(listToDelete)}, (err, result) => {
-        if( err) throw err
-        console.log("success")
-        
-        client.close()
+      db.collection(collectionName).deleteOne(
+        { _id: ObjectId(listToDelete) },
+        (err, result) => {
+          if (err) throw err;
+          //console.log("success")
 
-      })
-       
-      })
+          client.close();
+        }
+      );
+    }
+  );
 
-        // remember to close connections when done
-
+  // remember to close connections when done
 }
 
 function deleteAllListBackEnd(creatorListsToDelete) {
-  console.log("går den in?")
-  MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
-     if( err ) throw err;  // if unable to connect
-      const db = client.db(dbName);  // ansluten
+  //console.log("går den in?")
+  MongoClient.connect(
+    url,
+    { useNewUrlParser: true },
+    (err, client) => {
+      if (err) throw err; // if unable to connect
+      const db = client.db(dbName); // ansluten
       const collectionName = "playlist";
-      console.log(creatorListsToDelete)
-      console.log("DELTETE DÅ")
-     
-      db.collection(collectionName).deleteMany( {creator: creatorListsToDelete}, (err, result) => {
-        if( err) throw err
-        console.log("success")
-        
-        client.close()
+      //console.log(creatorListsToDelete)
+      //console.log("DELTETE DÅ")
 
-      })
-       
-      })
+      db.collection(collectionName).deleteMany(
+        { creator: creatorListsToDelete },
+        (err, result) => {
+          if (err) throw err;
+          //console.log("success")
 
-        // remember to close connections when done
+          client.close();
+        }
+      );
+    }
+  );
 
+  // remember to close connections when done
 }
-
-
-
-
 
 function findPlaylistsGenre(queryList, callback) {
-  MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
-    if (err) throw err;  // if unable to connect
-    const db = client.db(dbName);  // ansluten
-    const collectionName = "playlist";
+  MongoClient.connect(
+    url,
+    { useNewUrlParser: true },
+    (err, client) => {
+      if (err) throw err; // if unable to connect
+      const db = client.db(dbName); // ansluten
+      const collectionName = "playlist";
 
+      db.collection(collectionName)
+        .find({ genres: { $in: queryList } })
+        .toArray(function(err, docs) {
+          callback(err, docs);
+        });
 
-
-    db.collection(collectionName).find({ genres: { $in: queryList } }).toArray(function (err, docs) {
-      callback(err, docs)
-    })
-
-    client.close();  // remember to close connections when done
-  });
+      client.close(); // remember to close connections when done
+    }
+  );
 }
 
-
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteListBackEnd, deleteAllListBackEnd};
-
-
-
+module.exports = {
+  createUser,
+  loginUser,
+  getAllPlaylists,
+  getUserPlaylist,
+  createPlaylist,
+  searchSelected,
+  deleteListBackEnd,
+  deleteAllListBackEnd
+};
