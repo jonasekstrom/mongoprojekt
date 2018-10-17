@@ -37,6 +37,7 @@ if (localStorage.jwtToken) {
 
 class App extends Component {
   render() {
+    
     return (
       <Provider store={store}>
         <Router>
@@ -48,7 +49,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/header" />
             </Switch>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </Router>
       </Provider>

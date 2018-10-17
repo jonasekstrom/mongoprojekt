@@ -81,8 +81,8 @@ class Login extends Component {
                     error={errors.password}
                   />
                 </div>
-                <input value="Login" type="submit" className="btn btn-info btn-block mr-2" />
-                <button className="btn btn-light" onClick={e => this.props.history.push("/")}>Back</button>
+                <input value="Login" type="submit" className="buttons login" />
+                <button className="buttons login" onClick={e => this.props.history.push("/")}>Back</button>
               </form>
             </div>
           </div>
