@@ -97,8 +97,8 @@ class Register extends Component {
                     error={errors.password2}
                   />
                 </div>
-                <input value="Submit" type="submit" className="btn btn-info btn-block mr-2" />
-                <button className="btn btn-light" onClick={e => this.props.history.push("/")}>Back</button>
+                <input value="Submit" type="submit" className="buttons login"  />
+                <button className="buttons login" onClick={e => this.props.history.push("/")}>Back</button>
               </form>
             </div>
           </div>

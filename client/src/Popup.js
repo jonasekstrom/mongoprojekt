@@ -331,7 +331,7 @@ class Popup extends Component {
              </li>
          
             <li>
-                <button 
+                <button id="update"
                 disabled={this.state.edited}
                 onClick={e => {
                   this.props.dispatch(
