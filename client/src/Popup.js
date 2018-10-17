@@ -349,9 +349,40 @@ class Popup extends Component {
       return (
         <div className="popup">
           <div className={"popup_inner"}>
+               <button id="close"
+                onClick={e => {
+                  this.props.dispatch(action.closePopup());
+                  this.clearState();
+                }}
+              >
+                Close
+              </button>
+            <ul className="popupMenu">
+              <li>
+                 <button id="delete"  onClick={this.removeThis.bind(this)}>
+                Delete
+                </button>
+             </li>
+         
+            <li>
+                <button 
+                disabled={this.state.edited}
+                onClick={e => {
+                  this.props.dispatch(
+                    action.updatePopup(this.state, this.props.popup)
+                  );
+                  this.clearState();
+                }}
+              >
+                Update
+              </button>
+            </li>
+
+            </ul>
+              
             <div>
-              <h2 className="playListTitle">{this.props.popup.playListName}</h2>{" "}
-              <br />
+              <h1 className="playListTitle">{this.props.popup.playListName}</h1>
+             <br />
               <h4 className="playListInformation">Genres:</h4>
               <ul>
                 {listGenres.map(function(genre, index) {
@@ -536,33 +567,7 @@ class Popup extends Component {
 
 
           </div>
-          <div className="updateClose">
-          
-            <div>
-            <button  onClick={this.removeThis.bind(this)}>
-              Remove
-            </button>
-              <button
-                disabled={this.state.edited}
-                onClick={e => {
-                  this.props.dispatch(
-                    action.updatePopup(this.state, this.props.popup)
-                  );
-                  this.clearState();
-                }}
-              >
-                Update
-              </button>
-              <button
-                onClick={e => {
-                  this.props.dispatch(action.closePopup());
-                  this.clearState();
-                }}
-              >
-                Close
-              </button>
-            </div>
-          </div>
+        
         </div>
       );
     } else {
@@ -617,7 +622,7 @@ class Popup extends Component {
                   this.props.dispatch(action.closePopup());
                   this.clearState();
                 }}
-              >
+                      >
                 Close
               </button>
             </div>

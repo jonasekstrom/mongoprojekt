@@ -199,8 +199,8 @@
   margin-bottom: 15px;
 }
 .form-control {
-  display: block;
-  width: 100%;
+  display: inline-block;
+  width: 30%;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -248,17 +248,23 @@
 .bg-dark {
 }
 
+.register{
+  margin:auto;
+}
+
 .footer {
   background-color: #343a40;
   color: #fff;
-  margin-top: 3rem;
+  margin-top: 120px;
   padding: 1.5rem;
   text-align: center;
+
 }
 /* Login component */
 .col-md-8 {
   position: relative;
-  width: 100%;
+  width: 35%;
+  margin: 0 auto;
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;

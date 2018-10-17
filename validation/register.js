@@ -10,35 +10,35 @@ module.exports = function validateRegisterInput(data) {
   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
 
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
-    errors.name = "Namnet måste vara minst 2 och max 30 tecken";
+    errors.name = "Name must be between 2 and 30 characters long";
   }
 
   if (Validator.isEmpty(data.name)) {
-    errors.name = "Namnfältet måste fyllas i";
+    errors.name = "You must enter a name";
   }
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = "Epostfältet måste fyllas i";
+    errors.email = "You must enter an mail address";
   }
 
   if (!Validator.isEmail(data.email)) {
-    errors.email = "Ogiltlig epostadress";
+    errors.email = "Invalid email";
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = "Lösenordsfältet måste fyllas i";
+    errors.password = "You must enter a password";
   }
 
   if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = "Lösenordet måste vara minst 6 tecken";
+    errors.password = "Password needs to be atleast 6 characters long";
   }
 
   if (Validator.isEmpty(data.password2)) {
-    errors.password2 = "Bekräfta Lösenordetsfältet måste fyllas i";
+    errors.password2 = "Verify password field cannot be empty";
   }
 
   if (!Validator.equals(data.password, data.password2)) {
-    errors.password2 = "Lösenorden matchar inte";
+    errors.password2 = "Passwords doesn't match";
   }
 
   return {

@@ -18,13 +18,13 @@ class Landing extends Component {
             <div className="row">
               <div className="col-md-12 text-center">
                 <h1 className="display-3 mb-4">Share your music</h1>
-                <p className="lead"> Det ska vara enkelt att hitta ny musik</p>
+                <p className="lead">It should be easy to find new music</p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
-                  Registrera
+                  Register
                 </Link>
                 <Link to="/login" className="btn btn-lg btn-light">
-                  Logga in
+                  Login
                 </Link>
               </div>
             </div>
