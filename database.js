@@ -331,5 +331,6 @@ module.exports = {
   createPlaylist,
   searchSelected,
   deleteListBackEnd,
-  deleteAllListBackEnd
+  deleteAllListBackEnd,
+  updatePlaylist
 };

@@ -87,7 +87,7 @@ class Header extends Component {
     
 
      let self = this;
-    fetch('http://localhost:5000/deleteAll', {
+    fetch('http://localhost:5000/deleteall', {
       //mode: 'no-cors',
       method: 'POST',
       // headers: {
@@ -95,18 +95,9 @@ class Header extends Component {
       // },
       body: JSON.stringify(user.id),
     }).then(function (response){
-      
       return response
         })
-          
-    
-    self.props.dispatch(action.deleteAllLists(user.id))
-
-
-
-
-
-    
+    self.props.dispatch(action.deleteAllLists(user.id))    
   }
 
   render() {

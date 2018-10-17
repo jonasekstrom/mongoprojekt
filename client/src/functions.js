@@ -131,23 +131,14 @@ function offClickedGenre(searchInfo, genre) {
 
 
 function removeList(deleteData, playListArray) {
-  console.log(playListArray)
-  console.log(deleteData)
-
-  
   let theNewList = playListArray.filter(listItem => { return listItem._id !== deleteData} )
-  console.log(theNewList);
    return theNewList
   
 }
 
 function removeLists(deleteAllListData, playListArray) {
-  
   let creatorListsToBeDeleted = deleteAllListData
-
-  
   let listCreatorDeleted = playListArray.filter(listItem => { return listItem.creator !== creatorListsToBeDeleted} )
-  
    return listCreatorDeleted
 }
   

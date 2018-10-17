@@ -159,29 +159,23 @@ app.post(
 
     req.on("end", function() {
       deleteListBackEnd(JSON.parse(listToDelete));
-      res.send("hej");
-
-      app.post("/deleteAll", (req, res) => {
-        let creatorListsToDelete = "";
-
-        req.on("data", data => {
-          creatorListsToDelete += data;
-        });
-
-        req.on("end", function() {
-          deleteAllListBackEnd(JSON.parse(creatorListsToDelete));
-          res.send("hej");
-        });
-      });
-
-      //   createPlaylist(obj, function(err,docs){
-      //     console.log("this is the docs: ", docs)
-      //     res.send(JSON.stringify(docs))
-      //})
-      //});
+      res.send("deleted");
     });
   }
 );
+
+app.post("/deleteall", (req, res) => {
+  let creatorListsToDelete = "";
+
+  req.on("data", data => {
+    creatorListsToDelete += data;
+  });
+
+  req.on("end", function() {
+    deleteAllListBackEnd(JSON.parse(creatorListsToDelete));
+    res.send("deleted");
+  });
+});
 
 const port = process.env.PORT || 5000;
 

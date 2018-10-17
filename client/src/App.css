@@ -1029,7 +1029,8 @@ Popup
 .playListInfoDivNonUser{
   top:15px;
   position: relative;
-
+  
+}
 label > input[type="radio"] {
   /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
