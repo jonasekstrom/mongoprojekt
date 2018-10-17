@@ -101,7 +101,10 @@ class Register extends Component {
                       error={errors.password2}
                     />
                   </div>
-                  <div className="form-group">
+                  <div>
+                    <h3>Choose your avatar</h3>
+                  </div>
+                  <div className="form-group2">
                     <RadioButtonField
                       type="radio"
                       name="userImg"
@@ -147,6 +150,8 @@ class Register extends Component {
                       src="https://files.slack.com/files-pri/T6RE0MQD7-FDGAXGP9T/avatar-1606914_640.png"
                     />
                   </div>
+                  <br />
+                  <br />
                   <input
                     value="Submit"
                     type="submit"
