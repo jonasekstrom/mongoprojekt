@@ -682,7 +682,6 @@ cursor: pointer;
 }
 
 /* .playListInformation {
-  letter-spacing: 3px;
   margin-bottom: -5px;
   text-align: center;
 } */
@@ -739,19 +738,16 @@ cursor: pointer;
 
 .playListInformationGenre{ 
   top: 1em;
-  letter-spacing: 3px;
   text-align: center;
   font-size: 18px;
   position: relative;
 }
 
 .playListInformationName{
-  letter-spacing: 3px;
   text-align: center;
   font-size: 18px;
 }
 .playListInformationSpotify{
-  letter-spacing: 3px;
   text-align: center;
   font-size: 18px;
   top:-3em;
@@ -759,7 +755,6 @@ cursor: pointer;
 }
 
 .playListInformationCreatedBy {
-  letter-spacing: 3px;
   top: -0.5em;
   position: relative;
   text-align: center;
@@ -767,7 +762,6 @@ cursor: pointer;
 }
 
 .playListInformationDesc {
-  letter-spacing: 3px;
   text-align: center;
   font-size: 18px;
   top:-1.5em;
