@@ -79,7 +79,7 @@ app.post(
     req.on("end", function() {
       let obj = JSON.parse(playlist);
       createPlaylist(obj, function(err, docs) {
-        console.log("this is the docs1: ", docs);
+        // console.log("this is the docs1: ", docs);
         res.send(JSON.stringify(docs));
       });
     });
@@ -99,7 +99,7 @@ app.post(
     req.on("end", function() {
       let obj = JSON.parse(updatedPlaylist);
       updatePlaylist(obj, function(err, docs) {
-        console.log("this is the docs2: ", docs);
+        // console.log("this is the docs2: ", docs);
         res.send("updated");
       });
 
@@ -151,7 +151,7 @@ app.post("/delete", //passport.authenticate("jwt", { session: false }),
 
     req.on("end", function() {
       deleteListBackEnd(JSON.parse(listToDelete));
-      res.send("hej");
+      res.send("deleted");
 
     });
   })
@@ -166,14 +166,14 @@ app.post("/delete", //passport.authenticate("jwt", { session: false }),
 
   req.on("end", function() {
     deleteAllListBackEnd(JSON.parse(creatorListsToDelete));
-    res.send("hej");
+    res.send("deleted all lists");
 
     
     
   });
 })
 
-app.post("/deleteAccount", //passport.authenticate("jwt", { session: false }),
+app.post("/accountdeletion", //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let accToDelete = "";
     // res.send(deleteList1)
@@ -182,10 +182,10 @@ app.post("/deleteAccount", //passport.authenticate("jwt", { session: false }),
       accToDelete+= data;
     });
 
-
+    
     req.on("end", function() {
-      deleteAccountBackEnd(JSON.stringify(accToDelete));
-      res.send("hej");
+      deleteAccountBackEnd(JSON.parse(accToDelete));
+      res.send("deleted account");
 
 
       

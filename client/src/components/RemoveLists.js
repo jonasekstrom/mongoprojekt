@@ -3,68 +3,39 @@ import React, { Component } from "react";
 import "../App.css";
 import { connect } from "react-redux";
 import action from "../actions.js";
+import { logoutUser } from "../actions/authActions";
+import { clearCurrentProfile } from "../actions/profileActions";
 
 class RemoveLists extends Component {
-    constructor() {
-        super();
-        this.state= {
-            hej: "TEST"
-        }
-    }
+    
 
 
     removeAll(ev) {
-        console.log("del")
-        console.log(this.props.userId)
-        
-        
-        
         const {user} = this.props.auth
         
         let self = this;
         fetch('http://localhost:5000/deleteAll', {
-          //mode: 'no-cors',
           method: 'POST',
-          // headers: {
-          // Accept: 'application/json',
-          // },
           body: JSON.stringify(user.id),
         }).then(function (response){
-          
-          return response
+          return response;
             })
-              
-        
         self.props.dispatch(action.deleteAllLists(user.id))
-    
 }
 
 removeAccount(ev) {
-
     const {user} = this.props.auth
-
-    
-   
-
-    
     let self = this;
-    fetch('http://localhost:5000/deleteAccount', {
-      //mode: 'no-cors',
+    fetch('http://localhost:5000/accountdeletion', {
       method: 'POST',
-      // headers: {
-      // Accept: 'application/json',
-      // },
-
-      body: JSON.stringify(user.id)
+      body: JSON.stringify(user)
     }).then(function (response) {
       return response;
     });
-    //console.log(response)
-    // self.props.dispatch(action.deleteList(self.props.playListArray))
-   
-    //self.props.dispatch(action.deleteAllLists(self.props.popup.userId));
-  //  this.removeAll()
 
+   this.removeAll()
+    this.props.dispatch(clearCurrentProfile());
+    this.props.dispatch(logoutUser());
 
 
 }
@@ -73,8 +44,6 @@ removeAccount(ev) {
     render() {
         
         const {user} = this.props.auth
-       
-
 
         return (
             <React.Fragment>
@@ -85,29 +54,9 @@ removeAccount(ev) {
                 <button onClick={this.removeAll.bind(this)}>Remove All Lists</button>
             
             </div>
-
-            </React.Fragment>
-        )
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+            </React.Fragment>)
     }
-    
-
 }
-
-
-
-
-
-
 
 const mapStateToProps = state => {
     return {

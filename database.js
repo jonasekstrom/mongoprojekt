@@ -255,12 +255,12 @@ function findPlaylistsText(searchText, callback) {
 
 
 function deleteListBackEnd(listToDelete) {
-  console.log("går den in?")
+  // console.log("går den in?")
   MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
-      console.log(listToDelete)
+      // console.log(listToDelete)
       //db.collection(collectionName).deleteOne( { "_id" : ObjectId(listToDelete)});
       db.collection(collectionName).deleteOne( {_id: ObjectId(listToDelete)}, (err, result) => {
         if( err) throw err
@@ -282,7 +282,7 @@ function deleteAllListBackEnd(creatorListsToDelete) {
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
-      console.log(creatorListsToDelete)
+      // console.log(creatorListsToDelete)
       
      
       db.collection(collectionName).deleteMany( {creator: creatorListsToDelete}, (err, result) => {
@@ -301,21 +301,24 @@ function deleteAllListBackEnd(creatorListsToDelete) {
 
 
 function deleteAccountBackEnd(accToDelete) {
-  console.log("går den in?")
+  // console.log("går den in?")
   MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
      if( err ) throw err;  // if unable to connect
       const db = client.db(dbName);  // ansluten
       const collectionName = "users";
-      console.log(accToDelete)
+      console.log( accToDelete.id)
+      // const newObjId = new ObjectId(accToDelete)
+      
+      
       //db.collection(collectionName).deleteOne( { "_id" : ObjectId(listToDelete)});
-      db.collection(collectionName).find( {"_id": accToDelete}, (err, result) => {
+      db.collection(collectionName).deleteOne( {_id: ObjectId(accToDelete.id)}, (err, result) => {
         if( err) throw err
         console.log(result)
-        db.collection(collectionName).deleteOne(result)
+        // db.collection(collectionName).deleteOne(result)
         client.close()
 
       })
-       
+      //  client.close()
       })
 
         // remember to close connections when done
