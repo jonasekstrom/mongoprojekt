@@ -75,7 +75,7 @@ app.post("/createUser", (req, res) => {
 
 app.post(
   "/createplaylist",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let playlist = "";
     req.on("data", data => {
@@ -94,7 +94,7 @@ app.post(
 
 app.post(
   "/updateplaylist",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let updatedPlaylist = "";
     req.on("data", data => {
@@ -144,7 +144,7 @@ app.get("/search", (req, res) => {
 });
 app.post(
   "/delete",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let listToDelete = "";
     // res.send(deleteList1)

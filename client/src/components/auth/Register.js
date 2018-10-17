@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import RadioButtonField from "../common/RadioButtonField";
 
 class Register extends Component {
   constructor() {
@@ -13,6 +14,8 @@ class Register extends Component {
       email: "",
       password: "",
       password2: "",
+      userImg:
+        "https://files.slack.com/files-pri/T6RE0MQD7-FDGAXGP9T/avatar-1606914_640.png",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -37,7 +40,8 @@ class Register extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
+      userImg: this.state.userImg
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -46,63 +50,118 @@ class Register extends Component {
     const { errors } = this.state;
     return (
       <div className="landing">
-      <div className="dark-overlay landing-inner text-light">
-        <div className="container">
-          <div className="row">
-            {/* <div className="col-md-8 m-auto"> */}
-            <div className="col-md-12 text-center">
-              <h1 className="display-3 mb-4">Register</h1>
-              <p className="lead text-center">
-                Create your own Share Your Music account
-              </p>
-              <hr/>
-              <form noValidate onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <TextFieldGroup
-                    placeholder="Name"
-                    name="name"
-                    type="text"
-                    value={this.state.name}
-                    onChange={this.onChange}
-                    error={errors.name}
+        <div className="dark-overlay landing-inner text-light">
+          <div className="container">
+            <div className="row">
+              {/* <div className="col-md-8 m-auto"> */}
+              <div className="col-md-12 text-center">
+                <h1 className="display-3 mb-4">Register</h1>
+                <p className="lead text-center">
+                  Create your own Share Your Music account
+                </p>
+                <hr />
+                <form noValidate onSubmit={this.onSubmit}>
+                  <div className="form-group">
+                    <TextFieldGroup
+                      placeholder="Name"
+                      name="name"
+                      type="text"
+                      value={this.state.name}
+                      onChange={this.onChange}
+                      error={errors.name}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <TextFieldGroup
+                      placeholder="Email"
+                      name="email"
+                      type="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      error={errors.email}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <TextFieldGroup
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      error={errors.password}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <TextFieldGroup
+                      placeholder="Verify password"
+                      name="password2"
+                      type="password"
+                      value={this.state.password2}
+                      onChange={this.onChange}
+                      error={errors.password2}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <RadioButtonField
+                      type="radio"
+                      name="userImg"
+                      onChange={this.onChange}
+                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDH6QEV47/man-156584_640.png"
+                      checked={
+                        this.state.userImg ===
+                        "https://files.slack.com/files-pri/T6RE0MQD7-FDH6QEV47/man-156584_640.png"
+                      }
+                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDH6QEV47/man-156584_640.png"
+                    />
+                    <RadioButtonField
+                      type="radio"
+                      name="userImg"
+                      onChange={this.onChange}
+                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDFCVF3DE/man-3414477_640.png"
+                      checked={
+                        this.state.userImg ===
+                        "https://files.slack.com/files-pri/T6RE0MQD7-FDFCVF3DE/man-3414477_640.png"
+                      }
+                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDFCVF3DE/man-3414477_640.png"
+                    />
+                    <RadioButtonField
+                      type="radio"
+                      name="userImg"
+                      onChange={this.onChange}
+                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDFCVLLG0/avatar-1295831_640.png"
+                      checked={
+                        this.state.userImg ===
+                        "https://files.slack.com/files-pri/T6RE0MQD7-FDFCVLLG0/avatar-1295831_640.png"
+                      }
+                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDFCVLLG0/avatar-1295831_640.png"
+                    />
+                    <RadioButtonField
+                      type="radio"
+                      name="userImg"
+                      onChange={this.onChange}
+                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDGAXGP9T/avatar-1606914_640.png"
+                      checked={
+                        this.state.userImg ===
+                        "https://files.slack.com/files-pri/T6RE0MQD7-FDGAXGP9T/avatar-1606914_640.png"
+                      }
+                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDGAXGP9T/avatar-1606914_640.png"
+                    />
+                  </div>
+                  <input
+                    value="Submit"
+                    type="submit"
+                    className="buttons login"
                   />
-                </div>
-                <div className="form-group">
-                  <TextFieldGroup
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                    error={errors.email}
-                  />
-                </div>
-                <div className="form-group">
-                  <TextFieldGroup
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                    error={errors.password}
-                  />
-                </div>
-                <div className="form-group">
-                  <TextFieldGroup
-                    placeholder="Verify password"
-                    name="password2"
-                    type="password"
-                    value={this.state.password2}
-                    onChange={this.onChange}
-                    error={errors.password2}
-                  />
-                </div>
-                <input value="Submit" type="submit" className="buttons login"  />
-                <button className="buttons login" onClick={e => this.props.history.push("/")}>Back</button>
-              </form>
+                  <button
+                    className="buttons login"
+                    onClick={e => this.props.history.push("/")}
+                  >
+                    Back
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     );
