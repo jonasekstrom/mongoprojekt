@@ -4,6 +4,7 @@ import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import "./landing.css";
 
+
 class Landing extends Component {
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {

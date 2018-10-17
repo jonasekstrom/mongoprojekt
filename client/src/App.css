@@ -601,13 +601,25 @@ Popup
 
 .update{
   position: absolute;
-  right: 40px;
-  bottom: 10px;
-    color: rgba(0, 0, 0, 0.7);
+  /* right: 40px;
+  bottom: 10px; */
+  text-shadow: -1px -2px 3px black;
+  top:-1.2em;
+  color: rgba(255, 255, 255, 0.7);
 cursor: pointer;
   background: none;
   border: none;
   font-size:1em;
+  width:100px;
+}
+.update:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  text-shadow: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.update:active {
+  box-shadow: none;
 }
 
 #closebtn {
@@ -718,16 +730,49 @@ cursor: pointer;
 }
 
 .playListTitle {
-
+  font-size: 3em;
   position: relative;
   text-align: center;
-  top: 20px;
+  top: -20px;
+  margin-bottom: -35px;
 }
 
+.playListInformationGenre{ 
+  top: 1em;
+  letter-spacing: 3px;
+  text-align: center;
+  font-size: 18px;
+  position: relative;
+}
 
+.playListInformationName{
+  letter-spacing: 3px;
+  text-align: center;
+  font-size: 18px;
+}
+.playListInformationSpotify{
+  letter-spacing: 3px;
+  text-align: center;
+  font-size: 18px;
+  top:-3em;
+  position: relative;
+}
 
+.playListInformationCreatedBy {
+  letter-spacing: 3px;
+  top: -0.5em;
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+}
 
-
+.playListInformationDesc {
+  letter-spacing: 3px;
+  text-align: center;
+  font-size: 18px;
+  top:-1.5em;
+  position: relative;
+}
 
 
 .spotifyLink {
@@ -757,6 +802,8 @@ cursor: pointer;
 .playListUserName {
   display: block;
   text-align: center;
+  top:-20px;
+  position: relative;
 }
 
 .editInformation {
@@ -767,16 +814,21 @@ cursor: pointer;
 .editPlayList {
   display: block;
   text-align: center;
+  margin-top: -10px;
 }
 
 .editDescription {
   display: block;
   text-align: center;
+  position: relative;
+  top:-2.5em;
 }
 
 .editUrl {
   display: block;
   text-align: center;
+  position: relative;
+  top: -4em;
 }
 
 .editGenres {
@@ -810,6 +862,10 @@ cursor: pointer;
 .genreInfo {
   margin-right: 10px;
   text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  position: relative;
+  top:15px;
 }
 
 .editName,
@@ -850,7 +906,20 @@ cursor: pointer;
 }
 
 #delete{
+  text-shadow: -1px -2px 3px black;
+  top:-1.2em;
+  margin-right:0.5em;
   color:#A5474B;
+  width:100px;
+}
+
+#delete:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  text-shadow: none;
+}
+
+#delete:active {
+  box-shadow: none;
 }
 
 #close{
@@ -861,4 +930,5 @@ cursor: pointer;
   left:40px;
   top:-25px;
   color:rgba(255,255,255,0.7);
+  cursor: pointer;
 }
