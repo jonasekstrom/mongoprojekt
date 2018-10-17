@@ -81,6 +81,34 @@ class Header extends Component {
     }
   }
 
+  removeAll(ev) {
+    const {user} = this.props.auth
+    
+    
+
+     let self = this;
+    fetch('http://localhost:5000/deleteAll', {
+      //mode: 'no-cors',
+      method: 'POST',
+      // headers: {
+      // Accept: 'application/json',
+      // },
+      body: JSON.stringify(user.id),
+    }).then(function (response){
+      
+      return response
+        })
+          
+    
+    self.props.dispatch(action.deleteAllLists(user.id))
+
+
+
+
+
+    
+  }
+
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
@@ -98,7 +126,8 @@ class Header extends Component {
           <div style={this.state.clickedCreateList} className="styleTransition">
             <CreateList />
           </div>
-          <span id="username">{isAuthenticated ? authLinks : ""}</span>
+          <button onClick={this.removeAll.bind(this)} id="username">{isAuthenticated ? authLinks : ""}> </button>
+          
         </div>
         <div className="header">
           <img className="userImg" alt="" src={user.img} />
@@ -125,7 +154,8 @@ const mapStateToProps = state => {
     searchInfo: state.playlist.searchInfo,
     userImg: state.playlist.userImg,
     auth: state.auth,
-    playlist: state.playlist.playListArray
+    playlist: state.playlist.playListArray,
+    id: state.playlist.id
   };
 };
 

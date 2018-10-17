@@ -1,11 +1,10 @@
-import functions from "../functions";
+import functions from "../functions.js"
 
 const initState = {
   userName: "thatzita",
   id: "ObjectId(5bb60f66660ca9053b2b5)",
-  userImg:
-    "http://tricitycontracting.com/wp-content/uploads/2018/04/blank-profile-picture-973460_640-300x300.png",
-  searchField: "",
+  userImg: "http://tricitycontracting.com/wp-content/uploads/2018/04/blank-profile-picture-973460_640-300x300.png",
+  searchField:"",
   searchInfo: {
     ROCK: false,
     METAL: false,
@@ -14,14 +13,14 @@ const initState = {
     POPMUSIC: false,
     BLUES: false,
     JAZZ: false,
-    ELECTRO: false,
-    HIPHOP: false
+    ELECTRO:false,
+    HIPHOP:false
   },
   editedList: {
     playListName: "",
     genres: [],
     description: "",
-    spotify: ""
+    spotify: "",
   },
   showPopup: false,
   popup: {
@@ -32,7 +31,9 @@ const initState = {
     spotify: "",
     id: ""
   },
+
   updatedList: {},
+
   playListArray: [
     // {
     //   id: 1,
@@ -124,7 +125,8 @@ const initState = {
     //   spotify: "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX3YSRoSdA634?si=AlmTh6ttTzazH1s6jJp07A",
     // }
   ]
-};
+}
+
 
 // function getGenreState(action){
 //   return {
@@ -138,12 +140,13 @@ const initState = {
 //   }
 // }
 
-const playListReducer = (state = initState, action) => {
+const rootReducer = (state = initState, action) => {
+
   switch (action.type) {
     case "SHOW_POPUP":
       return {
-        ...(state.showPopup = true),
-        ...(state.popup = {
+        ...state.showPopup = true,
+        ...state.popup = {
           playListName: action.payload.playListName,
           userName: action.payload.userName,
           creator: action.payload.creator,
@@ -151,179 +154,202 @@ const playListReducer = (state = initState, action) => {
           description: action.payload.description,
           spotify: action.payload.spotify,
           listId: action.payload._id
-        }),
-        ...state
-      };
-    case "DELETE_POPUP":
-      let removedPlayList = functions.removeList(action.deleteData, [
-        ...state.playListArray
-      ]);
-
+        },
+        ...state,
+      }
+      case "DELETE_POPUP":
+      console.log("TESTA REDUCERSS")
+      let removedPlayList = functions.removeList(action.deleteData, [...state.playListArray]);
+      console.log(removedPlayList)
       return {
         ...state,
         playListArray: removedPlayList
-      };
-
-      case "DELETE_ALL_LISTS":
-      
-      let removedAllLists = functions.removeLists(action.deleteAllListData, [
-        ...state.playListArray ])
-      
-        return {
-        ...state,
-        playListArray: removedAllLists
+       
       }
-    
-      case "UPDATE_POPUP":
-      let updatedPlaylist = functions.updateList(
-        action.payload,
-        [...state.playListArray],
-        action.oldData
-      );
+      
+      case "DELETE_ALL_LISTS":
+      console.log("test REDO")
+      console.log(this.state.playListArray)
+      let allPlayListsRemoved = functions.removeLists(action.deleteAllListData, [...state.playListArray] );
       return {
         ...state,
-        playListArray: [
-          ...state.playListArray.filter(obj => obj._id !== updatedPlaylist._id),
-          updatedPlaylist
-        ],
-        updatedList: updatedPlaylist
-      };
-    case "CLEAR_POPUP_UPDATE":
+        playListArray = allPlayListsRemoved
+      }
+ 
+      
+      case "UPDATE_POPUP":
+      let updatedPlaylist = functions.updateList(action.payload, [...state.playListArray], action.oldData);
       return {
+        ...state,
+        playListArray: [...state.playListArray.filter(obj =>
+          obj._id !== updatedPlaylist._id), updatedPlaylist],
+          updatedList: updatedPlaylist
+      }
+      case "CLEAR_POPUP_UPDATE":
+      return{
         ...state,
         updatedList: {}
-      };
-    case "ADD_PLAYLIST":
+      }
+
+      case "ADD_PLAYLIST":
       return {
         ...state,
-        playListArray: [...state.playListArray, action.data]
-      };
+        playListArray:[ ...state.playListArray, action.data],
+
+      }
     case "CLOSE_POPUP":
       return {
-        ...(state.showPopup = false),
-        ...state
-      };
+        ...state.showPopup = false,
+        ...state,
+      }
     case "GENRELIMIT":
-      return {
+      return{
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+
+      }
     case "ROCK_CLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
     case "ROCK_UNCLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+
+
+      }
 
     case "COUNTRY_CLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+
+      }
 
     case "COUNTRY_UNCLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+
+      }
 
     case "METAL_CLICKED":
       return {
-        ...state,
-        searchInfo: functions.getGenreState(action)
-      };
+          ...state,
+          searchInfo: functions.getGenreState(action)
+
+      }
     case "METAL_UNCLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
     case "CLASSICAL_CLICKED":
       return {
-        ...state,
-        searchInfo: functions.getGenreState(action)
-      };
+          ...state,
+          searchInfo: functions.getGenreState(action)
+
+      }
     case "CLASSICAL_UNCLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
 
     case "POPMUSIC_CLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
 
     case "POPMUSIC_UNCLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
 
     case "JAZZ_CLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
 
     case "JAZZ_UNCLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
     case "BLUES_CLICKED":
+
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
 
     case "BLUES_UNCLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
 
     case "HIPHOP_CLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
 
     case "HIPHOP_UNCLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
     case "ELECTRO_CLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
 
     case "ELECTRO_UNCLICKED":
       return {
         ...state,
         searchInfo: functions.getGenreState(action)
-      };
+      }
 
     case "UPDATE_SEARCHFIELD":
       return {
         ...state,
-        searchField: action.data
-      };
+        searchField:action.data
+      }
 
     case "UPDATE_LIST":
+
       return {
         ...state,
-        playListArray: action.data
-      };
+        playListArray:action.data
+      }
     default:
-      return state;
-  }
-};
+      return state
+  
+      // case "DELETE_LIST":
+        
+      //   return {
+      //   ...state,
+      //   playListArray:action.data
+      // }
+      // default:
+      // return state
+    
+  
+  
+  
+  
+    }
 
-export default playListReducer;
+  
+  
+}
+
+
+export default rootReducer

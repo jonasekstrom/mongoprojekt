@@ -637,6 +637,7 @@ Popup
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 .delete {
   position: absolute;
   top: -25px;
@@ -646,6 +647,9 @@ Popup
   color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
 }
+=======
+
+>>>>>>> a2f3c5a10805e26c0ea21fa73811bab66222e998
 
 .close {
   position: absolute;
@@ -658,6 +662,7 @@ Popup
 
 .update {
   position: absolute;
+<<<<<<< HEAD
   right: 40px;
   bottom: 10px;
   color: rgba(0, 0, 0, 0.7);
@@ -665,6 +670,27 @@ Popup
   background: none;
   border: none;
   font-size: 1em;
+=======
+  /* right: 40px;
+  bottom: 10px; */
+  text-shadow: -1px -2px 3px black;
+  top:-1.2em;
+  color: rgba(255, 255, 255, 0.7);
+cursor: pointer;
+  background: none;
+  border: none;
+  font-size:1em;
+  width:100px;
+}
+.update:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  text-shadow: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.update:active {
+  box-shadow: none;
+>>>>>>> a2f3c5a10805e26c0ea21fa73811bab66222e998
 }
 
 #closebtn {
@@ -731,7 +757,6 @@ Popup
 }
 
 /* .playListInformation {
-  letter-spacing: 3px;
   margin-bottom: -5px;
   text-align: center;
 } */
@@ -779,11 +804,52 @@ Popup
 }
 
 .playListTitle {
+<<<<<<< HEAD
+=======
+  font-size: 3em;
+>>>>>>> a2f3c5a10805e26c0ea21fa73811bab66222e998
   position: relative;
   text-align: center;
-  top: 20px;
+  top: -20px;
+  margin-bottom: -35px;
 }
 
+<<<<<<< HEAD
+=======
+.playListInformationGenre{ 
+  top: 1em;
+  text-align: center;
+  font-size: 18px;
+  position: relative;
+}
+
+.playListInformationName{
+  text-align: center;
+  font-size: 18px;
+}
+.playListInformationSpotify{
+  text-align: center;
+  font-size: 18px;
+  top:-3em;
+  position: relative;
+}
+
+.playListInformationCreatedBy {
+  top: -0.5em;
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+}
+
+.playListInformationDesc {
+  text-align: center;
+  font-size: 18px;
+  top:-1.5em;
+  position: relative;
+}
+
+
+>>>>>>> a2f3c5a10805e26c0ea21fa73811bab66222e998
 .spotifyLink {
   padding: 10px;
   width: 200px;
@@ -811,6 +877,8 @@ Popup
 .playListUserName {
   display: block;
   text-align: center;
+  top:-20px;
+  position: relative;
 }
 
 .editInformation {
@@ -821,16 +889,21 @@ Popup
 .editPlayList {
   display: block;
   text-align: center;
+  margin-top: -10px;
 }
 
 .editDescription {
   display: block;
   text-align: center;
+  position: relative;
+  top:-2.5em;
 }
 
 .editUrl {
   display: block;
   text-align: center;
+  position: relative;
+  top: -4em;
 }
 
 .editGenres {
@@ -864,6 +937,10 @@ Popup
 .genreInfo {
   margin-right: 10px;
   text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  position: relative;
+  top:15px;
 }
 
 .editName,
@@ -904,9 +981,18 @@ Popup
   border: none;
 }
 
+<<<<<<< HEAD
 #delete {
   color: #a5474b;
   transition: color 0.3s ease-out, border 0.3s ease-out;
+=======
+
+#delete{
+  margin-right:0.5em;
+  color:#A5474B;
+    transition: color 0.3s ease-out, border 0.3s ease-out;
+
+>>>>>>> a2f3c5a10805e26c0ea21fa73811bab66222e998
 }
 
 #delete:hover {
@@ -929,6 +1015,7 @@ Popup
   left: 40px;
   top: -30px;
   cursor: pointer;
+<<<<<<< HEAD
   padding: 6px;
   color: rgba(255, 255, 255, 0.7);
   transition: color 0.3s ease-out, background;
@@ -953,4 +1040,17 @@ label > input + img {
 label > input:checked + img {
   /* (RADIO CHECKED) IMAGE STYLES */
   border: 2px solid #f00;
+=======
+  padding:6px;
+  color:rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: color 0.3s ease-out, background;
+}
+
+
+#close:hover{
+  color:rgba(0,0,0,0.6);
+  background: rgba(255,255,255,0.3);
+
+>>>>>>> a2f3c5a10805e26c0ea21fa73811bab66222e998
 }

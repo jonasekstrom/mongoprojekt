@@ -125,14 +125,49 @@ function offClickedGenre(searchInfo, genre) {
     data: searchInfo
   };
 }
+
+
+
+
+
 function removeList(deleteData, playListArray) {
-  let theNewList = playListArray.filter(listItem => {
-    return listItem._id !== deleteData;
-  });
-  return theNewList;
+  console.log(playListArray)
+  console.log(deleteData)
+
+  
+  let theNewList = playListArray.filter(listItem => { return listItem._id !== deleteData} )
+  console.log(theNewList);
+   return theNewList
+  
 }
+
+function removeLists(deleteAllListData, playListArray) {
+  
+  let creatorListsToBeDeleted = deleteAllListData
+
+  
+  let listCreatorDeleted = playListArray.filter(listItem => { return listItem.creator !== creatorListsToBeDeleted} )
+  
+   return listCreatorDeleted
+}
+  
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+
+
+
 function updateList(data, allPlayLists, oldData) {
-  let updatedList = {};
+
+  let updatedList = {}
   let listName;
   let genres;
   let desc;
@@ -182,6 +217,8 @@ export default {
   onClickedGenre,
   offClickedGenre,
   getGenreState,
+  removeList,
   updateList,
-  removeList
+  
+  removeLists
 };
