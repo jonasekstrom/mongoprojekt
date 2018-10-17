@@ -16,14 +16,14 @@ class Landing extends Component {
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
             <div className="row">
-              <div className="col-md-12 text-center">
+              <div className="col-md-12 text-center buttonsDiv" >
                 <h1 className="display-3 mb-4">Share your music</h1>
                 <p className="lead">It should be easy to find new music</p>
                 <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">
+                <Link to="/register" className="buttons head" >
                   Register
                 </Link>
-                <Link to="/login" className="btn btn-lg btn-light">
+                <Link to="/login" className="buttons head">
                   Login
                 </Link>
               </div>
