@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 const RadioButtonField = ({ onChange, value, name, type, checked, src }) => {
   return (
-    <div className="form-group">
+    <Fragment>
       <label>
         <input
           className="fb3"
@@ -14,7 +14,7 @@ const RadioButtonField = ({ onChange, value, name, type, checked, src }) => {
         />
         <img src={src} />
       </label>
-    </div>
+    </Fragment>
   );
 };
 

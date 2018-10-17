@@ -986,3 +986,19 @@ Popup
   color: rgba(0, 0, 0, 0.6);
   background: rgba(255, 255, 255, 0.3);
 }
+label > input[type="radio"] {
+  /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label > input + img {
+  /* IMAGE STYLES */
+  cursor: pointer;
+  border: 2px solid transparent;
+  height: 80px;
+  width: 80px;
+}
+label > input:checked + img {
+  /* (RADIO CHECKED) IMAGE STYLES */
+  border: 2px solid #f00;
+}
