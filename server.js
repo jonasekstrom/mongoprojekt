@@ -1,13 +1,7 @@
-let {
-  createUser,
-  loginUser,
-  getAllPlaylists,
-  getUserPlaylist,
-  createPlaylist,
-  searchSelected,
-  updatePlaylist,
-  deleteListBackEnd
-} = require("./database.js");
+
+let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist, deleteListBackEnd, deleteAllListBackEnd} = require("./database.js")
+
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -101,12 +95,14 @@ app.post(
       updatedPlaylist += data;
     });
 
+
     req.on("end", function() {
       let obj = JSON.parse(updatedPlaylist);
       updatePlaylist(obj, function(err, docs) {
         console.log("this is the docs: ", docs);
         res.send("updated");
       });
+
       res.send("updated");
     });
   }
@@ -142,6 +138,7 @@ app.get("/search", (req, res) => {
   // REQ - genres, username, playlist name
   // res.send("Search");
 });
+
 app.post(
   "/delete",
   passport.authenticate("jwt", { session: false }),
@@ -153,9 +150,30 @@ app.post(
       listToDelete += data;
     });
 
+
     req.on("end", function() {
       deleteListBackEnd(JSON.parse(listToDelete));
       res.send("hej");
+
+
+
+app.post("/deleteAll", (req, res) => {
+  let creatorListsToDelete = "";
+  
+
+  req.on("data", data => {
+    creatorListsToDelete += data;
+  });
+
+  req.on("end", function() {
+    deleteAllListBackEnd(JSON.parse(creatorListsToDelete));
+    res.send("hej");
+
+    
+    
+  });
+});
+
 
       //   createPlaylist(obj, function(err,docs){
       //     console.log("this is the docs: ", docs)
@@ -165,6 +183,8 @@ app.post(
     });
   }
 );
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
+

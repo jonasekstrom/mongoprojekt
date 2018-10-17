@@ -18,6 +18,7 @@ class Popup extends Component {
       listId: "",
       checked: [],
       edited: true,
+
       listGenres: [],
       clickedGenres: {
         rock: false,
@@ -31,7 +32,10 @@ class Popup extends Component {
         hiphop: false
       }
       // updatedList: this.props.updatedList,
+
+
     };
+
     this.editValues = this.editValues.bind(this);
     // this.changeClass = this.changeClass.bind(this);
   }
@@ -95,7 +99,9 @@ class Popup extends Component {
   };
 
   changeInput(event) {
+
     let nameOfClass = event.target.className;
+
     this.editValues(nameOfClass, event.target.textContent);
   }
 
@@ -269,14 +275,32 @@ class Popup extends Component {
       });
     }
   }
+
+
+
+  isDisabled = genre => {
+    return (
+      this.state.checked.length > 2 && this.state.checked.indexOf(genre) === -1
+    );
+  };
+  
+
+
   removeThis(ev) {
+    //this.props.dispatch(action.deleteList(this.props.popup.listId))
+    console.log(this.props.playListArray)
+    let list = this.props.playListArray
+    console.log("test")
+    console.log(this.props.popup.listId)
+    
     let self = this;
-    fetch("http://localhost:5000/delete", {
+    fetch('http://localhost:5000/delete', {
       //mode: 'no-cors',
-      method: "POST",
+      method: 'POST',
       // headers: {
       // Accept: 'application/json',
       // },
+
       body: JSON.stringify(this.props.popup.listId)
     }).then(function (response) {
       return response;
@@ -286,7 +310,11 @@ class Popup extends Component {
     self.props.dispatch(action.closePopup());
     self.clearState();
     self.props.dispatch(action.deleteList(self.props.popup.listId));
+
   }
+
+
+  
   render() {
     const { user } = this.props.auth;
     if (this.props.updatedList._id !== undefined) {
@@ -312,6 +340,10 @@ class Popup extends Component {
       return <React.Fragment />;
     }
     if (allowedToEdit === playListOwner) {
+
+      let self = this;
+     // console.log(this.props)
+
       return (
         <div className="popup">
           <div className={"popup_inner"}>
@@ -524,6 +556,7 @@ class Popup extends Component {
               >
                 {this.props.popup.description}
               </span>
+
               <h4 className="playListInformationSpotify">Spotify link:</h4>
               <span
                 className="editUrl"
@@ -543,6 +576,7 @@ class Popup extends Component {
               Listen to it now!
             </a>
             <br />
+
           </div>
         </div>
       );
@@ -629,5 +663,6 @@ const mapStateToProps = state => {
     auth: state.auth
   };
 };
+
 
 export default connect(mapStateToProps)(Popup);
