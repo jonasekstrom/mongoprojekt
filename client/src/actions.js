@@ -39,7 +39,7 @@ let deleteList = deleteData => {
 };
 
 let deleteAllLists = deleteAllListData => {
-  console.log("ssss")
+ 
   
   return {
     type: "DELETE_ALL_LISTS",

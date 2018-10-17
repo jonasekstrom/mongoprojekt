@@ -165,7 +165,7 @@ const playListReducer = (state = initState, action) => {
       };
 
       case "DELETE_ALL_LISTS":
-      console.log("test REDO")
+      
       let removedAllLists = functions.removeLists(action.deleteAllListData, [
         ...state.playListArray ])
       

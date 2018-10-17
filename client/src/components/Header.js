@@ -83,7 +83,7 @@ class Header extends Component {
 
   removeAll(ev) {
     const {user} = this.props.auth
-    console.log(this.props.playlist)
+    
     
 
      let self = this;
@@ -95,7 +95,7 @@ class Header extends Component {
       // },
       body: JSON.stringify(user.id),
     }).then(function (response){
-      console.log(response)
+      
       return response
         })
           
