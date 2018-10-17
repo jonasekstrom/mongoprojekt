@@ -47,11 +47,13 @@ removeAccount(ev) {
 
         return (
             <React.Fragment>
-            <div>
-                <h2>User Information:</h2>
-                <h3>Username: {user.name}</h3>
-                <button onClick={this.removeAccount.bind(this)}>Remove Account</button>
-                <button onClick={this.removeAll.bind(this)}>Remove All Lists</button>
+            <div className="userInformation">
+                <h2>User Information</h2>
+                <img className="userImget" alt="" src={user.img} />
+                <h3>{user.name}</h3>
+
+                <button className="btnUser" onClick={this.removeAccount.bind(this)}>Remove Account</button>
+                <button className="btnUser"onClick={this.removeAll.bind(this)}>Remove All Lists</button>
             
             </div>
             </React.Fragment>)

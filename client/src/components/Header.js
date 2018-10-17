@@ -39,32 +39,48 @@ class Header extends Component {
   }
 
   createListClick() {
-    if (this.state.clicked) {
-      this.setState({
-        createList: "Create list",
-        clicked: false,
-        clickedCreateList: {
+
+    if(this.state.clickedInfo){
+          this.setState({
+
+        clickedInfo: false,
+        clickedGetUserInfo: {
           opacity: 0,
           height: "0px",
           zIndex: -1
         }
       });
-    } else {
-      this.setState({
-        createList: "Return",
-        clicked: true,
-        clickedCreateList: {
-          opacity: 1,
-          height: "470px",
-          zIndex: 1
-        }
-      });
+      
     }
+
+
+    if (this.state.clicked) {
+        this.setState({
+          createList: "Create list",
+          clicked: false,
+          clickedCreateList: {
+            opacity: 0,
+            height: "0px",
+            zIndex: -1
+          }
+        });
+      } else {
+        this.setState({
+          createList: "Return",
+          clicked: true,
+          clickedCreateList: {
+            opacity: 1,
+            height: "470px",
+            zIndex: 1
+          }
+        });
+      }
   }
 
   getUserInfo() {
 
     if (this.state.clickedInfo) {
+
       this.setState({
 
         clickedInfo: false,
@@ -74,6 +90,7 @@ class Header extends Component {
           zIndex: -1
         }
       });
+
     } else {
       this.setState({
 
