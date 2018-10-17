@@ -37,6 +37,16 @@ let deleteList = deleteData => {
     deleteData
   };
 };
+
+let deleteAllLists = deleteAllListData => {
+  console.log("ssss")
+  
+  return {
+    type: "DELETE_ALL_LISTS",
+    deleteAllListData
+  };
+};
+
 let rockClicked = searchInfo => {
   return functions.onClickedGenre(searchInfo, "ROCK");
 };
@@ -135,6 +145,7 @@ export default {
   clearPopupUpdate,
   updatePopup,
   deleteList,
+  deleteAllLists,
   addPlaylist,
   rockClicked,
   rockUnclicked,

@@ -1,5 +1,5 @@
 
-let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist, deleteListBackEnd} = require("./database.js")
+let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist, deleteListBackEnd, deleteAllListBackEnd} = require("./database.js")
 
 
 const express = require("express");
@@ -150,6 +150,24 @@ app.post("/delete", (req, res) => {
     //});
   });
 });
+
+app.post("/deleteAll", (req, res) => {
+  let creatorListsToDelete = "";
+  
+
+  req.on("data", data => {
+    creatorListsToDelete += data;
+  });
+
+  req.on("end", function() {
+    deleteAllListBackEnd(JSON.parse(creatorListsToDelete));
+    res.send("hej");
+
+    
+    
+  });
+});
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

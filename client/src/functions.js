@@ -134,12 +134,35 @@ function removeList(deleteData, playListArray) {
   console.log(playListArray)
   console.log(deleteData)
 
-  let newList = [...playListArray]
+  
   let theNewList = playListArray.filter(listItem => { return listItem._id !== deleteData} )
   console.log(theNewList);
    return theNewList
   
 }
+
+function removeLists(deleteAllListData, playListArray) {
+  
+  let creatorListsToBeDeleted = deleteAllListData
+
+  
+  let listCreatorDeleted = playListArray.filter(listItem => { return listItem.creator !== creatorListsToBeDeleted} )
+  
+   return listCreatorDeleted
+}
+  
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+
 
 
 function updateList(data, allPlayLists, oldData) {
@@ -196,5 +219,6 @@ export default {
   getGenreState,
   removeList,
   updateList,
-  removeList
+  
+  removeLists
 };

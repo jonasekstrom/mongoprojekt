@@ -166,7 +166,17 @@ const rootReducer = (state = initState, action) => {
         playListArray: removedPlayList
        
       }
-     
+      
+      case "DELETE_ALL_LISTS":
+      console.log("test REDO")
+      console.log(this.state.playListArray)
+      let allPlayListsRemoved = functions.removeLists(action.deleteAllListData, [...state.playListArray] );
+      return {
+        ...state,
+        playListArray = allPlayListsRemoved
+      }
+ 
+      
       case "UPDATE_POPUP":
       let updatedPlaylist = functions.updateList(action.payload, [...state.playListArray], action.oldData);
       return {

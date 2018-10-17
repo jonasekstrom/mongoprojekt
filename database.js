@@ -276,6 +276,29 @@ function deleteListBackEnd(listToDelete){
 
 }
 
+function deleteAllListBackEnd(creatorListsToDelete) {
+  console.log("går den in?")
+  MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
+      const collectionName = "playlist";
+      console.log(creatorListsToDelete)
+      console.log("DELTETE DÅ")
+     
+      db.collection(collectionName).deleteMany( {creator: creatorListsToDelete}, (err, result) => {
+        if( err) throw err
+        console.log("success")
+        
+        client.close()
+
+      })
+       
+      })
+
+        // remember to close connections when done
+
+}
+
 
 
 
@@ -297,7 +320,7 @@ function findPlaylistsGenre(queryList, callback) {
 }
 
 
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteListBackEnd};
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteListBackEnd, deleteAllListBackEnd};
 
 
 
