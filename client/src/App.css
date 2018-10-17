@@ -649,15 +649,7 @@ Popup
   flex-direction: column;
 }
 
-.delete{
-  position: absolute;
-  top:-25px;
-  left:40px;
-  background: none;
-  border:none;
-  color: rgba(255, 255, 255, 0.7);
-  cursor:pointer;
-}
+
 
 .close {
   position: absolute;
@@ -672,13 +664,25 @@ Popup
 
 .update{
   position: absolute;
-  right: 40px;
-  bottom: 10px;
-    color: rgba(0, 0, 0, 0.7);
+  /* right: 40px;
+  bottom: 10px; */
+  text-shadow: -1px -2px 3px black;
+  top:-1.2em;
+  color: rgba(255, 255, 255, 0.7);
 cursor: pointer;
   background: none;
   border: none;
   font-size:1em;
+  width:100px;
+}
+.update:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  text-shadow: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.update:active {
+  box-shadow: none;
 }
 
 #closebtn {
@@ -748,7 +752,6 @@ cursor: pointer;
 }
 
 /* .playListInformation {
-  letter-spacing: 3px;
   margin-bottom: -5px;
   text-align: center;
 } */
@@ -796,16 +799,44 @@ cursor: pointer;
 }
 
 .playListTitle {
-
+  font-size: 3em;
   position: relative;
   text-align: center;
-  top: 20px;
+  top: -20px;
+  margin-bottom: -35px;
 }
 
+.playListInformationGenre{ 
+  top: 1em;
+  text-align: center;
+  font-size: 18px;
+  position: relative;
+}
 
+.playListInformationName{
+  text-align: center;
+  font-size: 18px;
+}
+.playListInformationSpotify{
+  text-align: center;
+  font-size: 18px;
+  top:-3em;
+  position: relative;
+}
 
+.playListInformationCreatedBy {
+  top: -0.5em;
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+}
 
-
+.playListInformationDesc {
+  text-align: center;
+  font-size: 18px;
+  top:-1.5em;
+  position: relative;
+}
 
 
 .spotifyLink {
@@ -835,6 +866,8 @@ cursor: pointer;
 .playListUserName {
   display: block;
   text-align: center;
+  top:-20px;
+  position: relative;
 }
 
 .editInformation {
@@ -845,16 +878,21 @@ cursor: pointer;
 .editPlayList {
   display: block;
   text-align: center;
+  margin-top: -10px;
 }
 
 .editDescription {
   display: block;
   text-align: center;
+  position: relative;
+  top:-2.5em;
 }
 
 .editUrl {
   display: block;
   text-align: center;
+  position: relative;
+  top: -4em;
 }
 
 .editGenres {
@@ -888,6 +926,10 @@ cursor: pointer;
 .genreInfo {
   margin-right: 10px;
   text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  position: relative;
+  top:15px;
 }
 
 .editName,
@@ -931,6 +973,7 @@ cursor: pointer;
 
 
 #delete{
+  margin-right:0.5em;
   color:#A5474B;
     transition: color 0.3s ease-out, border 0.3s ease-out;
 
@@ -961,6 +1004,7 @@ cursor: pointer;
   cursor: pointer;
   padding:6px;
   color:rgba(255,255,255,0.7);
+  cursor: pointer;
   transition: color 0.3s ease-out, background;
 }
 
@@ -968,6 +1012,7 @@ cursor: pointer;
 #close:hover{
   color:rgba(0,0,0,0.6);
   background: rgba(255,255,255,0.3);
+
 }
 
 
