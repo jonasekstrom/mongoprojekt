@@ -328,20 +328,20 @@ class Popup extends Component {
                 <button id="delete" onClick={this.removeThis.bind(this)}>
                   Delete
                 </button>
-              </li>
 
-              <li>
-                <button
-                className="update"
-                  disabled={this.state.edited}
-                  onClick={e => {
-                    this.props.dispatch(
-                      action.updatePopup(this.state, this.props.popup)
-                    );
-                    this.clearState();
-                  }}
-                >
-                  Update
+             </li>
+         
+            <li>
+                <button id="update"
+                disabled={this.state.edited}
+                onClick={e => {
+                  this.props.dispatch(
+                    action.updatePopup(this.state, this.props.popup)
+                  );
+                  this.clearState();
+                }}
+              >
+                Update
               </button>
               </li>
 

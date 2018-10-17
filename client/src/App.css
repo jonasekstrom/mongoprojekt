@@ -10,6 +10,47 @@ body {
   width: 100%;
 }
 
+
+.buttonsDiv{
+}
+
+
+.buttons.head{
+  top:10px;
+  margin:5px;
+  font-size: 0.8em;
+
+}
+
+.buttons.login{
+  top:-5px;
+  margin:5px;
+}
+
+.buttons{
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  color:rgba(255,255,255,0.7);
+  padding:10px 20px;
+  
+  background: rgba(255,255,255,0.1);
+  border-radius: 1px;
+  color:rgba(255,255,255,.7);
+  border-radius: 2px;
+  transition: background 0.3s ease-out;
+  border:none;
+}
+
+.buttons:hover{
+    color:rgba(0,0,0,0.6);
+    background: rgba(255,255,255,0.6);
+
+}
+
+
+
+
 .backgroundImage {
   background: url("https://files.slack.com/files-pri/T6RE0MQD7-FD6BF2831/login.jpg");
   background-repeat: no-repeat;
@@ -80,7 +121,7 @@ body {
 #electro:hover {
   text-shadow: 0 0 10px rgb(105, 41, 87), 0 0 20px rgb(105, 41, 87),
     0 0 20px rgb(105, 41, 87);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 #electroClicked {
@@ -91,7 +132,7 @@ body {
   font-family: "Electrolize", sans-serif;
   text-shadow: 0 0 10px rgb(105, 41, 87), 0 0 20px rgb(105, 41, 87),
     0 0 20px rgb(105, 41, 87);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 #pop {
@@ -299,7 +340,7 @@ body {
 
 .userImg {
   position: absolute;
-  right: 20px;
+  right: 45px;
   border-radius: 100%;
   width: 70px;
   top: 20px;
@@ -336,19 +377,47 @@ input:focus {
   justify-content: flex-end;
 }
 
+.user{
+  display: flex;
+  margin-right: 40px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
 #username {
   color: rgba(255, 255, 255, 0.7);
-  margin-right: 30px;
-  margin-top: 5px;
-  font-size: 0.8em;
+    margin-right: 10px;
+
+}
+
+.user button{
+  border:none;
+  background: none;
+    color:#A5474B;
+  font-size: 1em;
+    cursor: pointer;
+
 }
 
 #createList {
-  color: rgba(255, 255, 255, 0.7);
-  position: absolute;
-  left: 40px;
-  top: 5px;
+  
+
+   position: absolute;
+  font-size: 1em;
+  background: none;
+  border:none;
+  left:40px;
+  top:0px;
   cursor: pointer;
+  padding:8px;
+  color:rgba(255,255,255,0.7);
+  transition: color 0.3s ease-out, background;
+
+}
+
+#createList:hover{
+  color:rgba(0,0,0,0.6);
+  background: rgba(255,255,255,0.3);
 }
 
 .styleTransition {
@@ -357,7 +426,7 @@ input:focus {
   padding-top: 30px;
   width: 100%;
   z-index: 1;
-  transition: height 0.5s linear, opacity 0.5s linear;
+  transition: height 0.3s linear, opacity 0.3s linear;
   background: #bbbac2;
   display: flex;
   justify-content: center;
@@ -445,34 +514,34 @@ input:focus {
 }
 
 #metalUnderline {
-  border-bottom: 4px solid rgba(198, 60, 60, 0.5);
+  border-bottom: 4px solid rgba(198, 60, 60, 0.3);
 }
 #countryUnderline {
   border-bottom: 4px solid rgb(133, 96, 70);
 }
 
 #jazzUnderline {
-  border-bottom: 4px solid rgba(164, 93, 93, 0.5);
+  border-bottom: 4px solid rgba(164, 93, 93, 0.3);
 }
 
 #bluesUnderline {
-  border-bottom: 4px solid rgba(70, 68, 161, 0.5);
+  border-bottom: 4px solid rgba(70, 68, 161, 0.3);
 }
 
 #classicalUnderline {
-  border-bottom: 4px solid rgba(205, 124, 99, 0.5);
+  border-bottom: 4px solid rgba(205, 124, 99, 0.3);
 }
 
 #electroUnderline {
-  border-bottom: 4px solid rgba(105, 41, 870, 0.5);
+  border-bottom: 4px solid rgba(105, 41, 870, 0.3);
 }
 
 #hiphopUnderline {
-  border-bottom: 4px solid rgba(70, 139, 255, 0.5);
+  border-bottom: 4px solid rgba(70, 139, 255, 0.3);
 }
 
 #popUnderline {
-  border-bottom: 4px solid rgba(102, 173, 81, 0.5);
+  border-bottom: 4px solid rgba(102, 173, 81, 0.3);
 }
 
 .onClick {
@@ -580,15 +649,7 @@ Popup
   flex-direction: column;
 }
 
-.delete{
-  position: absolute;
-  top:-25px;
-  left:40px;
-  background: none;
-  border:none;
-  color: rgba(255, 255, 255, 0.7);
-  cursor:pointer;
-}
+
 
 .close {
   position: absolute;
@@ -598,6 +659,8 @@ Popup
   top:-25px;
   cursor: pointer;
 }
+
+
 
 .update{
   position: absolute;
@@ -642,6 +705,11 @@ cursor: pointer;
   background: rgba(66, 66, 66, 1);
 }
 
+.updateClose{
+    cursor: pointer;
+
+}
+
 .updateClose div {
   display: flex;
   justify-content: center;
@@ -654,6 +722,8 @@ cursor: pointer;
   font-size: 1em;
   background: rgba(255, 255, 255, 0.6);
 }
+
+
 
 .popup_inner div {
   display: flex;
@@ -780,7 +850,7 @@ cursor: pointer;
   position: absolute;
   bottom: 0px;
   text-decoration: none;
-  text-shadow: -1px -2px 3px black;
+  transition: background 0.4s ease-out, color ;
 }
 
 .spotifyLink:hover {
@@ -884,6 +954,8 @@ cursor: pointer;
 .popupMenu li{
   margin:0;
   border:none;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .popupMenu button{  
@@ -899,21 +971,27 @@ cursor: pointer;
   border: none;
 }
 
+
 #delete{
-  text-shadow: -1px -2px 3px black;
-  top:-1.2em;
   margin-right:0.5em;
   color:#A5474B;
-  width:100px;
+    transition: color 0.3s ease-out, border 0.3s ease-out;
+
 }
 
-#delete:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-  text-shadow: none;
+
+#delete:hover{
+  border-top:4px solid rgba(255,255,255);
 }
 
-#delete:active {
-  box-shadow: none;
+
+#update {
+      transition: color 0.3s ease-out, border 0.3s ease-out;
+
+}
+
+#update:hover{
+  border-top: 4px solid rgba(255,255,255);
 }
 
 #close{
@@ -922,7 +1000,21 @@ cursor: pointer;
   background: none;
   border:none;
   left:40px;
-  top:-25px;
+  top:-30px;
+  cursor: pointer;
+  padding:6px;
   color:rgba(255,255,255,0.7);
   cursor: pointer;
+  transition: color 0.3s ease-out, background;
 }
+
+
+#close:hover{
+  color:rgba(0,0,0,0.6);
+  background: rgba(255,255,255,0.3);
+
+}
+
+
+
+
