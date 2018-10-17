@@ -1,4 +1,15 @@
-let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist, deleteListBackEnd, deleteAllListBackEnd, deleteAccountBackEnd} = require("./database.js")
+let {
+  createUser,
+  loginUser,
+  getAllPlaylists,
+  getUserPlaylist,
+  createPlaylist,
+  searchSelected,
+  updatePlaylist,
+  deleteListBackEnd,
+  deleteAllListBackEnd,
+  deleteAccountBackEnd
+} = require("./database.js");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -11,6 +22,14 @@ const app = express();
 
 app.use(function(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
   next();
 });
 
@@ -67,7 +86,7 @@ app.post("/createUser", (req, res) => {
 
 app.post(
   "/createplaylist",
-  //passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let playlist = "";
     req.on("data", data => {
@@ -85,7 +104,7 @@ app.post(
 
 app.post(
   "/updateplaylist",
-  //passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let updatedPlaylist = "";
     req.on("data", data => {
@@ -93,7 +112,6 @@ app.post(
     });
 
     req.on("end", function() {
-      
       let obj = JSON.parse(updatedPlaylist);
       updatePlaylist(obj, function(err, docs) {
         res.send("updated");
@@ -135,12 +153,13 @@ app.get("/search", (req, res) => {
   // res.send("Search");
 });
 
-
-app.post("/delete", //passport.authenticate("jwt", { session: false }),
+app.post(
+  "/delete",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let listToDelete = "";
     // res.send(deleteList1)
-    
+
     req.on("data", data => {
       listToDelete += data;
     });
@@ -152,36 +171,36 @@ app.post("/delete", //passport.authenticate("jwt", { session: false }),
   }
 );
 
-app.post("/deleteall", (req, res) => {
+app.post(
+  "/deleteall",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    let creatorListsToDelete = "";
 
+    req.on("data", data => {
+      creatorListsToDelete += data;
+    });
 
-    
+    req.on("end", function() {
+      deleteAllListBackEnd(JSON.parse(creatorListsToDelete));
+      res.send("deleted all lists");
+    });
+  }
+);
 
-  let creatorListsToDelete = "";
-
-  req.on("data", data => {
-    creatorListsToDelete += data;
-  });
-
-  req.on("end", function() {
-    deleteAllListBackEnd(JSON.parse(creatorListsToDelete));
-    res.send("deleted all lists");
-  });
-})
-
-app.post("/accountdeletion", //passport.authenticate("jwt", { session: false }),
+app.post(
+  "/accountdeletion",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let accToDelete = "";
 
     req.on("data", data => {
-      accToDelete+= data;
+      accToDelete += data;
     });
 
-    
     req.on("end", function() {
       deleteAccountBackEnd(JSON.parse(accToDelete));
       res.send("deleted account");
-      
     });
   }
 );

@@ -197,9 +197,13 @@ class CreateList extends Component {
     if (newPlayList.playListName || newPlayList.userName) {
       newPlayList.playListName = newPlayList.playListName.toLowerCase();
       newPlayList.userName = newPlayList.userName.toLowerCase();
+
       fetch(url, {
         method: "post",
-        body: JSON.stringify(newPlayList)
+        body: JSON.stringify(newPlayList),
+        headers: {
+          Authorization: `${localStorage.getItem("jwtToken")}`
+        }
       })
         .then(function(response) {
           return response.json();
