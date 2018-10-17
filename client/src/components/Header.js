@@ -6,7 +6,10 @@ import action from "../actions";
 import Genres from "./Genres.js";
 import CreateList from "./CreateList.js";
 import { logoutUser } from "../actions/authActions";
+import RemoveLists from "./RemoveLists.js";
+
 import { clearCurrentProfile } from "../actions/profileActions";
+
 class Header extends Component {
   constructor() {
     super();
@@ -17,7 +20,16 @@ class Header extends Component {
         opacity: 0,
         height: 0,
         zIndex: -1
+      },
+      
+      clickedInfo: false,
+      clickedGetUserInfo: {
+        opacity: 0,
+        height: 0,
+        zIndex: -1
       }
+
+      
     };
   }
   onLogoutClick(e) {
@@ -47,6 +59,32 @@ class Header extends Component {
           zIndex: 1
         }
       });
+    }
+  }
+
+  getUserInfo() {
+    
+    if (this.state.clickedInfo) {
+      this.setState({
+        
+        clickedInfo: false,
+        clickedGetUserInfo: {
+          opacity: 0,
+          height: "0px",
+          zIndex: -1
+        }
+      });
+    } else {
+      this.setState({
+        
+        clickedInfo: true,
+        clickedGetUserInfo: {
+          opacity: 1,
+          height: "470px",
+          zIndex: 1
+        }
+      });
+      console.log("INFO")
     }
   }
   changeInp(e) {
@@ -112,7 +150,7 @@ class Header extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
-      <div className="user">
+      <div className="user" onClick={e => this.getUserInfo()}>
         <span id="username">
           {user.name}
         </span>
@@ -130,9 +168,17 @@ class Header extends Component {
           <div style={this.state.clickedCreateList} className="styleTransition">
             <CreateList />
           </div>
-          <button onClick={this.removeAll.bind(this)} id="username">{isAuthenticated ? authLinks : ""}> </button>
           
-        </div>
+          <span id="userInf" onClick={e => this.getUserInfo()}>
+            {this.state.userinfo}
+          </span>
+          <div style={this.state.clickedGetUserInfo} className="styleTransition" >
+            <RemoveLists />
+          </div>
+          <span  id="username">{isAuthenticated ? authLinks : ""} </span>
+          </div>
+          {/* <span  id="username">{isAuthenticated ? authLinks : ""} </span> */}
+         
         <div className="header">
           <img className="userImg" alt="" src={this.props.userImg} />
           <Genres />

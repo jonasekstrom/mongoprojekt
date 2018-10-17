@@ -1,5 +1,5 @@
 
-let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist, deleteListBackEnd, deleteAllListBackEnd} = require("./database.js")
+let {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist,searchSelected, updatePlaylist, deleteListBackEnd, deleteAllListBackEnd, deleteAccountBackEnd} = require("./database.js")
 
 
 const express = require("express");
@@ -69,7 +69,7 @@ app.post("/createUser", (req, res) => {
 
 app.post(
   "/createplaylist",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let playlist = "";
     req.on("data", data => {
@@ -79,7 +79,7 @@ app.post(
     req.on("end", function() {
       let obj = JSON.parse(playlist);
       createPlaylist(obj, function(err, docs) {
-        console.log("this is the docs: ", docs);
+        console.log("this is the docs1: ", docs);
         res.send(JSON.stringify(docs));
       });
     });
@@ -88,7 +88,7 @@ app.post(
 
 app.post(
   "/updateplaylist",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let updatedPlaylist = "";
     req.on("data", data => {
@@ -99,7 +99,7 @@ app.post(
     req.on("end", function() {
       let obj = JSON.parse(updatedPlaylist);
       updatePlaylist(obj, function(err, docs) {
-        console.log("this is the docs: ", docs);
+        console.log("this is the docs2: ", docs);
         res.send("updated");
       });
 
@@ -139,13 +139,11 @@ app.get("/search", (req, res) => {
   // res.send("Search");
 });
 
-app.post(
-  "/delete",
-  passport.authenticate("jwt", { session: false }),
+app.post("/delete", //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let listToDelete = "";
     // res.send(deleteList1)
-
+    
     req.on("data", data => {
       listToDelete += data;
     });
@@ -155,9 +153,10 @@ app.post(
       deleteListBackEnd(JSON.parse(listToDelete));
       res.send("hej");
 
+    });
+  })
 
-
-app.post("/deleteAll", (req, res) => {
+  app.post("/deleteAll", (req, res) => {
   let creatorListsToDelete = "";
   
 
@@ -172,14 +171,24 @@ app.post("/deleteAll", (req, res) => {
     
     
   });
-});
+})
+
+app.post("/deleteAccount", //passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    let accToDelete = "";
+    // res.send(deleteList1)
+
+    req.on("data", data => {
+      accToDelete+= data;
+    });
 
 
-      //   createPlaylist(obj, function(err,docs){
-      //     console.log("this is the docs: ", docs)
-      //     res.send(JSON.stringify(docs))
-      //})
-      //});
+    req.on("end", function() {
+      deleteAccountBackEnd(JSON.stringify(accToDelete));
+      res.send("hej");
+
+
+      
     });
   }
 );

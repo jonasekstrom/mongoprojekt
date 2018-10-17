@@ -173,6 +173,8 @@ const playListReducer = (state = initState, action) => {
         ...state,
         playListArray: removedAllLists
       }
+
+      
     
       case "UPDATE_POPUP":
       let updatedPlaylist = functions.updateList(

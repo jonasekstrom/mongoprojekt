@@ -254,7 +254,7 @@ function findPlaylistsText(searchText, callback) {
 
 
 
-function deleteListBackEnd(listToDelete){
+function deleteListBackEnd(listToDelete) {
   console.log("går den in?")
   MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
      if( err ) throw err;  // if unable to connect
@@ -283,7 +283,7 @@ function deleteAllListBackEnd(creatorListsToDelete) {
       const db = client.db(dbName);  // ansluten
       const collectionName = "playlist";
       console.log(creatorListsToDelete)
-      console.log("DELTETE DÅ")
+      
      
       db.collection(collectionName).deleteMany( {creator: creatorListsToDelete}, (err, result) => {
         if( err) throw err
@@ -298,6 +298,30 @@ function deleteAllListBackEnd(creatorListsToDelete) {
         // remember to close connections when done
 
 }
+
+
+function deleteAccountBackEnd(accToDelete) {
+  console.log("går den in?")
+  MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
+     if( err ) throw err;  // if unable to connect
+      const db = client.db(dbName);  // ansluten
+      const collectionName = "users";
+      console.log(accToDelete)
+      //db.collection(collectionName).deleteOne( { "_id" : ObjectId(listToDelete)});
+      db.collection(collectionName).find( {"_id": accToDelete}, (err, result) => {
+        if( err) throw err
+        console.log(result)
+        db.collection(collectionName).deleteOne(result)
+        client.close()
+
+      })
+       
+      })
+
+        // remember to close connections when done
+
+}
+
 
 
 
@@ -320,7 +344,7 @@ function findPlaylistsGenre(queryList, callback) {
 }
 
 
-module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteListBackEnd, deleteAllListBackEnd};
+module.exports = {createUser, loginUser, getAllPlaylists, getUserPlaylist, createPlaylist, searchSelected, deleteListBackEnd, deleteAllListBackEnd, deleteAccountBackEnd};
 
 
 
