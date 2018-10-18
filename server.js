@@ -58,9 +58,9 @@ require("./config/passport")(passport);
 // Use Routes
 app.use("/api/users", users);
 
-app.get("/", (req, res) => {
-  res.send("Default");
-});
+// app.get("/", (req, res) => {
+//   res.send("Default");
+// });
 
 app.post("/login", (req, res) => {
   // REQ = username, email, pw
