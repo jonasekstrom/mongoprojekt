@@ -15,7 +15,7 @@ class Register extends Component {
       password: "",
       password2: "",
       userImg:
-        "https://files.slack.com/files-pri/T6RE0MQD7-FDG69TTPS/avatar1295831_640.png",
+        "http://www.welovefrontend.com/img/metaltjej.png",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -109,45 +109,45 @@ class Register extends Component {
                       type="radio"
                       name="userImg"
                       onChange={this.onChange}
-                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDGU1FKQS/avatar-1606914_640_.png"
+                      value="http://www.welovefrontend.com/img/hiphop.png"
                       checked={
                         this.state.userImg ===
-                        "https://files.slack.com/files-pri/T6RE0MQD7-FDGU1FKQS/avatar-1606914_640_.png"
+                        "http://www.welovefrontend.com/img/hiphop.png"
                       }
-                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDGU1FKQS/avatar-1606914_640_.png"
+                      src="http://www.welovefrontend.com/img/hiphop.png"
                     />
                     <RadioButtonField
                       type="radio"
                       name="userImg"
                       onChange={this.onChange}
-                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDG69QV24/man156584_640.png"
+                      value="http://www.welovefrontend.com/img/metal.png"
                       checked={
                         this.state.userImg ===
-                        "https://files.slack.com/files-pri/T6RE0MQD7-FDG69QV24/man156584_640.png"
+                        "http://www.welovefrontend.com/img/metal.png"
                       }
-                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDG69QV24/man156584_640.png"
+                      src="http://www.welovefrontend.com/img/metal.png"
                     />
                     <RadioButtonField
                       type="radio"
                       name="userImg"
                       onChange={this.onChange}
-                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDH4BK17F/man3414477_640.png"
+                      value="http://www.welovefrontend.com/img/indiegirl.png"
                       checked={
                         this.state.userImg ===
-                        "https://files.slack.com/files-pri/T6RE0MQD7-FDH4BK17F/man3414477_640.png"
+                        "http://www.welovefrontend.com/img/indiegirl.png"
                       }
-                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDH4BK17F/man3414477_640.png"
+                      src="http://www.welovefrontend.com/img/indiegirl.png"
                     />
                     <RadioButtonField
                       type="radio"
                       name="userImg"
                       onChange={this.onChange}
-                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDG69TTPS/avatar1295831_640.png"
+                      value="http://www.welovefrontend.com/img/metaltjej.png"
                       checked={
                         this.state.userImg ===
-                        "https://files.slack.com/files-pri/T6RE0MQD7-FDG69TTPS/avatar1295831_640.png"
+                        "http://www.welovefrontend.com/img/metaltjej.png"
                       }
-                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDG69TTPS/avatar1295831_640.png"
+                      src="http://www.welovefrontend.com/img/metaltjej.png"
                     />
                   </div>
                   <br />
