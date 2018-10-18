@@ -15,7 +15,7 @@ class Register extends Component {
       password: "",
       password2: "",
       userImg:
-        "https://files.slack.com/files-pri/T6RE0MQD7-FDGAXGP9T/avatar-1606914_640.png",
+        "https://files.slack.com/files-pri/T6RE0MQD7-FDG69TTPS/avatar1295831_640.png",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -109,45 +109,45 @@ class Register extends Component {
                       type="radio"
                       name="userImg"
                       onChange={this.onChange}
-                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDH6QEV47/man-156584_640.png"
+                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDGU1FKQS/avatar-1606914_640_.png"
                       checked={
                         this.state.userImg ===
-                        "https://files.slack.com/files-pri/T6RE0MQD7-FDH6QEV47/man-156584_640.png"
+                        "https://files.slack.com/files-pri/T6RE0MQD7-FDGU1FKQS/avatar-1606914_640_.png"
                       }
-                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDH6QEV47/man-156584_640.png"
+                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDGU1FKQS/avatar-1606914_640_.png"
                     />
                     <RadioButtonField
                       type="radio"
                       name="userImg"
                       onChange={this.onChange}
-                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDFCVF3DE/man-3414477_640.png"
+                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDG69QV24/man156584_640.png"
                       checked={
                         this.state.userImg ===
-                        "https://files.slack.com/files-pri/T6RE0MQD7-FDFCVF3DE/man-3414477_640.png"
+                        "https://files.slack.com/files-pri/T6RE0MQD7-FDG69QV24/man156584_640.png"
                       }
-                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDFCVF3DE/man-3414477_640.png"
+                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDG69QV24/man156584_640.png"
                     />
                     <RadioButtonField
                       type="radio"
                       name="userImg"
                       onChange={this.onChange}
-                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDFCVLLG0/avatar-1295831_640.png"
+                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDH4BK17F/man3414477_640.png"
                       checked={
                         this.state.userImg ===
-                        "https://files.slack.com/files-pri/T6RE0MQD7-FDFCVLLG0/avatar-1295831_640.png"
+                        "https://files.slack.com/files-pri/T6RE0MQD7-FDH4BK17F/man3414477_640.png"
                       }
-                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDFCVLLG0/avatar-1295831_640.png"
+                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDH4BK17F/man3414477_640.png"
                     />
                     <RadioButtonField
                       type="radio"
                       name="userImg"
                       onChange={this.onChange}
-                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDGAXGP9T/avatar-1606914_640.png"
+                      value="https://files.slack.com/files-pri/T6RE0MQD7-FDG69TTPS/avatar1295831_640.png"
                       checked={
                         this.state.userImg ===
-                        "https://files.slack.com/files-pri/T6RE0MQD7-FDGAXGP9T/avatar-1606914_640.png"
+                        "https://files.slack.com/files-pri/T6RE0MQD7-FDG69TTPS/avatar1295831_640.png"
                       }
-                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDGAXGP9T/avatar-1606914_640.png"
+                      src="https://files.slack.com/files-pri/T6RE0MQD7-FDG69TTPS/avatar1295831_640.png"
                     />
                   </div>
                   <br />
