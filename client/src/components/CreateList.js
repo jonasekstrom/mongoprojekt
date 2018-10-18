@@ -147,7 +147,7 @@ class CreateList extends Component {
   sendValues() {
     const { user } = this.props.auth;
     let newPlayList = {};
-    let url = "http://localhost:5000/createplaylist";
+    let url = "/createplaylist";
     let regex = new RegExp("https://open.spotify.com/");
     let validateSpotify = regex.test(this.state.listUrl);
 

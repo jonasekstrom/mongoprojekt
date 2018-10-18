@@ -57,7 +57,7 @@ class ShowPlayLists extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/playlist", {
+      fetch("/playlist", {
       // mode: 'no-cors',
       method: "GET",
       headers: {

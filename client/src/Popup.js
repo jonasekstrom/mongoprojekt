@@ -142,7 +142,7 @@ class Popup extends Component {
       spotify: data.spotify
     };
 
-    let url = "http://localhost:5000/updateplaylist";
+    let url = "/updateplaylist";
     let self = this;
     fetch(url, {
       method: "post",
@@ -286,7 +286,7 @@ class Popup extends Component {
 
   removeThis(ev) {
     let self = this;
-    fetch("http://localhost:5000/delete", {
+    fetch("/delete", {
       //mode: 'no-cors',
       method: "POST",
       // headers: {

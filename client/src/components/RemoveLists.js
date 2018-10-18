@@ -11,7 +11,7 @@ class RemoveLists extends Component {
     const { user } = this.props.auth;
 
     let self = this;
-    fetch("http://localhost:5000/deleteAll", {
+    fetch("/deleteAll", {
       method: "POST",
       body: JSON.stringify(user.id),
       headers: {
@@ -26,7 +26,7 @@ class RemoveLists extends Component {
   removeAccount(ev) {
     const { user } = this.props.auth;
     // let self = this;
-    fetch("http://localhost:5000/accountdeletion", {
+    fetch("/accountdeletion", {
       method: "POST",
       body: JSON.stringify(user),
       headers: {

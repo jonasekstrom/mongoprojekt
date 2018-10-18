@@ -82,7 +82,6 @@ class Header extends Component {
     if (this.state.clickedInfo) {
 
       this.setState({
-
         clickedInfo: false,
         clickedGetUserInfo: {
           opacity: 0,
@@ -93,7 +92,6 @@ class Header extends Component {
 
     } else {
       this.setState({
-
         clickedInfo: true,
         clickedGetUserInfo: {
           opacity: 1,
@@ -121,7 +119,7 @@ class Header extends Component {
       }
 
       fetch(
-        `http://localhost:5000/search?searchText=${searchField}&firstGenre=${
+        `/search?searchText=${searchField}&firstGenre=${
         genreArray[0]
         }&secondGenre=${genreArray[1]}&thirdGenre=${genreArray[2]}`
       ).then(response => {
@@ -131,17 +129,14 @@ class Header extends Component {
           });
         }
       });
-      // //Skickas en fetch med get till servern med en querystring med ovantstående värden.
     }
   }
 
   removeAll(ev) {
     const { user } = this.props.auth
 
-
-
     let self = this;
-    fetch('http://localhost:5000/deleteall', {
+    fetch('/deleteall', {
       //mode: 'no-cors',
       method: 'POST',
       // headers: {
@@ -157,15 +152,9 @@ class Header extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
-      // <<<<<<< HEAD
-      //     <div className="user">
-      //         {/* <button onClick={this.removeAll.bind(this)} id="username"> */}
-      // =======
       <div className="user" onClick={e => this.getUserInfo()}>
         <span id="username">
-          {/* >>>>>>> 1f97f38ba7972767b58ff6a468bea8815fdf0d80 */}
           {user.name}
-          {/* </button> */}
         </span>
         <button onClick={this.onLogoutClick.bind(this)}>Log out</button>
       </div>
@@ -179,7 +168,6 @@ class Header extends Component {
           <div style={this.state.clickedCreateList} className="styleTransition">
             <CreateList />
           </div>
-          <span id="userInf" onClick={e => this.getUserInfo()}>{this.state.userinfo}</span>
           <div style={this.state.clickedGetUserInfo} className="styleTransition" >
           <RemoveLists />
           </div>
