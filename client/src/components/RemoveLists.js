@@ -4,7 +4,7 @@ import "../App.css";
 import { connect } from "react-redux";
 import action from "../actions.js";
 import { logoutUser } from "../actions/authActions";
-import { clearCurrentProfile } from "../actions/profileActions";
+import { clearCurrentProfile } from "../actions/authActions";
 
 class RemoveLists extends Component {
   removeAll(ev) {

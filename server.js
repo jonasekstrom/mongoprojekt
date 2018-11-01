@@ -8,7 +8,8 @@ let {
   updatePlaylist,
   deleteListBackEnd,
   deleteAllListBackEnd,
-  deleteAccountBackEnd
+  deleteAccountBackEnd,
+  getLandingStats
 } = require("./database.js");
 
 const express = require("express");
@@ -68,7 +69,16 @@ app.post("/login", (req, res) => {
   loginUser();
   res.send("Login");
 });
-
+// @route   GET /stats
+// @desc    Get count on both collections
+// @author  Jonas
+app.get("/statsen", (req, res) => {
+  let stats;
+  getLandingStats("_", function(docs) {
+    stats = docs;
+    res.send(stats);
+  });
+});
 app.post("/createUser", (req, res) => {
   // REQ = username, email, pw
   let user = "";

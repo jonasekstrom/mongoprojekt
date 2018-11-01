@@ -39,13 +39,11 @@ let deleteList = deleteData => {
 };
 
 let deleteAllLists = deleteAllListData => {
-    return {
+  return {
     type: "DELETE_ALL_LISTS",
     deleteAllListData
   };
 };
-
-
 
 let rockClicked = searchInfo => {
   return functions.onClickedGenre(searchInfo, "ROCK");
@@ -126,7 +124,6 @@ let searchField = value => {
   };
 };
 
-
 let updateList = value => {
   return {
     type: "UPDATE_LIST",
@@ -167,5 +164,5 @@ export default {
   electroUnclicked,
   searchField,
   updateList,
-  setLoading,
+  setLoading
 };

@@ -4,6 +4,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
+const MongoClient = require("mongodb").MongoClient;
+const url = "mongodb://admin:abc123@ds125683.mlab.com:25683/shareyourmusic";
+const dbName = "shareyourmusic"; // Database Name
 
 // Load Input Validation
 const validateRegisterInput = require("../../validation/register");
@@ -16,6 +19,28 @@ const User = require("../../models/User");
 // @desc    Tests users route
 // @access  Public
 router.get("/test", (req, res) => res.json({ msg: "Users Works" }));
+router.get("/stats", (req, res) => {
+  MongoClient.connect(
+    url,
+    { useNewUrlParser: true },
+    (err, client) => {
+      if (err) throw err; // if unable to connect
+      const db = client.db(dbName); // ansluten
+      const collectionName = "users";
+      const collectionName2 = "playlist";
+      let userStat = db.collection(collectionName).countDocuments({});
+      let playlistStat = db.collection(collectionName2).countDocuments({});
+      const appStat = {};
+      userStat.then(data => {
+        appStat.userCount = data;
+      });
+      playlistStat.then(data => {
+        appStat.playlistCount = data;
+        res.send(appStat);
+      });
+    }
+  );
+});
 
 // @route   POST api/users/register
 // @desc    Register user
