@@ -8,7 +8,7 @@ import CreateList from "./CreateList.js";
 import { logoutUser } from "../actions/authActions";
 import RemoveLists from "./RemoveLists.js";
 
-import { clearCurrentProfile } from "../actions/profileActions";
+import { clearCurrentProfile } from "../actions/authActions";
 
 class Header extends Component {
   constructor() {
@@ -28,8 +28,6 @@ class Header extends Component {
         height: 0,
         zIndex: -1
       }
-
-
     };
   }
   onLogoutClick(e) {
@@ -39,48 +37,7 @@ class Header extends Component {
   }
 
   createListClick() {
-
-    if(this.state.clickedInfo){
-          this.setState({
-
-        clickedInfo: false,
-        clickedGetUserInfo: {
-          opacity: 0,
-          height: "0px",
-          zIndex: -1
-        }
-      });
-      
-    }
-
-
-    if (this.state.clicked) {
-        this.setState({
-          createList: "Create list",
-          clicked: false,
-          clickedCreateList: {
-            opacity: 0,
-            height: "0px",
-            zIndex: -1
-          }
-        });
-      } else {
-        this.setState({
-          createList: "Return",
-          clicked: true,
-          clickedCreateList: {
-            opacity: 1,
-            height: "470px",
-            zIndex: 1
-          }
-        });
-      }
-  }
-
-  getUserInfo() {
-
     if (this.state.clickedInfo) {
-
       this.setState({
         clickedInfo: false,
         clickedGetUserInfo: {
@@ -89,7 +46,41 @@ class Header extends Component {
           zIndex: -1
         }
       });
+    }
 
+    if (this.state.clicked) {
+      this.setState({
+        createList: "Create list",
+        clicked: false,
+        clickedCreateList: {
+          opacity: 0,
+          height: "0px",
+          zIndex: -1
+        }
+      });
+    } else {
+      this.setState({
+        createList: "Return",
+        clicked: true,
+        clickedCreateList: {
+          opacity: 1,
+          height: "470px",
+          zIndex: 1
+        }
+      });
+    }
+  }
+
+  getUserInfo() {
+    if (this.state.clickedInfo) {
+      this.setState({
+        clickedInfo: false,
+        clickedGetUserInfo: {
+          opacity: 0,
+          height: "0px",
+          zIndex: -1
+        }
+      });
     } else {
       this.setState({
         clickedInfo: true,
@@ -120,7 +111,7 @@ class Header extends Component {
 
       fetch(
         `/search?searchText=${searchField}&firstGenre=${
-        genreArray[0]
+          genreArray[0]
         }&secondGenre=${genreArray[1]}&thirdGenre=${genreArray[2]}`
       ).then(response => {
         if (response.ok) {
@@ -133,29 +124,27 @@ class Header extends Component {
   }
 
   removeAll(ev) {
-    const { user } = this.props.auth
+    const { user } = this.props.auth;
 
     let self = this;
-    fetch('/deleteall', {
+    fetch("/deleteall", {
       //mode: 'no-cors',
-      method: 'POST',
+      method: "POST",
       // headers: {
       // Accept: 'application/json',
       // },
-      body: JSON.stringify(user.id),
-    }).then(function (response) {
-      return response
-    })
-    self.props.dispatch(action.deleteAllLists(user.id))
+      body: JSON.stringify(user.id)
+    }).then(function(response) {
+      return response;
+    });
+    self.props.dispatch(action.deleteAllLists(user.id));
   }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
       <div className="user" onClick={e => this.getUserInfo()}>
-        <span id="username">
-          {user.name}
-        </span>
+        <span id="username">{user.name}</span>
         <button onClick={this.onLogoutClick.bind(this)}>Log out</button>
       </div>
     );
@@ -168,28 +157,29 @@ class Header extends Component {
           <div style={this.state.clickedCreateList} className="styleTransition">
             <CreateList />
           </div>
-          <div style={this.state.clickedGetUserInfo} className="styleTransition" >
-          <RemoveLists />
+          <div
+            style={this.state.clickedGetUserInfo}
+            className="styleTransition"
+          >
+            <RemoveLists />
           </div>
           <span id="username">{isAuthenticated ? authLinks : ""} </span>
-          </div>
-          
-
-      <div className="header">
-
-        <img className="userImg" alt="" src={user.img} />
-        <Genres />
-        <div className="inputfield">
-          <div className="clip" />
-          <input
-            type="text"
-            value={this.props.searchField}
-            onChange={e => this.changeInp(e)}
-            onKeyPress={e => this.handleKeyPress(e)}
-          />
         </div>
-      </div>
-      </React.Fragment >
+
+        <div className="header">
+          <img className="userImg" alt="" src={user.img} />
+          <Genres />
+          <div className="inputfield">
+            <div className="clip" />
+            <input
+              type="text"
+              value={this.props.searchField}
+              onChange={e => this.changeInp(e)}
+              onKeyPress={e => this.handleKeyPress(e)}
+            />
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

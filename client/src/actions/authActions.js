@@ -1,7 +1,22 @@
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
-import { GET_ERRORS, SET_CURRENT_USER } from "./types";
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  CLEAR_CURRENT_PROFILE,
+  GET_STATS
+} from "./types";
+
+// Stats for landing
+export const statsForLanding = () => dispatch => {
+  axios.get("/api/users/stats").then(res =>
+    dispatch({
+      type: GET_STATS,
+      payload: res.data
+    })
+  );
+};
 
 // Register
 export const registerUser = (userData, history) => dispatch => {
@@ -55,4 +70,10 @@ export const logoutUser = () => dispatch => {
   setAuthToken(false);
   // Set current user to {} which till set isAuthenticated to false
   dispatch(setCurrentUser({}));
+};
+// Clear profile
+export const clearCurrentProfile = () => {
+  return {
+    type: CLEAR_CURRENT_PROFILE
+  };
 };
